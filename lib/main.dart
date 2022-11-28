@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/brightness_notifier.dart';
 import 'package:mealguide/pages/onboarding/onboarding_quiz.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
@@ -15,17 +16,31 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ThemeMode mode = ref.watch(themeStateNotifierProvider).mode;
-
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          themeMode: mode,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          home: const OnboardingQuiz(),
-        );
-      },
+    return BrightnessNotifier(
+      onBrightnessChanged: () => handleTheme(ref),
+      child: Sizer(
+        builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            themeMode: mode,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            home: const OnboardingQuiz(),
+          );
+        },
+      ),
     );
+  }
+
+  void handleTheme(WidgetRef ref) {
+    switch (WidgetsBinding.instance.window.platformBrightness) {
+      case Brightness.dark:
+        ref.read(themeStateNotifierProvider.notifier).setTheme(ThemeMode.dark);
+        break;
+      case Brightness.light:
+        ref.read(themeStateNotifierProvider.notifier).setTheme(ThemeMode.light);
+        break;
+      default:
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:mealguide/models/ingredient_composition_model.dart';
 import 'package:mealguide/models/ingredient_model.dart';
 import 'package:mealguide/models/instruction_model.dart';
 import 'package:mealguide/models/nutrition_model.dart';
@@ -34,12 +35,19 @@ class Recipe {
     required this.time,
   });
 
-  factory Recipe.fromDoc(Map<String, dynamic> doc) {
+  factory Recipe.fromDoc(
+      Map<String, dynamic> doc, Map<String, dynamic> compositionDoc) {
     Serving docServing = Serving.fromDoc(doc['servings']);
+
+    List<IngredientComposition> compositions = [];
+
+    compositionDoc['data'].forEach((compositionMap) {
+      compositions.add(IngredientComposition.fromDoc(compositionMap));
+    });
 
     List<Ingredient> docIngredients = [];
     doc['ingredients'].forEach((val) {
-      docIngredients.add(Ingredient.fromDoc(val));
+      docIngredients.add(Ingredient.fromDoc(val, compositions));
     });
 
     List<Instruction> docInstructions = [];

@@ -23,7 +23,6 @@ class OnboardingQuiz extends HookConsumerWidget {
     PageController pageController = usePageController();
 
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
       body: Column(
         children: [
           const OnboardingSteps(),
