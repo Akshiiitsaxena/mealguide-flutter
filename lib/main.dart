@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/brightness_notifier.dart';
-import 'package:mealguide/pages/onboarding/onboarding_quiz.dart';
+import 'package:mealguide/pages/recipes/all_recipes_page.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
@@ -25,7 +25,7 @@ class MyApp extends HookConsumerWidget {
             themeMode: mode,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
-            home: const OnboardingQuiz(),
+            home: const AllRecipesPage(),
           );
         },
       ),
