@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class PrimaryButton extends StatelessWidget {
+class MgPrimaryButton extends StatelessWidget {
   final String text;
   final Function() onTap;
   final bool isEnabled;
   final double? height;
   final double? width;
 
-  const PrimaryButton(
+  const MgPrimaryButton(
     this.text, {
     Key? key,
     required this.onTap,

@@ -40,20 +40,16 @@ class Recipe {
     Serving docServing = Serving.fromDoc(doc['servings']);
 
     List<IngredientComposition> compositions = [];
-
-    compositionDoc['data'].forEach((compositionMap) {
-      compositions.add(IngredientComposition.fromDoc(compositionMap));
-    });
+    compositionDoc['data'].forEach((compositionMap) =>
+        compositions.add(IngredientComposition.fromDoc(compositionMap)));
 
     List<Ingredient> docIngredients = [];
-    doc['ingredients'].forEach((val) {
-      docIngredients.add(Ingredient.fromDoc(val, compositions));
-    });
+    doc['ingredients'].forEach(
+        (val) => docIngredients.add(Ingredient.fromDoc(val, compositions)));
 
     List<Instruction> docInstructions = [];
-    doc['instructions'].forEach((val) {
-      docInstructions.add(Instruction.fromDoc(val));
-    });
+    doc['instructions']
+        .forEach((val) => docInstructions.add(Instruction.fromDoc(val)));
 
     Nutrition docNutrition = Nutrition.fromDoc(doc['nutrition']);
 
@@ -73,4 +69,6 @@ class Recipe {
       time: doc['time'],
     );
   }
+
+  get getCalories => '${nutrition.calories.floor()} KCAL';
 }

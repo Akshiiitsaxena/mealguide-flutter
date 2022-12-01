@@ -27,7 +27,7 @@ class OnboardingQuiz extends HookConsumerWidget {
         children: [
           const OnboardingSteps(),
           Expanded(child: QuestionScreen(pageController: pageController)),
-          PrimaryButton(
+          MgPrimaryButton(
             'Continue',
             isEnabled: hasSelected,
             onTap: () {

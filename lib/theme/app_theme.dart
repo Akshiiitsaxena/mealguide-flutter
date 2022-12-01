@@ -5,7 +5,7 @@ class AppTheme {
   AppTheme._();
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade300,
+    scaffoldBackgroundColor: Colors.grey.shade100,
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
@@ -14,19 +14,34 @@ class AppTheme {
       headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       titleLarge: TextStyle(color: Colors.grey.shade400, fontSize: 12.sp),
-      titleMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      titleMedium: TextStyle(
+        color: Colors.black87,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+      ),
       titleSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       bodyLarge: TextStyle(color: Colors.black87, fontSize: 24.sp),
       bodyMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      bodySmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      labelMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      labelLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      bodySmall: TextStyle(
+        color: Colors.grey.shade800,
+        fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      labelLarge: TextStyle(
+        color: Colors.deepPurpleAccent.shade200,
+        fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      labelMedium: TextStyle(
+          color: Colors.black87, fontSize: 8.sp, fontWeight: FontWeight.bold),
       labelSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
     ),
+    cardColor: Colors.white,
   );
 
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black87,
+    scaffoldBackgroundColor: const Color(0xff121212),
+    focusColor: Colors.grey[850],
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
@@ -35,14 +50,28 @@ class AppTheme {
       headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       titleLarge: TextStyle(color: Colors.grey.shade400, fontSize: 12.sp),
-      titleMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      titleMedium: TextStyle(
+        color: Colors.grey.shade200,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+      ),
       titleSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       bodyLarge: TextStyle(color: Colors.black87, fontSize: 24.sp),
       bodyMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      bodySmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      labelMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      labelLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      bodySmall: TextStyle(
+        color: Colors.grey.shade200,
+        fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      labelLarge: TextStyle(
+        color: Colors.deepPurpleAccent.shade200,
+        fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      labelMedium: TextStyle(color: Colors.grey.shade200, fontSize: 8.sp),
       labelSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
     ),
+    cardColor: Colors.white.withOpacity(0.05),
+    dividerColor: Colors.grey.shade800,
   );
 }
