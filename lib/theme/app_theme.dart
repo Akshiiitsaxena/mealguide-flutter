@@ -13,7 +13,10 @@ class AppTheme {
       headlineLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      titleLarge: TextStyle(color: Colors.grey.shade400, fontSize: 12.sp),
+      titleLarge: TextStyle(
+          color: Colors.grey.shade400,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold),
       titleMedium: TextStyle(
         color: Colors.black87,
         fontSize: 16.sp,
@@ -49,7 +52,10 @@ class AppTheme {
       headlineLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      titleLarge: TextStyle(color: Colors.grey.shade400, fontSize: 12.sp),
+      titleLarge: TextStyle(
+          color: Colors.grey.shade400,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold),
       titleMedium: TextStyle(
         color: Colors.grey.shade200,
         fontSize: 16.sp,

@@ -11,7 +11,7 @@ class Recipe {
   final String image;
   final String diet;
   final Serving serving;
-  final String category;
+  final RecipeType category;
   final String identifier;
   final Map<String, dynamic> time;
   final List<Ingredient> ingredients;
@@ -53,8 +53,27 @@ class Recipe {
 
     Nutrition docNutrition = Nutrition.fromDoc(doc['nutrition']);
 
+    RecipeType docRecipeType;
+
+    switch (doc['category']) {
+      case 'breakfast':
+        docRecipeType = RecipeType.breakfast;
+        break;
+      case 'lunch':
+        docRecipeType = RecipeType.lunch;
+        break;
+      case 'snacks':
+        docRecipeType = RecipeType.snacks;
+        break;
+      case 'dinner':
+        docRecipeType = RecipeType.dinner;
+        break;
+      default:
+        docRecipeType = RecipeType.breakfast;
+    }
+
     return Recipe(
-      category: doc['category'],
+      category: docRecipeType,
       description: doc['description'],
       diet: doc['diet'],
       id: doc['id'],
@@ -72,3 +91,5 @@ class Recipe {
 
   get getCalories => '${nutrition.calories.floor()} KCAL';
 }
+
+enum RecipeType { breakfast, lunch, snacks, dinner }

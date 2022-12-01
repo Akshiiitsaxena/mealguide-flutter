@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
+import 'package:mealguide/pages/recipes/diet_recipes_page.dart';
 import 'package:mealguide/pages/recipes/recipe_box.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
@@ -45,7 +45,17 @@ class AllRecipesPage extends HookConsumerWidget {
                               diet.name,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
-                            MgSecondaryButton('See More', onTap: () {}),
+                            MgSecondaryButton(
+                              'See More',
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => DietRecipesPage(
+                                    diet: diet,
+                                    recipes: data.values.toList()[index],
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
