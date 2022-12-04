@@ -6,6 +6,8 @@ class AppTheme {
 
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade100,
+    primaryColor: Colors.deepPurpleAccent.shade200,
+    focusColor: Colors.white,
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
@@ -44,7 +46,8 @@ class AppTheme {
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xff121212),
-    focusColor: Colors.grey[850],
+    primaryColor: Colors.deepPurpleAccent.shade200,
+    focusColor: Colors.grey[900],
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),

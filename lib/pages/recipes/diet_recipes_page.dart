@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
+import 'package:mealguide/pages/recipes/category_tabs.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
 import 'package:mealguide/providers/recipe_type_state_provider.dart';
 import 'package:sizer/sizer.dart';
@@ -21,6 +21,7 @@ class DietRecipesPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final typeWatcher = ref.watch(recipeTypeStateNotifierProvider);
+    final controller = useScrollController();
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback(
@@ -36,6 +37,7 @@ class DietRecipesPage extends HookConsumerWidget {
 
     return Scaffold(
       body: CustomScrollView(
+        controller: controller,
         slivers: [
           const SliverAppBar(pinned: true),
           SliverToBoxAdapter(
@@ -45,7 +47,17 @@ class DietRecipesPage extends HookConsumerWidget {
               color: Colors.red,
             ),
           ),
-          SliverPersistentHeader(pinned: true, delegate: RanClass()),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: CategoryTabs(
+              recipeType: typeWatcher.type,
+              onChanged: () => controller.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeIn,
+              ),
+            ),
+          ),
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             sliver: SliverGrid.count(
@@ -62,65 +74,5 @@ class DietRecipesPage extends HookConsumerWidget {
         ],
       ),
     );
-  }
-}
-
-class RanClass extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Align(
-      child: Container(
-        alignment: Alignment.center,
-        height: 10.h,
-        child: Consumer(
-          builder: (context, ref, child) {
-            return Container(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () => ref
-                        .read(recipeTypeStateNotifierProvider.notifier)
-                        .setCurrentType(RecipeType.breakfast),
-                    child: const Text('breakfast'),
-                  ),
-                  InkWell(
-                    onTap: () => ref
-                        .read(recipeTypeStateNotifierProvider.notifier)
-                        .setCurrentType(RecipeType.lunch),
-                    child: const Text('lunch'),
-                  ),
-                  InkWell(
-                    onTap: () => ref
-                        .read(recipeTypeStateNotifierProvider.notifier)
-                        .setCurrentType(RecipeType.snacks),
-                    child: const Text('snacks'),
-                  ),
-                  InkWell(
-                    onTap: () => ref
-                        .read(recipeTypeStateNotifierProvider.notifier)
-                        .setCurrentType(RecipeType.dinner),
-                    child: const Text('dinner'),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 10.h;
-
-  @override
-  double get minExtent => 10.h;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
   }
 }
