@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mealguide/models/recipe_model.dart';
+import 'package:mealguide/pages/recipes/recipe_page.dart';
 import 'package:sizer/sizer.dart';
 
 class DietRecipeBox extends StatelessWidget {
@@ -26,32 +27,37 @@ class DietRecipeBox extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          width: 100.w,
-          padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 4.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(28),
-            gradient: const LinearGradient(
-              colors: [Colors.transparent, Colors.black],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+        InkWell(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => RecipePage(recipe: recipe)),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                recipe.getCalories,
-                style:
-                    theme.textTheme.labelLarge?.copyWith(color: Colors.white70),
+          child: Container(
+            width: 100.w,
+            padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 4.w),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(28),
+              gradient: const LinearGradient(
+                colors: [Colors.transparent, Colors.black],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              Text(
-                recipe.name,
-                style:
-                    theme.textTheme.titleLarge?.copyWith(color: Colors.white),
-              ),
-            ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  recipe.getCalories,
+                  style: theme.textTheme.labelLarge
+                      ?.copyWith(color: Colors.white70),
+                ),
+                Text(
+                  recipe.name,
+                  style:
+                      theme.textTheme.titleLarge?.copyWith(color: Colors.white),
+                ),
+              ],
+            ),
           ),
         )
       ],

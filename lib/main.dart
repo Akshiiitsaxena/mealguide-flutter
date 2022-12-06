@@ -26,6 +26,7 @@ class MyApp extends HookConsumerWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             home: const AllRecipesPage(),
+            debugShowCheckedModeBanner: false,
           );
         },
       ),

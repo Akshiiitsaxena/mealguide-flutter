@@ -7,6 +7,7 @@ class AppTheme {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade100,
     primaryColor: Colors.deepPurpleAccent.shade200,
+    canvasColor: Colors.grey.shade300,
     focusColor: Colors.white,
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
@@ -26,10 +27,13 @@ class AppTheme {
       ),
       titleSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       bodyLarge: TextStyle(color: Colors.black87, fontSize: 24.sp),
-      bodyMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      bodySmall: TextStyle(
+        color: Colors.grey.shade600,
         fontSize: 10.sp,
       ),
       labelLarge: TextStyle(
@@ -48,6 +52,7 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xff121212),
     primaryColor: Colors.deepPurpleAccent.shade200,
     focusColor: Colors.grey[900],
+    canvasColor: Colors.grey.shade800,
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
@@ -66,10 +71,13 @@ class AppTheme {
       ),
       titleSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       bodyLarge: TextStyle(color: Colors.black87, fontSize: 24.sp),
-      bodyMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         color: Colors.grey.shade200,
         fontWeight: FontWeight.bold,
+        fontSize: 10.sp,
+      ),
+      bodySmall: TextStyle(
+        color: Colors.grey.shade400,
         fontSize: 10.sp,
       ),
       labelLarge: TextStyle(
