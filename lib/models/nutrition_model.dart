@@ -22,4 +22,29 @@ class Nutrition {
       protein: double.parse(doc['protein'].toString()),
     );
   }
+
+  Map<String, dynamic> get getMap {
+    return {
+      'calories': {
+        'amount': calories.floor().toString(),
+        'unit': 'KCAL',
+      },
+      'protein': {
+        'amount': protein.toString(),
+        'unit': 'G',
+      },
+      'carbs': {
+        'amount': carbohydrates.toString(),
+        'unit': 'G',
+      },
+      'fat': {
+        'amount': fat.toString(),
+        'unit': 'G',
+      },
+      'fiber': {
+        'amount': fiber.toString(),
+        'unit': 'G',
+      }
+    };
+  }
 }

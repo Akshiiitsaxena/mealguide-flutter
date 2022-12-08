@@ -1,9 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:fraction/fraction.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/ingredient_tile.dart';
+import 'package:mealguide/pages/recipes/instruction_tile.dart';
+import 'package:mealguide/pages/recipes/servings_tile.dart';
+import 'package:mealguide/providers/recipe_state_provider.dart';
 import 'package:mealguide/widgets/info_box.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,6 +20,16 @@ class RecipePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => ref.read(recipeStateNotifierProvider.notifier).setQuantity(
+              recipe.id,
+              recipe.serving.quantity,
+            ),
+      );
+      return null;
+    }, []);
 
     return Scaffold(
       body: CustomScrollView(
@@ -98,18 +113,7 @@ class RecipePage extends HookConsumerWidget {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 4.w),
-                  padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.sp),
-                    color: theme.canvasColor,
-                  ),
-                  child: Text(
-                    'SERVINGS',
-                    style: theme.textTheme.bodySmall,
-                  ),
-                ),
+                ServingsTile(recipe: recipe),
                 Padding(
                   padding: EdgeInsets.fromLTRB(4.w, 2.h, 4.w, 0),
                   child: Text(
@@ -126,20 +130,25 @@ class RecipePage extends HookConsumerWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(4.w, 1.h, 0, 1.h),
-                            child: Text(
-                              recipe.ingredients[ingredientIndex].component,
-
-                              /// TODO: Add dark theme stylinh
-                            ),
-                          ),
+                          recipe.ingredients[ingredientIndex].component
+                                  .isNotEmpty
+                              ? Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(4.w, 1.h, 0, 1.h),
+                                  child: Text(
+                                    recipe
+                                        .ingredients[ingredientIndex].component,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                )
+                              : SizedBox(height: 1.h),
                           ...List.generate(
                             recipe.ingredients[ingredientIndex].items.length,
                             (itemIndex) {
                               return IngredientTile(
                                 recipe.ingredients[ingredientIndex]
                                     .items[itemIndex],
+                                recipeId: recipe.id,
                                 baseQuantity: recipe.serving.quantity.floor(),
                                 index: itemIndex,
                               );
@@ -150,6 +159,78 @@ class RecipePage extends HookConsumerWidget {
                     },
                   ),
                 ),
+                SizedBox(height: 1.h),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(4.w, 2.h, 4.w, 0),
+                  child: Text(
+                    'INSTRUCTIONS',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ),
+                SizedBox(height: 1.h),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                    recipe.instructions.length,
+                    (instructionIndex) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          recipe.instructions[instructionIndex].component
+                                  .isNotEmpty
+                              ? Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(4.w, 1.h, 0, 1.h),
+                                  child: Text(
+                                    recipe.instructions[instructionIndex]
+                                        .component,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                )
+                              : SizedBox(height: 1.h),
+                          ...List.generate(
+                            recipe.instructions[instructionIndex].steps.length,
+                            (stepIndex) {
+                              return InstructionTile(
+                                  content: recipe.instructions[instructionIndex]
+                                      .steps[stepIndex],
+                                  step: stepIndex);
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+                  child: Text(
+                    'NUTRITION (PER SERVING)',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ),
+                SizedBox(
+                  width: 100.w,
+                  height: 8.h,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 4.w),
+                    children: List.generate(
+                      recipe.nutrition.getMap.length,
+                      (index) => Padding(
+                        padding: EdgeInsets.only(right: 6.w),
+                        child: InfoBox(
+                          heading: recipe.nutrition.getMap.keys.toList()[index],
+                          title: recipe.nutrition.getMap.values.toList()[index]
+                              ['amount'],
+                          trailing: recipe.nutrition.getMap.values
+                              .toList()[index]['unit'],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5.h),
               ],
             ),
           )
