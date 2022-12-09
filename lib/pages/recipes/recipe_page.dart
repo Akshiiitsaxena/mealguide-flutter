@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fraction/fraction.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/ingredient_tile.dart';

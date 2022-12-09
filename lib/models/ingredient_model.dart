@@ -46,4 +46,12 @@ class IngredientItem {
       ingredientComposition: composition,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is IngredientItem && ingredientId == other.ingredientId;
+  }
+
+  @override
+  int get hashCode => ingredientId.length;
 }
