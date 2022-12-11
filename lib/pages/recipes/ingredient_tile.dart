@@ -27,9 +27,9 @@ class IngredientTile extends HookConsumerWidget {
     final pantryStateWatcher = ref.watch(pantryStateNotifierProvider);
 
     String ingredientQuantity = '';
+    double? qty;
 
     if (ingredientItem.quantity != null) {
-      double qty;
       if (recipeQuantityWatcher.servingQuantity.containsKey(recipeId)) {
         qty = ((ingredientItem.quantity! / baseQuantity) *
             recipeQuantityWatcher.servingQuantity[recipeId]!.toDouble());
@@ -54,7 +54,7 @@ class IngredientTile extends HookConsumerWidget {
     return InkWell(
       onTap: () => ref
           .read(pantryStateNotifierProvider.notifier)
-          .setIngredients(recipeId, ingredientItem),
+          .setIngredients(recipeId, ingredientItem, qty),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 3.w),
         padding: EdgeInsets.symmetric(vertical: 1.25.h, horizontal: 3.w),
