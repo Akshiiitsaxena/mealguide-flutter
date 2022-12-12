@@ -5,14 +5,14 @@ import 'package:mealguide/models/ingredient_model.dart';
 @immutable
 class PantryState {
   final Map<String, Set<IngredientItem>> items;
-  final List<String> purchasedItems;
+  final Set<String> purchasedItems;
   final Map<String, double> addedQuantity;
 
   const PantryState(this.items, this.purchasedItems, this.addedQuantity);
 
   PantryState copyWith({
     Map<String, Set<IngredientItem>>? items,
-    List<String>? purchasedItems,
+    Set<String>? purchasedItems,
     Map<String, double>? addedQuantity,
   }) {
     return PantryState(
@@ -21,10 +21,20 @@ class PantryState {
       addedQuantity ?? this.addedQuantity,
     );
   }
+
+  get getNumberOfFoodItems {
+    int totalItems = items.values
+        .toList()
+        .fold<List<IngredientItem>>([], (prev, ele) => [...prev, ...ele])
+        .toSet()
+        .length;
+
+    return totalItems - purchasedItems.length;
+  }
 }
 
 class PantryStateNotifier extends StateNotifier<PantryState> {
-  PantryStateNotifier() : super(const PantryState({}, [], {}));
+  PantryStateNotifier() : super(const PantryState({}, {}, {}));
 
   void setIngredients(String id, IngredientItem item, double? quantity) {
     Map<String, Set<IngredientItem>> map = {};
@@ -44,7 +54,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
   }
 
   void setPurchasedIems(String id) {
-    state = state.copyWith(purchasedItems: [...state.purchasedItems, id]);
+    state = state.copyWith(purchasedItems: {...state.purchasedItems, id});
   }
 }
 

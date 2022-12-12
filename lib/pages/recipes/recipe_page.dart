@@ -7,6 +7,7 @@ import 'package:mealguide/pages/recipes/ingredient_tile.dart';
 import 'package:mealguide/pages/recipes/instruction_tile.dart';
 import 'package:mealguide/pages/recipes/servings_tile.dart';
 import 'package:mealguide/providers/recipe_state_provider.dart';
+import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/widgets/info_box.dart';
 import 'package:sizer/sizer.dart';
 
@@ -35,7 +36,10 @@ class RecipePage extends HookConsumerWidget {
           SliverAppBar(
             pinned: true,
             stretch: true,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor:
+                ref.read(themeStateNotifierProvider).mode == ThemeMode.light
+                    ? theme.primaryColor
+                    : const Color(0xff393868),
             expandedHeight: 150,
             leading: Container(),
             flexibleSpace: FlexibleSpaceBar(
