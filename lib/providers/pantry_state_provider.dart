@@ -7,19 +7,26 @@ class PantryState {
   final Map<String, Set<IngredientItem>> items;
   final Set<String> purchasedItems;
   final Map<String, double> addedQuantity;
+  final Map<String, String> purchasedItemExpiry;
 
-  const PantryState(this.items, this.purchasedItems, this.addedQuantity);
+  const PantryState(
+    this.items,
+    this.purchasedItems,
+    this.addedQuantity,
+    this.purchasedItemExpiry,
+  );
 
   PantryState copyWith({
     Map<String, Set<IngredientItem>>? items,
     Set<String>? purchasedItems,
     Map<String, double>? addedQuantity,
+    Map<String, String>? purchasedItemExpiry,
   }) {
     return PantryState(
-      items ?? this.items,
-      purchasedItems ?? this.purchasedItems,
-      addedQuantity ?? this.addedQuantity,
-    );
+        items ?? this.items,
+        purchasedItems ?? this.purchasedItems,
+        addedQuantity ?? this.addedQuantity,
+        purchasedItemExpiry ?? this.purchasedItemExpiry);
   }
 
   get getNumberOfFoodItems {
@@ -34,7 +41,7 @@ class PantryState {
 }
 
 class PantryStateNotifier extends StateNotifier<PantryState> {
-  PantryStateNotifier() : super(const PantryState({}, {}, {}));
+  PantryStateNotifier() : super(const PantryState({}, {}, {}, {}));
 
   void setIngredients(String id, IngredientItem item, double? quantity) {
     Map<String, Set<IngredientItem>> map = {};
@@ -55,6 +62,13 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
 
   void setPurchasedIems(String id) {
     state = state.copyWith(purchasedItems: {...state.purchasedItems, id});
+  }
+
+  void setPurchasedItemExpiry(String id, String date) {
+    Map<String, String> map = {};
+    map.addAll(state.purchasedItemExpiry);
+    map.update(id, (value) => date, ifAbsent: () => date);
+    state = state.copyWith(purchasedItemExpiry: map);
   }
 }
 

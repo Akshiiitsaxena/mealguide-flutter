@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/recipe_model.dart';
+import 'package:mealguide/providers/theme_provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'diet_recipe_box.dart';
@@ -25,7 +26,10 @@ class SearchPage extends HookConsumerWidget {
             height: 22.h,
             width: 100.w,
             decoration: BoxDecoration(
-              color: theme.primaryColor,
+              color:
+                  ref.watch(themeStateNotifierProvider).mode == ThemeMode.light
+                      ? theme.primaryColor
+                      : const Color(0xff393868),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(28),
                 bottomRight: Radius.circular(28),

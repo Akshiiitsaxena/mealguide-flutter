@@ -3,7 +3,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/items/items_page.dart';
+import 'package:mealguide/pages/recipes/diet_recipes_page.dart';
 import 'package:mealguide/pages/recipes/recipe_box.dart';
+import 'package:mealguide/pages/recipes/search_page.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
@@ -17,49 +19,64 @@ class AllRecipesPage extends HookConsumerWidget {
     final recipeWatcher = ref.watch(recipeProvider);
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: MgAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+    return recipeWatcher.when(
+      data: (data) {
+        return Scaffold(
+          appBar: MgAppBar(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Diet Plans',
-                  style: theme.textTheme.titleLarge,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Diet Plans',
+                      style: theme.textTheme.titleLarge,
+                    ),
+                    SizedBox(height: 0.25.h),
+                    Text(
+                      'Explore 1300+ Healthy Recipes!',
+                      style: theme.textTheme.bodySmall!
+                          .copyWith(color: Colors.grey.shade100),
+                    ),
+                    SizedBox(height: 1.h),
+                  ],
                 ),
-                SizedBox(height: 0.25.h),
-                Text(
-                  'Explore 1300+ Healthy Recipes!',
-                  style: theme.textTheme.bodySmall!
-                      .copyWith(color: Colors.grey.shade100),
-                ),
-                SizedBox(height: 1.h),
+                InkWell(
+                  onTap: () {
+                    List<Recipe> allRecipes = data.values.fold<List<Recipe>>(
+                      [],
+                      (previousValue, element) =>
+                          [...previousValue, ...element],
+                    );
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SearchPage(recipes: allRecipes),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.shade100,
+                    ),
+                    child: Icon(
+                      Icons.search,
+                      color: theme.primaryColor,
+                      size: 18.sp,
+                    ),
+                  ),
+                )
               ],
             ),
-            Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade100,
-              ),
-              child: Icon(
-                Icons.search,
-                color: theme.primaryColor,
-                size: 18.sp,
-              ),
-            )
-          ],
-        ),
-      ),
-      body: SizedBox(
-        height: 100.h,
-        child: recipeWatcher.when(
-          data: ((data) {
-            return ListView.builder(
+          ),
+          body: SizedBox(
+            height: 100.h,
+            child: ListView.builder(
               itemCount: data.keys.length,
               padding: EdgeInsets.symmetric(vertical: 3.h),
               itemBuilder: ((context, index) {
@@ -87,42 +104,18 @@ class AllRecipesPage extends HookConsumerWidget {
                             ),
                             MgSecondaryButton(
                               'See More',
-                              // onTap: () => Navigator.of(context).push(
-                              //   MaterialPageRoute(
-                              //     builder: (context) => DietRecipesPage(
-                              //       diet: diet,
-                              //       recipes: data.values.toList()[index],
-                              //     ),
-                              //   ),
-                              // ),
-
-                              // ==========================================================
-
-                              // onTap: () {
-                              //   List<Recipe> allRecipes =
-                              //       data.values.fold<List<Recipe>>(
-                              //     [],
-                              //     (previousValue, element) =>
-                              //         [...previousValue, ...element],
-                              //   );
-
-                              //   Navigator.of(context).push(
-                              //     MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           SearchPage(recipes: allRecipes),
-                              //     ),
-                              //   );
-                              // },
-
-                              // ==========================================================
-
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: ((context) => const ItemsPage()),
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => DietRecipesPage(
+                                    diet: diet,
+                                    recipes: data.values.toList()[index],
                                   ),
-                                );
-                              },
+                                ),
+                              ),
+
+                              // ==========================================================
+
+                              // ==========================================================
                             ),
                           ],
                         ),
@@ -143,12 +136,12 @@ class AllRecipesPage extends HookConsumerWidget {
                   ),
                 );
               }),
-            );
-          }),
-          error: (_, __) => Container(),
-          loading: () => Container(),
-        ),
-      ),
+            ),
+          ),
+        );
+      },
+      error: (_, __) => Container(),
+      loading: () => Container(),
     );
   }
 }

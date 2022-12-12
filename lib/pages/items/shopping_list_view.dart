@@ -6,7 +6,7 @@ import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ShoppingListView extends HookConsumerWidget {
-  ShoppingListView({super.key});
+  const ShoppingListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +34,10 @@ class ShoppingListView extends HookConsumerWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 4.w),
-      child: categoryIngredients.isEmpty
+      child: categoryIngredients.isEmpty ||
+              !(addedIngredients.any(
+                (element) => !purchasedItems.contains(element.ingredientId),
+              ))
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -48,10 +51,13 @@ class ShoppingListView extends HookConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 3.h),
-                  Text(
-                    'You can add more food items to the\nshopping list from the recipes',
-                    style: theme.textTheme.bodySmall!,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    child: Text(
+                      'You can add more food items to the shopping list from the recipes',
+                      style: theme.textTheme.bodySmall!,
+                      textAlign: TextAlign.center,
+                    ),
                   )
                 ],
               ),

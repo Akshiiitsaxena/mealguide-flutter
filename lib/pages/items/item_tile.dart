@@ -7,15 +7,17 @@ import 'package:sizer/sizer.dart';
 class ItemTile extends HookConsumerWidget {
   final String id;
   final String name;
-  final String? quantity;
   final bool isLast;
+  final String? quantity;
+  final bool isForPantry;
 
   const ItemTile({
     super.key,
     required this.id,
     required this.name,
-    required this.quantity,
+    this.quantity,
     required this.isLast,
+    this.isForPantry = false,
   });
 
   @override
@@ -27,29 +29,32 @@ class ItemTile extends HookConsumerWidget {
       children: [
         Row(
           children: [
-            InkWell(
-              onTap: () async {
-                isTicked.value = true;
-                await Future.delayed(const Duration(seconds: 1));
-                ref
-                    .read(pantryStateNotifierProvider.notifier)
-                    .setPurchasedIems(id);
-              },
-              child: Container(
-                height: 3.2.h,
-                width: 3.2.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(56),
-                  color: theme.primaryColor
-                      .withOpacity(isTicked.value ? 0.5 : 0.1),
-                  border: Border.all(color: theme.primaryColor),
-                ),
-                child: isTicked.value
-                    ? Icon(Icons.check, color: Colors.white70, size: 14.sp)
-                    : Container(),
-              ),
-            ),
-            SizedBox(width: 3.w),
+            isForPantry
+                ? Container()
+                : InkWell(
+                    onTap: () async {
+                      isTicked.value = true;
+                      await Future.delayed(const Duration(seconds: 1));
+                      ref
+                          .read(pantryStateNotifierProvider.notifier)
+                          .setPurchasedIems(id);
+                    },
+                    child: Container(
+                      height: 3.2.h,
+                      width: 3.2.h,
+                      margin: EdgeInsets.only(right: 3.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(56),
+                        color: theme.primaryColor
+                            .withOpacity(isTicked.value ? 0.5 : 0.1),
+                        border: Border.all(color: theme.primaryColor),
+                      ),
+                      child: isTicked.value
+                          ? Icon(Icons.check,
+                              color: Colors.white70, size: 14.sp)
+                          : Container(),
+                    ),
+                  ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

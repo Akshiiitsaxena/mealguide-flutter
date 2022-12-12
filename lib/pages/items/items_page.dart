@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/pages/items/pantry_view.dart';
 import 'package:mealguide/pages/items/shopping_list_view.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
@@ -54,11 +55,8 @@ class ItemsPage extends HookConsumerWidget {
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            ShoppingListView(),
-            Container(),
-          ],
+        body: const TabBarView(
+          children: [ShoppingListView(), PantryView()],
         ),
       ),
     );
