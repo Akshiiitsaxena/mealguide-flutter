@@ -89,7 +89,7 @@ class MgBottomSheet {
               InkWell(
                 onTap: () {
                   Navigator.of(context).pop();
-                  isForPantry ? () {} : showRecipes!();
+                  isForPantry ? updateExpiry!() : showRecipes!();
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 1.h),
@@ -182,7 +182,6 @@ class MgBottomSheet {
                     }
                   }
 
-                  // ingredientRecipes.toSet().toList();
                   List<Recipe> uniqueRecipes =
                       ingredientRecipes.toSet().toList();
 
