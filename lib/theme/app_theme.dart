@@ -21,7 +21,7 @@ class AppTheme {
       titleLarge: TextStyle(
         color: Colors.grey.shade100,
         fontWeight: FontWeight.bold,
-        fontSize: 18.sp,
+        fontSize: 16.sp,
       ),
       titleMedium: TextStyle(
         color: Colors.black87,
@@ -69,7 +69,7 @@ class AppTheme {
       titleLarge: TextStyle(
         color: Colors.grey.shade200,
         fontWeight: FontWeight.bold,
-        fontSize: 18.sp,
+        fontSize: 16.sp,
       ),
       titleMedium: TextStyle(
         color: Colors.grey.shade200,

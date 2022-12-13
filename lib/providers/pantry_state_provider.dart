@@ -53,6 +53,30 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     }
   }
 
+  void removeIngredients(String itemId) {
+    Map<String, Set<IngredientItem>> map = {};
+    map.addAll(state.items);
+
+    List<String> keysToRemove = [];
+    map.forEach((key, value) {
+      if (value.map((e) => e.ingredientId).contains(itemId)) {
+        if (value.length == 1) {
+          keysToRemove.add(key);
+        } else {
+          Set<IngredientItem> tempItems = value;
+          tempItems.removeWhere((element) => element.ingredientId == itemId);
+          map.update(key, (value) => tempItems);
+        }
+      }
+    });
+
+    map.removeWhere((key, value) => keysToRemove.contains(key));
+    state = state.copyWith(items: map);
+    removeQuantity(itemId);
+    removePurchasedItems(itemId);
+    removePurchasedItemsExpiry(itemId);
+  }
+
   void setQuantity(String itemId, double quantity) {
     Map<String, double> map = {};
     map.addAll(state.addedQuantity);
@@ -60,14 +84,35 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     state = state.copyWith(addedQuantity: map);
   }
 
+  void removeQuantity(String itemId) {
+    Map<String, double> map = {};
+    map.addAll(state.addedQuantity);
+    map.removeWhere((key, value) => key == itemId);
+    state = state.copyWith(addedQuantity: map);
+  }
+
   void setPurchasedIems(String id) {
     state = state.copyWith(purchasedItems: {...state.purchasedItems, id});
+  }
+
+  void removePurchasedItems(String id) {
+    Set<String> itemSet = {};
+    itemSet.addAll(state.purchasedItems);
+    itemSet.removeWhere((element) => element == id);
+    state = state.copyWith(purchasedItems: itemSet);
   }
 
   void setPurchasedItemExpiry(String id, String date) {
     Map<String, String> map = {};
     map.addAll(state.purchasedItemExpiry);
     map.update(id, (value) => date, ifAbsent: () => date);
+    state = state.copyWith(purchasedItemExpiry: map);
+  }
+
+  void removePurchasedItemsExpiry(String id) {
+    Map<String, String> map = {};
+    map.addAll(state.purchasedItemExpiry);
+    map.removeWhere((key, value) => key == id);
     state = state.copyWith(purchasedItemExpiry: map);
   }
 }

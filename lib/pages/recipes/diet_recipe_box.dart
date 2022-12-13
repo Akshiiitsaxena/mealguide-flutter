@@ -33,7 +33,7 @@ class DietRecipeBox extends StatelessWidget {
           ),
           child: Container(
             width: 100.w,
-            padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 4.w),
+            padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 3.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(28),
               gradient: const LinearGradient(
