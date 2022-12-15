@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/ingredient_model.dart';
+import 'package:mealguide/providers/hive_provider.dart';
 
 @immutable
 class PantryState {
@@ -41,19 +42,25 @@ class PantryState {
 }
 
 class PantryStateNotifier extends StateNotifier<PantryState> {
-  PantryStateNotifier() : super(const PantryState({}, {}, {}, {}));
+  final Ref ref;
 
-  void setIngredients(String id, IngredientItem item, double? quantity) {
+  PantryStateNotifier(this.ref) : super(const PantryState({}, {}, {}, {}));
+
+  void setIngredients(String id, IngredientItem item, double? quantity,
+      {bool initialCall = false}) {
     Map<String, Set<IngredientItem>> map = {};
     map.addAll(state.items);
     map.update(id, ((val) => {...val, item}), ifAbsent: () => {item});
     state = state.copyWith(items: map);
     if (quantity != null) {
-      setQuantity(item.ingredientId, quantity);
+      setQuantity(item.ingredientId, quantity, initialCall: initialCall);
+    }
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
     }
   }
 
-  void removeIngredients(String itemId) {
+  void removeIngredients(String itemId, {bool initialCall = false}) {
     Map<String, Set<IngredientItem>> map = {};
     map.addAll(state.items);
 
@@ -72,52 +79,74 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
 
     map.removeWhere((key, value) => keysToRemove.contains(key));
     state = state.copyWith(items: map);
-    removeQuantity(itemId);
-    removePurchasedItems(itemId);
-    removePurchasedItemsExpiry(itemId);
+    removeQuantity(itemId, initialCall: initialCall);
+    removePurchasedItems(itemId, initialCall: initialCall);
+    removePurchasedItemsExpiry(itemId, initialCall: initialCall);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void setQuantity(String itemId, double quantity) {
+  void setQuantity(String itemId, double quantity, {bool initialCall = false}) {
     Map<String, double> map = {};
     map.addAll(state.addedQuantity);
     map.update(itemId, (value) => value + quantity, ifAbsent: () => quantity);
     state = state.copyWith(addedQuantity: map);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void removeQuantity(String itemId) {
+  void removeQuantity(String itemId, {bool initialCall = false}) {
     Map<String, double> map = {};
     map.addAll(state.addedQuantity);
     map.removeWhere((key, value) => key == itemId);
     state = state.copyWith(addedQuantity: map);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void setPurchasedIems(String id) {
+  void setPurchasedIems(String id, {bool initialCall = false}) {
     state = state.copyWith(purchasedItems: {...state.purchasedItems, id});
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void removePurchasedItems(String id) {
+  void removePurchasedItems(String id, {bool initialCall = false}) {
     Set<String> itemSet = {};
     itemSet.addAll(state.purchasedItems);
     itemSet.removeWhere((element) => element == id);
     state = state.copyWith(purchasedItems: itemSet);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void setPurchasedItemExpiry(String id, String date) {
+  void setPurchasedItemExpiry(String id, String date,
+      {bool initialCall = false}) {
     Map<String, String> map = {};
     map.addAll(state.purchasedItemExpiry);
     map.update(id, (value) => date, ifAbsent: () => date);
     state = state.copyWith(purchasedItemExpiry: map);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 
-  void removePurchasedItemsExpiry(String id) {
+  void removePurchasedItemsExpiry(String id, {bool initialCall = false}) {
     Map<String, String> map = {};
     map.addAll(state.purchasedItemExpiry);
     map.removeWhere((key, value) => key == id);
     state = state.copyWith(purchasedItemExpiry: map);
+    if (!initialCall) {
+      ref.read(hiveProvider).saveToStorage();
+    }
   }
 }
 
 final pantryStateNotifierProvider =
     StateNotifierProvider<PantryStateNotifier, PantryState>(
-  (ref) => PantryStateNotifier(),
+  (ref) => PantryStateNotifier(ref),
 );
