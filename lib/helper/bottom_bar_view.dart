@@ -64,10 +64,6 @@ class BottomBarView extends HookConsumerWidget {
         curve: Curves.ease,
         duration: Duration(milliseconds: 300),
       ),
-      // itemAnimationProperties: const ItemAnimationProperties(
-      //   curve: Curves.ease,
-      //   duration: Duration(milliseconds: 300),
-      // ),
       navBarStyle: NavBarStyle.style6,
     );
   }

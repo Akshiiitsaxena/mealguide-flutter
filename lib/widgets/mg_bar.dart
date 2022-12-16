@@ -5,8 +5,9 @@ import 'package:sizer/sizer.dart';
 
 class MgAppBar extends ConsumerWidget with PreferredSizeWidget {
   final Widget child;
+  final bool isEmpty;
 
-  const MgAppBar({super.key, required this.child});
+  const MgAppBar({super.key, required this.child, this.isEmpty = false});
 
   @override
   PreferredSize build(BuildContext context, WidgetRef ref) {
@@ -37,7 +38,7 @@ class MgAppBar extends ConsumerWidget with PreferredSizeWidget {
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            padding: EdgeInsets.fromLTRB(6.w, 1.h, 6.w, 1.h),
+            padding: EdgeInsets.fromLTRB(isEmpty ? 2.w : 6.w, 1.h, 6.w, 1.h),
             child: child,
           ),
         ),

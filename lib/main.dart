@@ -21,7 +21,7 @@ class MyApp extends HookConsumerWidget {
       child: Sizer(
         builder: (context, orientation, deviceType) {
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: 'MealGuide',
             themeMode: mode,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,

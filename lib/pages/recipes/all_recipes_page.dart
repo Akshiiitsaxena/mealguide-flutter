@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
-import 'package:mealguide/pages/items/items_page.dart';
 import 'package:mealguide/pages/recipes/diet_recipes_page.dart';
 import 'package:mealguide/pages/recipes/recipe_box.dart';
 import 'package:mealguide/pages/recipes/search_page.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
+import 'package:mealguide/widgets/diet_box.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
 import 'package:sizer/sizer.dart';
@@ -77,9 +77,22 @@ class AllRecipesPage extends HookConsumerWidget {
           body: SizedBox(
             height: 100.h,
             child: ListView.builder(
-              itemCount: data.keys.length,
-              padding: EdgeInsets.symmetric(vertical: 3.h),
-              itemBuilder: ((context, index) {
+              itemCount: data.keys.length + 1,
+              padding: EdgeInsets.symmetric(vertical: 1.h),
+              itemBuilder: ((context, ind) {
+                if (ind == 0) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 1.h),
+                    child: DietBox(
+                      diet: data.keys.toList().first,
+                      recipes: 0,
+                      isForHome: true,
+                    ),
+                  );
+                }
+
+                int index = ind - 1;
+
                 Diet diet = data.keys.toList()[index];
                 List<Recipe> showcaseRecipes = diet.showcaseRecipes
                     .map((e) => data.values
@@ -99,7 +112,7 @@ class AllRecipesPage extends HookConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              diet.name,
+                              diet.getDisplayName,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             MgSecondaryButton(

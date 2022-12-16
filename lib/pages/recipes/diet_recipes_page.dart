@@ -6,6 +6,8 @@ import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/category_tabs.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
 import 'package:mealguide/providers/recipe_type_state_provider.dart';
+import 'package:mealguide/widgets/diet_box.dart';
+import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:sizer/sizer.dart';
 
 class DietRecipesPage extends HookConsumerWidget {
@@ -36,15 +38,27 @@ class DietRecipesPage extends HookConsumerWidget {
         recipes.where((recipe) => recipe.category == typeWatcher.type).toList();
 
     return Scaffold(
+      appBar: MgAppBar(
+        isEmpty: true,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         controller: controller,
         slivers: [
-          const SliverAppBar(pinned: true),
-          SliverToBoxAdapter(
-            child: Container(
-              height: 20.h,
-              width: 50.w,
-              color: Colors.red,
+          SliverPadding(
+            padding: EdgeInsets.only(top: 2.h),
+            sliver: SliverToBoxAdapter(
+              child: DietBox(diet: diet, recipes: recipes.length),
             ),
           ),
           SliverPersistentHeader(
@@ -59,7 +73,7 @@ class DietRecipesPage extends HookConsumerWidget {
             ),
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
+            padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
             sliver: SliverGrid.count(
               crossAxisCount: 2,
               childAspectRatio: 4 / 5,
