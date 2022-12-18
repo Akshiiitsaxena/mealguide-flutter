@@ -19,6 +19,8 @@ class MgPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
       padding: EdgeInsets.only(top: 2.h),
       child: GestureDetector(
@@ -28,14 +30,12 @@ class MgPrimaryButton extends StatelessWidget {
           width: width ?? 85.w,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: isEnabled
-                ? Colors.deepPurpleAccent.shade100
-                : Colors.grey.shade800,
+            color: isEnabled ? theme.primaryColor : Colors.grey.shade800,
             borderRadius: BorderRadius.circular(64),
             boxShadow: isEnabled
                 ? [
                     BoxShadow(
-                      color: Colors.deepPurpleAccent.shade100,
+                      color: theme.primaryColor.withOpacity(0.9),
                       spreadRadius: 1,
                       blurRadius: 3,
                     ),
@@ -44,7 +44,7 @@ class MgPrimaryButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Continue',
+              text,
               style: TextStyle(
                 color: isEnabled ? Colors.white : Colors.grey.shade600,
                 fontSize: 16.sp,

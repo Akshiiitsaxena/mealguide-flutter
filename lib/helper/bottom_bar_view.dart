@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/added_items_hive_model.dart';
 import 'package:mealguide/pages/items/items_page.dart';
 import 'package:mealguide/pages/recipes/all_recipes_page.dart';
+import 'package:mealguide/pages/upgrade/upgrade_page.dart';
 import 'package:mealguide/providers/hive_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -37,6 +38,7 @@ class BottomBarView extends HookConsumerWidget {
       screens: const [
         AllRecipesPage(),
         ItemsPage(),
+        UpgradePage(),
       ],
       backgroundColor: theme.canvasColor,
       items: [
@@ -49,6 +51,12 @@ class BottomBarView extends HookConsumerWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.menu),
           title: 'Items',
+          activeColorPrimary: const Color(0xff7e79eb),
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.upgrade_rounded),
+          title: 'Upgrade',
           activeColorPrimary: const Color(0xff7e79eb),
           inactiveColorPrimary: Colors.grey,
         ),
