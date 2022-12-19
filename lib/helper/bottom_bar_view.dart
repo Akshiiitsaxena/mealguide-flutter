@@ -3,7 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/added_items_hive_model.dart';
+import 'package:mealguide/pages/diary/diary_page.dart';
 import 'package:mealguide/pages/items/items_page.dart';
+import 'package:mealguide/pages/profile/profile_page.dart';
 import 'package:mealguide/pages/recipes/all_recipes_page.dart';
 import 'package:mealguide/pages/upgrade/upgrade_page.dart';
 import 'package:mealguide/providers/hive_provider.dart';
@@ -37,7 +39,9 @@ class BottomBarView extends HookConsumerWidget {
       popActionScreens: PopActionScreensType.all,
       screens: const [
         AllRecipesPage(),
+        DiaryPage(),
         ItemsPage(),
+        ProfilePage(),
         UpgradePage(),
       ],
       backgroundColor: theme.canvasColor,
@@ -45,6 +49,12 @@ class BottomBarView extends HookConsumerWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.food_bank_outlined),
           title: 'Recipes',
+          activeColorPrimary: const Color(0xff7e79eb),
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.book),
+          title: 'My Diary',
           activeColorPrimary: const Color(0xff7e79eb),
           inactiveColorPrimary: Colors.grey,
         ),
@@ -57,6 +67,12 @@ class BottomBarView extends HookConsumerWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.upgrade_rounded),
           title: 'Upgrade',
+          activeColorPrimary: const Color(0xff7e79eb),
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.person),
+          title: 'Profile',
           activeColorPrimary: const Color(0xff7e79eb),
           inactiveColorPrimary: Colors.grey,
         ),
