@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/bottom_sheets.dart';
 import 'package:mealguide/pages/profile/profile_tile.dart';
+import 'package:mealguide/providers/diary_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:sizer/sizer.dart';
@@ -68,11 +70,19 @@ class ProfilePage extends HookConsumerWidget {
             icon: Icons.view_week_outlined,
             onTap: () {},
           ),
-          ProfileTile(
-            title: 'Daily Glasses of Water',
-            icon: Icons.water_drop_outlined,
-            trailing: '10',
-            onTap: () {},
+          Consumer(
+            builder: (_, __, ___) {
+              String glasses =
+                  ref.watch(diaryStateNotifierProvider).dailyWater.toString();
+
+              return ProfileTile(
+                title: 'Daily Glasses of Water',
+                icon: Icons.water_drop_outlined,
+                trailing: glasses,
+                onTap: () =>
+                    MgBottomSheet.showDailyGlassBotterSheet(context, ref),
+              );
+            },
           ),
           Divider(height: 2.5.h),
           SizedBox(height: 1.5.h),

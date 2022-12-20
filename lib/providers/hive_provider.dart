@@ -15,7 +15,7 @@ class HiveHandler {
 
   HiveHandler(this.ref);
 
-  void getFromStorage() async {
+  void getPantryFromStorage() async {
     final pantryStateNotifier = ref.read(pantryStateNotifierProvider.notifier);
     var pantryBox = await Hive.openBox('pantry');
     var itemsBox = await Hive.openBox<AddedItem>('items');
@@ -57,7 +57,7 @@ class HiveHandler {
     }
   }
 
-  void saveToStorage() async {
+  void savePantryToStorage() async {
     final pantryState = ref.read(pantryStateNotifierProvider);
     var pantryBox = await Hive.openBox('pantry');
     var itemBox = await Hive.openBox<AddedItem>('items');

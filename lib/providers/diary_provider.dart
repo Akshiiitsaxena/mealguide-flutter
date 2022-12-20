@@ -5,11 +5,18 @@ import 'package:intl/intl.dart';
 @immutable
 class DiaryState {
   final DateTime date;
+  final int dailyWater;
 
-  const DiaryState(this.date);
+  const DiaryState({required this.date, required this.dailyWater});
 
-  DiaryState copyWith({DateTime? date}) {
-    return DiaryState(date ?? this.date);
+  DiaryState copyWith({
+    DateTime? date,
+    int? dailyWater,
+  }) {
+    return DiaryState(
+      date: date ?? this.date,
+      dailyWater: dailyWater ?? this.dailyWater,
+    );
   }
 
   get getDateTitle {
@@ -29,10 +36,16 @@ class DiaryState {
 }
 
 class DiaryStateNotifier extends StateNotifier<DiaryState> {
-  DiaryStateNotifier() : super(DiaryState(DateTime.now()));
+  DiaryStateNotifier() : super(DiaryState(date: DateTime.now(), dailyWater: 8));
 
   void setDate(DateTime dateTime) {
     state = state.copyWith(date: dateTime);
+  }
+
+  void setDailyWater(int value) {
+    if (value <= 18 && value >= 4) {
+      state = state.copyWith(dailyWater: value);
+    }
   }
 }
 

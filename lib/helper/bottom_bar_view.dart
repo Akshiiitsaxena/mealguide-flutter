@@ -23,10 +23,18 @@ class BottomBarView extends HookConsumerWidget {
       path_provider.getApplicationDocumentsDirectory().then((dir) {
         Hive.init(dir.path);
         Hive.registerAdapter(AddedItemAdapter());
-        ref.read(hiveProvider).getFromStorage();
+        ref.read(hiveProvider).getPantryFromStorage();
       });
       return null;
     }, []);
+
+    const List<Widget> screens = [
+      AllRecipesPage(),
+      DiaryPage(),
+      ItemsPage(),
+      ProfilePage(),
+      UpgradePage(),
+    ];
 
     return PersistentTabView(
       context,
@@ -37,13 +45,7 @@ class BottomBarView extends HookConsumerWidget {
       hideNavigationBarWhenKeyboardShows: true,
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      screens: const [
-        AllRecipesPage(),
-        DiaryPage(),
-        ItemsPage(),
-        ProfilePage(),
-        UpgradePage(),
-      ],
+      screens: screens,
       backgroundColor: theme.canvasColor,
       items: [
         PersistentBottomNavBarItem(
@@ -65,14 +67,14 @@ class BottomBarView extends HookConsumerWidget {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.upgrade_rounded),
-          title: 'Upgrade',
+          icon: const Icon(Icons.person),
+          title: 'Profile',
           activeColorPrimary: const Color(0xff7e79eb),
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.person),
-          title: 'Profile',
+          icon: const Icon(Icons.upgrade_rounded),
+          title: 'Upgrade',
           activeColorPrimary: const Color(0xff7e79eb),
           inactiveColorPrimary: Colors.grey,
         ),

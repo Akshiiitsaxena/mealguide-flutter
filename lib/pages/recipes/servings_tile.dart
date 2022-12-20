@@ -72,24 +72,24 @@ class ServingsTile extends HookConsumerWidget {
       ),
     );
   }
+}
 
-  Widget buildChangeBox(Function() onTap, ThemeData theme, IconData icon) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        alignment: Alignment.center,
-        height: 3.h,
-        width: 3.h,
-        decoration: BoxDecoration(
-          color: theme.scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Icon(
-          icon,
-          color: theme.primaryColor,
-          size: 14.sp,
-        ),
+Widget buildChangeBox(Function() onTap, ThemeData theme, IconData icon) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      alignment: Alignment.center,
+      height: 3.h,
+      width: 3.h,
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(6),
       ),
-    );
-  }
+      child: Icon(
+        icon,
+        color: theme.primaryColor,
+        size: 14.sp,
+      ),
+    ),
+  );
 }

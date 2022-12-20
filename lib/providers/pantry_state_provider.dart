@@ -56,7 +56,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
       setQuantity(item.ingredientId, quantity, initialCall: initialCall);
     }
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -83,7 +83,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     removePurchasedItems(itemId, initialCall: initialCall);
     removePurchasedItemsExpiry(itemId, initialCall: initialCall);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -93,7 +93,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     map.update(itemId, (value) => value + quantity, ifAbsent: () => quantity);
     state = state.copyWith(addedQuantity: map);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -103,14 +103,14 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     map.removeWhere((key, value) => key == itemId);
     state = state.copyWith(addedQuantity: map);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
   void setPurchasedIems(String id, {bool initialCall = false}) {
     state = state.copyWith(purchasedItems: {...state.purchasedItems, id});
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -120,7 +120,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     itemSet.removeWhere((element) => element == id);
     state = state.copyWith(purchasedItems: itemSet);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -131,7 +131,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     map.update(id, (value) => date, ifAbsent: () => date);
     state = state.copyWith(purchasedItemExpiry: map);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 
@@ -141,7 +141,7 @@ class PantryStateNotifier extends StateNotifier<PantryState> {
     map.removeWhere((key, value) => key == id);
     state = state.copyWith(purchasedItemExpiry: map);
     if (!initialCall) {
-      ref.read(hiveProvider).saveToStorage();
+      ref.read(hiveProvider).savePantryToStorage();
     }
   }
 }
