@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/bottom_sheets.dart';
+import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/pages/profile/profile_tile.dart';
+import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/diary_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';
@@ -63,7 +65,14 @@ class ProfilePage extends HookConsumerWidget {
           ProfileTile(
             title: 'Retake Onboarding Quiz',
             icon: Icons.question_answer_outlined,
-            onTap: () {},
+            onTap: () {
+              ref.read(bottomBarStateNotifierProvider.notifier).hideBar();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const StartScreen(),
+                ),
+              );
+            },
           ),
           ProfileTile(
             title: 'Recurate the Weekly Plan',

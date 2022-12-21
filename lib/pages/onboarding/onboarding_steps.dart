@@ -14,6 +14,8 @@ class OnboardingSteps extends HookConsumerWidget {
     int currentStep =
         ref.watch(onboardingQuizStateNotifierProvider).currentStep;
 
+    final theme = Theme.of(context);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 32, 0, 0),
@@ -26,8 +28,8 @@ class OnboardingSteps extends HookConsumerWidget {
               margin: EdgeInsets.only(left: 1.5.w),
               decoration: BoxDecoration(
                 color: index <= currentStep
-                    ? Colors.deepPurpleAccent.shade100
-                    : Colors.deepPurpleAccent.shade100.withOpacity(0.2),
+                    ? theme.primaryColor
+                    : theme.primaryColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               height: 1.h,

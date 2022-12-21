@@ -30,7 +30,9 @@ class MgPrimaryButton extends StatelessWidget {
           width: width ?? 85.w,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: isEnabled ? theme.primaryColor : Colors.grey.shade800,
+            color: isEnabled
+                ? theme.primaryColor
+                : theme.primaryColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(64),
             boxShadow: isEnabled
                 ? [
@@ -46,7 +48,7 @@ class MgPrimaryButton extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: isEnabled ? Colors.white : Colors.grey.shade600,
+                color: isEnabled ? Colors.white : theme.cardColor,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),

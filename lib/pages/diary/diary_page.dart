@@ -8,9 +8,12 @@ class DiaryPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      appBar: MgAppBar(
+    return Scaffold(
+      appBar: const MgAppBar(
         child: CalendarRow(),
+      ),
+      body: ListView(
+        children: [],
       ),
     );
   }

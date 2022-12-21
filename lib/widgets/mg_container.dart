@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mealguide/theme/mg_shadows.dart';
 import 'package:sizer/sizer.dart';
 
-class MgContainer extends StatelessWidget {
+class MgOptionContainer extends StatelessWidget {
   final Widget child;
   final double? height;
   final double? width;
@@ -10,7 +11,7 @@ class MgContainer extends StatelessWidget {
   final Border? border;
   final EdgeInsets? padding;
 
-  const MgContainer({
+  const MgOptionContainer({
     super.key,
     required this.child,
     this.height,
@@ -23,14 +24,17 @@ class MgContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       padding: padding ?? EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
       height: height ?? 5.h,
       width: width ?? 80.w,
       decoration: BoxDecoration(
-        color: color ?? Colors.grey.shade900,
+        color: theme.canvasColor,
         borderRadius: borderRadius ?? BorderRadius.circular(16),
         border: border,
+        // boxShadow: mgShadow,
       ),
       child: child,
     );

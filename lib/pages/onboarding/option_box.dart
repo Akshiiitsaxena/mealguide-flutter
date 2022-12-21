@@ -25,6 +25,8 @@ class OptionBox extends HookConsumerWidget {
       scale = 1;
     }
 
+    final theme = Theme.of(context);
+
     return AnimatedScale(
       scale: scale,
       duration: const Duration(milliseconds: 200),
@@ -34,24 +36,28 @@ class OptionBox extends HookConsumerWidget {
           onboardingQuizStateWatcher.setHasSelected(true);
           onboardingQuizStateWatcher.setCurrentSelection(index);
         },
-        child: MgContainer(
+        child: MgOptionContainer(
           height: 7.h,
           border: Border.all(
-              width: 1,
-              color: isSelected
-                  ? Colors.deepPurpleAccent.shade100.withOpacity(0.5)
-                  : Colors.grey.shade900),
+            width: 1,
+            color: isSelected
+                ? theme.primaryColor.withOpacity(1)
+                : Colors.transparent,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'This is the Option $index',
                 style: isSelected
-                    ? Theme.of(context).textTheme.titleLarge
-                    : Theme.of(context).textTheme.titleMedium,
+                    ? theme.textTheme.headlineMedium
+                    : theme.textTheme.headlineSmall,
               ),
               isSelected
-                  ? Icon(Icons.check, color: Colors.deepPurpleAccent.shade100)
+                  ? Icon(
+                      Icons.check,
+                      color: theme.primaryColor,
+                    )
                   : Container()
             ],
           ),

@@ -16,8 +16,8 @@ class AppTheme {
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displaySmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      headlineMedium: TextStyle(color: Colors.black87, fontSize: 14.sp),
+      headlineSmall: TextStyle(color: Colors.black54, fontSize: 14.sp),
       titleLarge: TextStyle(
         color: Colors.grey.shade100,
         fontWeight: FontWeight.bold,
@@ -28,7 +28,7 @@ class AppTheme {
         fontSize: 16.sp,
         fontWeight: FontWeight.bold,
       ),
-      titleSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      titleSmall: TextStyle(color: Colors.grey, fontSize: 14.sp),
       bodyLarge: TextStyle(color: Colors.grey.shade200, fontSize: 12.sp),
       bodyMedium: TextStyle(
         color: Colors.grey.shade800,
@@ -64,8 +64,8 @@ class AppTheme {
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displaySmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
       headlineLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      headlineMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),
-      headlineSmall: TextStyle(color: Colors.grey, fontSize: 12.sp),
+      headlineMedium: TextStyle(color: Colors.white, fontSize: 14.sp),
+      headlineSmall: TextStyle(color: Colors.white54, fontSize: 14.sp),
       titleLarge: TextStyle(
         color: Colors.grey.shade200,
         fontWeight: FontWeight.bold,

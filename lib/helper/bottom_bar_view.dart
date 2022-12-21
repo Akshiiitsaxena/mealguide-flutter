@@ -8,6 +8,7 @@ import 'package:mealguide/pages/items/items_page.dart';
 import 'package:mealguide/pages/profile/profile_page.dart';
 import 'package:mealguide/pages/recipes/all_recipes_page.dart';
 import 'package:mealguide/pages/upgrade/upgrade_page.dart';
+import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/hive_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -18,6 +19,7 @@ class BottomBarView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final bottomBarState = ref.watch(bottomBarStateNotifierProvider);
 
     useEffect(() {
       path_provider.getApplicationDocumentsDirectory().then((dir) {
@@ -28,12 +30,12 @@ class BottomBarView extends HookConsumerWidget {
       return null;
     }, []);
 
-    const List<Widget> screens = [
-      AllRecipesPage(),
-      DiaryPage(),
-      ItemsPage(),
-      ProfilePage(),
-      UpgradePage(),
+    List<Widget> screens = [
+      const AllRecipesPage(),
+      const DiaryPage(),
+      const ItemsPage(),
+      const ProfilePage(),
+      const UpgradePage(),
     ];
 
     return PersistentTabView(
@@ -47,6 +49,7 @@ class BottomBarView extends HookConsumerWidget {
       popActionScreens: PopActionScreensType.all,
       screens: screens,
       backgroundColor: theme.canvasColor,
+      hideNavigationBar: !bottomBarState.showBar,
       items: [
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.food_bank_outlined),
