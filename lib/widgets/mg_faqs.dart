@@ -13,11 +13,11 @@ class MgFaqs extends StatelessWidget {
   ];
 
   static const List<String> content = [
-    'Just Schedult another call with your nuritionist via the app and get all your doubts answered',
-    'Wtih Mg Premium, you\'ll get access to the following:\n\n- A Deidicated Premiusn ieurhg  ieruhg iuerhgi wbew\n- Person shit',
-    'Just Schedult another call with your nuritionist via the app and get all your doubts answered',
-    'Just Schedult another call with your nuritionist via the app and get all your doubts answered',
-    'Just Schedult another call with your nuritionist via the app and get all your doubts answered',
+    ' MealGuide Premium helps you take control of your health.\nBased on the answers you provided in the app onboarding questionnaire, a nutritionist is assigned to you. You can then schedule a call with this nutritionist and explain all your needs to them.\n\nOnce they understand what you want, they will create the ideal diet plan for you. If you don’t like the plan, need changes or just need more clarifications and help, let them know by scheduling another call with them and and they’ll be happy to help!',
+    'With MealGuide Premium, you’ll get access to the following:\n- A dedicated nutritionist for all your needs\n- Personalized diet plans\n- Accountability for your health\n- Guided weight loss and health improvement\n- Full access to all recipes listed on the app',
+    'In the free version you only get access to a limited number of recipes listed on the app.',
+    'Just simply click on any plan that intrigues you and make the payment, it’s really that simple.',
+    'Just schedule another call with your nutritionist via the app and get all your doubts answered.'
   ];
 
   @override

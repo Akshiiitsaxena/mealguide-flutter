@@ -5,6 +5,7 @@ class AppTheme {
   AppTheme._();
 
   static final lightTheme = ThemeData(
+    fontFamily: 'Quicksand',
     scaffoldBackgroundColor: Colors.grey.shade100,
     primaryColor: const Color(0xff7e79eb),
     canvasColor: Colors.grey.shade200,
@@ -36,7 +37,8 @@ class AppTheme {
         fontSize: 10.sp,
       ),
       bodySmall: TextStyle(
-        color: Colors.grey.shade600,
+        color: Colors.grey.shade500,
+        fontWeight: FontWeight.bold,
         fontSize: 10.sp,
       ),
       labelLarge: TextStyle(
@@ -52,8 +54,8 @@ class AppTheme {
   );
 
   static final darkTheme = ThemeData(
+    fontFamily: 'Quicksand',
     scaffoldBackgroundColor: const Color(0xff121212),
-    // primaryColor: const Color(0xff393868),
     primaryColor: const Color(0xff7e79eb),
     focusColor: Colors.grey[900],
     canvasColor: Colors.grey.shade900,
@@ -85,6 +87,7 @@ class AppTheme {
       ),
       bodySmall: TextStyle(
         color: Colors.grey.shade400,
+        fontWeight: FontWeight.bold,
         fontSize: 10.sp,
       ),
       labelLarge: TextStyle(

@@ -24,11 +24,11 @@ class CalendarRow extends HookConsumerWidget {
         ),
         SizedBox(height: 1.2.h),
         Expanded(
-            child: Container(
+            child: SizedBox(
           width: 100.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 40,
+              itemCount: 14,
               itemBuilder: (context, index) {
                 final date = DateTime.now().add(Duration(days: index));
                 final day = DateHelper.getDayLetter(date);

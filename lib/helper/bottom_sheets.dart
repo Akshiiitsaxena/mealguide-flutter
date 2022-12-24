@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
 import 'package:mealguide/pages/recipes/servings_tile.dart';
@@ -8,6 +9,7 @@ import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/bottom_sheet_template.dart';
 import 'package:mealguide/widgets/primary_button.dart';
+import 'package:mealguide/widgets/rotating_plate.dart';
 import 'package:sizer/sizer.dart';
 
 class MgBottomSheet {
@@ -247,5 +249,96 @@ class MgBottomSheet {
     });
 
     showSheet(context, child: child);
+  }
+
+  static showDietaryGuidelines(BuildContext context, Diet diet) {
+    final theme = Theme.of(context);
+
+    Widget child = SizedBox(
+      height: 60.h,
+      child: ListView(
+        children: [
+          SizedBox(height: 2.h),
+          Stack(
+            children: [
+              RotatingPlate(
+                diet.getImage,
+                size: 20.h,
+              ),
+            ],
+          ),
+          SizedBox(height: 3.h),
+          Text(
+            diet.getDisplayName,
+            style: theme.textTheme.titleMedium,
+          ),
+          SizedBox(height: 1.h),
+          Text(
+            diet.getLongDescription,
+            style: theme.textTheme.bodySmall,
+          ),
+          SizedBox(height: 2.h),
+          ...List.generate(
+            diet.getGuidelines.keys.length,
+            (index) {
+              final key = diet.getGuidelines.keys.toList()[index];
+              final values = diet.getGuidelines.values.toList()[index];
+              return Column(
+                children: [
+                  SizedBox(height: 1.h),
+                  Container(
+                    width: double.infinity,
+                    alignment: Alignment.centerLeft,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
+                    decoration: BoxDecoration(
+                      color: theme.canvasColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(key,
+                        style: theme.textTheme.labelLarge!
+                            .copyWith(fontSize: 12.sp)),
+                  ),
+                  SizedBox(height: 1.h),
+                  ...List.generate(values.length, (valueIndex) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: 1.w),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 0.5.h),
+                            child: Text(
+                              '●',
+                              style: theme.textTheme.labelLarge,
+                            ),
+                          ),
+                          SizedBox(width: 2.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 1.h),
+                                Text(
+                                  values[valueIndex],
+                                  style: theme.textTheme.bodySmall,
+                                ),
+                                const Divider(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  })
+                ],
+              );
+            },
+          ),
+          SizedBox(height: 5.h),
+        ],
+      ),
+    );
+
+    showSheet(context, child: child, height: 70.h);
   }
 }

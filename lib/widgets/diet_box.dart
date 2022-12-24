@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealguide/helper/bottom_sheets.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/widgets/rotating_plate.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
@@ -50,7 +51,11 @@ class DietBox extends StatelessWidget {
                     style: theme.textTheme.titleMedium,
                   ),
                   const Spacer(),
-                  MgSecondaryButton('View Dietary Guidelines', onTap: () {})
+                  MgSecondaryButton(
+                    'View Dietary Guidelines',
+                    onTap: () =>
+                        MgBottomSheet.showDietaryGuidelines(context, diet),
+                  )
                 ],
               ),
             ),
