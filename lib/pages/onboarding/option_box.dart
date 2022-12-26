@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/models/onboarding_model.dart';
 import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:mealguide/widgets/mg_container.dart';
 import 'package:sizer/sizer.dart';
 
 class OptionBox extends HookConsumerWidget {
   final int index;
-  OptionBox({super.key, required this.index});
+  final OnboardingOption option;
+  OptionBox({super.key, required this.index, required this.option});
 
   double scale = 1;
 
@@ -37,7 +39,7 @@ class OptionBox extends HookConsumerWidget {
           onboardingQuizStateWatcher.setCurrentSelection(index);
         },
         child: MgOptionContainer(
-          height: 7.h,
+          height: option.subtext != null ? 10.h : 7.h,
           border: Border.all(
             width: 1,
             color: isSelected
@@ -47,11 +49,30 @@ class OptionBox extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'This is the Option $index',
-                style: isSelected
-                    ? theme.textTheme.headlineMedium
-                    : theme.textTheme.headlineSmall,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    option.title,
+                    style: isSelected
+                        ? theme.textTheme.headlineMedium!
+                            .copyWith(fontWeight: FontWeight.bold)
+                        : theme.textTheme.headlineSmall!
+                            .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  option.subtext != null
+                      ? SizedBox(
+                          width: 60.w,
+                          child: Text(
+                            option.subtext!,
+                            style: isSelected
+                                ? theme.textTheme.bodyMedium!.copyWith()
+                                : theme.textTheme.bodySmall!.copyWith(),
+                          ),
+                        )
+                      : Container(),
+                ],
               ),
               isSelected
                   ? Icon(

@@ -50,6 +50,11 @@ class _BrightnessNotifierState extends State<BrightnessNotifier>
   }
 
   @override
+  void didChangePlatformBrightness() {
+    widget.onBrightnessChanged?.call();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return widget.child;
   }

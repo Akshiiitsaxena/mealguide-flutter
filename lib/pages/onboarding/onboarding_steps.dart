@@ -5,9 +5,8 @@ import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class OnboardingSteps extends HookConsumerWidget {
-  const OnboardingSteps({Key? key}) : super(key: key);
-
-  final int totalSteps = 8;
+  final int totalSteps;
+  const OnboardingSteps({Key? key, required this.totalSteps}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +17,7 @@ class OnboardingSteps extends HookConsumerWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 32, 0, 0),
+        padding: EdgeInsets.fromLTRB(4.w, 4.h, 0, 0),
         child: Row(
           children: List.generate(
             totalSteps,
@@ -32,8 +31,8 @@ class OnboardingSteps extends HookConsumerWidget {
                     : theme.primaryColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
-              height: 1.h,
-              width: 7.w,
+              height: 0.75.h,
+              width: 5.w,
             ),
           ),
         ),

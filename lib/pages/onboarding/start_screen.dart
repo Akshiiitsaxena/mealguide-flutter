@@ -47,7 +47,7 @@ class StartScreen extends StatelessWidget {
                 InkWell(
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const OnboardingQuiz(),
+                      builder: (context) => const OnboardingScreen(),
                     ),
                   ),
                   child: Container(

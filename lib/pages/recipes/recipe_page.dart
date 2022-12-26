@@ -40,11 +40,9 @@ class RecipePage extends HookConsumerWidget {
                 ref.read(themeStateNotifierProvider).mode == ThemeMode.light
                     ? theme.primaryColor
                     : const Color(0xff393868),
-            expandedHeight: 150,
-            leading: Container(),
+            expandedHeight: 20.h,
             flexibleSpace: FlexibleSpaceBar(
               title: Container(
-                padding: EdgeInsets.symmetric(horizontal: 3.w),
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   recipe.name,
@@ -54,6 +52,10 @@ class RecipePage extends HookConsumerWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
+              stretchModes: const <StretchMode>[
+                StretchMode.zoomBackground,
+                StretchMode.blurBackground,
+              ],
               background: DecoratedBox(
                 position: DecorationPosition.foreground,
                 decoration: const BoxDecoration(
