@@ -6,8 +6,10 @@ import 'package:sizer/sizer.dart';
 class MgAppBar extends ConsumerWidget with PreferredSizeWidget {
   final Widget child;
   final bool isEmpty;
+  final double? height;
 
-  const MgAppBar({super.key, required this.child, this.isEmpty = false});
+  const MgAppBar(
+      {super.key, required this.child, this.isEmpty = false, this.height});
 
   @override
   PreferredSize build(BuildContext context, WidgetRef ref) {
@@ -19,7 +21,7 @@ class MgAppBar extends ConsumerWidget with PreferredSizeWidget {
             : const Color(0xff393868);
 
     return PreferredSize(
-      preferredSize: Size.fromHeight(11.h),
+      preferredSize: Size.fromHeight(height ?? 11.h),
       child: Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -47,5 +49,5 @@ class MgAppBar extends ConsumerWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(11.h);
+  Size get preferredSize => Size.fromHeight(height ?? 11.h);
 }

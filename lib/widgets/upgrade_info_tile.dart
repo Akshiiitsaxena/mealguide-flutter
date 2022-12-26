@@ -4,14 +4,14 @@ import 'package:mealguide/providers/theme_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class UpgradeInfoTile extends HookConsumerWidget {
-  final IconData icon;
+  final String image;
   final String title;
   final String content;
 
   const UpgradeInfoTile({
     super.key,
     required this.content,
-    required this.icon,
+    required this.image,
     required this.title,
   });
 
@@ -24,7 +24,6 @@ class UpgradeInfoTile extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(0.7.h),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(56),
               color:
@@ -32,9 +31,9 @@ class UpgradeInfoTile extends HookConsumerWidget {
                       ? theme.primaryColor
                       : const Color(0xff393868),
             ),
-            child: Icon(icon, color: Colors.white, size: 18.sp),
+            child: Image.asset(image, height: 5.h, width: 5.h),
           ),
-          SizedBox(width: 4.w),
+          SizedBox(width: 5.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

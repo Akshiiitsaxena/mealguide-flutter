@@ -19,11 +19,11 @@ class UpgradePage extends HookConsumerWidget {
     final chosenPlan = useState(0);
 
     List<Widget> widgets = [
-      Container(
-        height: 20.h,
-        width: 100.w,
-        color: theme.primaryColor,
-      ),
+      SafeArea(
+          child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
+        child: Image.asset('assets/upgrade_features/upgrade_header.png'),
+      )),
       SizedBox(height: 3.h),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 6.w),
@@ -77,20 +77,20 @@ class UpgradePage extends HookConsumerWidget {
       const UpgradeInfoTile(
         content:
             'Unlimited calls with our nutritionists to help you receive the best guidance.',
-        icon: Icons.troubleshoot_rounded,
         title: 'One on One Consultations',
+        image: 'assets/upgrade_features/feature_1.png',
       ),
       const UpgradeInfoTile(
         content:
             'Fresh meal plans curated just for you by our nutritionists, post consultation.',
-        icon: Icons.calendar_month_outlined,
         title: 'Personalised Weekly Plans',
+        image: 'assets/upgrade_features/feature_2.png',
       ),
       const UpgradeInfoTile(
         content:
             'Hundreds of easy to make, dietician-approved recipes for you to try.',
-        icon: Icons.shopping_cart_outlined,
         title: 'Curated by Nutritionists',
+        image: 'assets/upgrade_features/feature_3.png',
       ),
       SizedBox(height: 3.h),
       Container(

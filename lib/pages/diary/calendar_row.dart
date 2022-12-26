@@ -40,6 +40,7 @@ class CalendarRow extends HookConsumerWidget {
                       .setDate(date),
                   child: AnimatedContainer(
                     margin: EdgeInsets.only(right: 4.w),
+                    width: 9.w,
                     duration: const Duration(milliseconds: 300),
                     padding:
                         EdgeInsets.symmetric(vertical: 0.5.h, horizontal: 2.w),
@@ -58,8 +59,9 @@ class CalendarRow extends HookConsumerWidget {
                         Text(
                           date.day.toString(),
                           style: theme.textTheme.bodyMedium!.copyWith(
-                              color:
-                                  isSelected ? Colors.white : Colors.white54),
+                            color: isSelected ? Colors.white : Colors.white54,
+                            fontSize: 12.sp,
+                          ),
                         )
                       ],
                     ),
