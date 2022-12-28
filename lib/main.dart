@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mealguide/helper/bottom_bar_view.dart';
 import 'package:mealguide/helper/brightness_notifier.dart';
-import 'package:mealguide/pages/onboarding/onboarding_quiz.dart';
+import 'package:mealguide/pages/auth/phone_number_page.dart';
 import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -31,13 +34,17 @@ class MyApp extends HookConsumerWidget {
       onBrightnessChanged: () => handleTheme(ref),
       child: Sizer(
         builder: (context, orientation, deviceType) {
-          return MaterialApp(
-            title: 'MealGuide',
-            themeMode: mode,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            home: const StartScreen(),
-            debugShowCheckedModeBanner: false,
+          return GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: MaterialApp(
+              title: 'MealGuide',
+              themeMode: mode,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              // home: const StartScreen(),
+              home: const PhoneNumberPage(),
+              debugShowCheckedModeBanner: false,
+            ),
           );
         },
       ),

@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "424839644258",
+    "firebase_url": "https://nutrify-meal-guide.firebaseio.com",
+    "project_id": "nutrify-meal-guide",
+    "storage_bucket": "nutrify-meal-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424839644258:android:9f4e51671ba1ed4c733d3b",
+        "android_client_info": {
+          "package_name": "com.mealguide.nutrify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424839644258-3ob95e08ddkms75hvm2jdhr6qcd0o3fe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mealguide.nutrify",
+            "certificate_hash": "2818955a6b60b9e519d26ca9bea286504778390b"
+          }
+        },
+        {
+          "client_id": "424839644258-3k4cajnm09ued5csqv3rhcm5q858fep4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg9_cQDOvO_IyCGBaQgNmsrmh_7qLjcO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424839644258-3k4cajnm09ued5csqv3rhcm5q858fep4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "424839644258-03gk5g7ftc05hrl3ge9laut48o574dtp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.namanjain.NutriWise",
+                "app_store_id": "1532639287"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
