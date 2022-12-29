@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
+import 'package:mealguide/providers/user_state_provider.dart';
 
 final authProvider = Provider(
   (ref) => Authentication(
@@ -66,7 +67,7 @@ class Authentication {
     }
   }
 
-  void signInWithOtp() {
+  Future<void> signInWithOtp() async {
     final otpState = ref.read(otpStateNotifierProvider);
 
     final smsCode = otpState.otp;
@@ -74,7 +75,7 @@ class Authentication {
     final credential =
         PhoneAuthProvider.credential(verificationId: verId, smsCode: smsCode);
 
-    signInUser(credential);
+    await signInUser(credential);
   }
 
   void resendOtp({required String number}) {
@@ -88,12 +89,21 @@ class Authentication {
     try {
       otpStateNotifier.setIsLoading(true);
       final user = await auth.signInWithCredential(credential);
-      print(user.user?.phoneNumber);
+      ref.read(userStateNotifierProvider.notifier).setLoginState(true);
     } on FirebaseAuthException catch (e) {
       print(e);
       verificationFailed(e);
     } finally {
       otpStateNotifier.setIsLoading(false);
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await auth.signOut();
+      ref.read(userStateNotifierProvider.notifier).setLoginState(false);
+    } catch (e) {
+      print('error signing out $e');
     }
   }
 }

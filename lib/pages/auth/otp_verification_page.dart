@@ -13,9 +13,7 @@ import 'package:sizer/sizer.dart';
 
 class OtpVerificationPage extends HookConsumerWidget {
   final String number;
-  OtpVerificationPage({super.key, required this.number});
-
-  final formKey = GlobalKey<FormState>();
+  const OtpVerificationPage({super.key, required this.number});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -86,54 +84,51 @@ class OtpVerificationPage extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 5.h),
-              Form(
-                key: formKey,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.w),
-                  child: PinCodeTextField(
-                    keyboardType: TextInputType.number,
-                    appContext: context,
-                    obscureText: false,
-                    animationType: AnimationType.fade,
-                    length: 6,
-                    autoFocus: true,
-                    pinTheme: PinTheme(
-                      fieldHeight: 12.w,
-                      fieldWidth: 12.w,
-                      inactiveColor: theme.canvasColor,
-                      inactiveFillColor: theme.canvasColor,
-                      activeFillColor: theme.primaryColor.withOpacity(0.15),
-                      activeColor: theme.primaryColor,
-                      selectedColor: theme.primaryColor,
-                      selectedFillColor: theme.primaryColor.withOpacity(0.15),
-                      shape: PinCodeFieldShape.circle,
-                    ),
-                    textStyle: TextStyle(fontSize: 18.sp),
-                    cursorColor: theme.primaryColor,
-                    enableActiveFill: true,
-                    autoDismissKeyboard: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter OTP';
-                      } else if (value.length != 6) {
-                        return 'Enter valid OTP of 6 digits';
-                      } else {
-                        return null;
-                      }
-                    },
-                    onCompleted: (String otp) async {
-                      if (formKey.currentState!.validate()) {
-                        if (otpState.otp.isEmpty) {
-                          ref
-                              .read(otpStateNotifierProvider.notifier)
-                              .setOtp(otp);
-                        }
-                        authState.signInWithOtp();
-                      }
-                    },
-                    controller: otpController,
-                    onChanged: (_) {},
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 6.w),
+                child: PinCodeTextField(
+                  keyboardType: TextInputType.number,
+                  appContext: context,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  length: 6,
+                  autoFocus: true,
+                  pinTheme: PinTheme(
+                    fieldHeight: 12.w,
+                    fieldWidth: 12.w,
+                    inactiveColor: theme.canvasColor,
+                    inactiveFillColor: theme.canvasColor,
+                    activeFillColor: theme.primaryColor.withOpacity(0.15),
+                    activeColor: theme.primaryColor,
+                    selectedColor: theme.primaryColor,
+                    selectedFillColor: theme.primaryColor.withOpacity(0.15),
+                    shape: PinCodeFieldShape.circle,
                   ),
+                  textStyle: TextStyle(fontSize: 18.sp),
+                  cursorColor: theme.primaryColor,
+                  enableActiveFill: true,
+                  autoDismissKeyboard: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Enter OTP';
+                    } else if (value.length != 6) {
+                      return 'Enter valid OTP of 6 digits';
+                    } else {
+                      return null;
+                    }
+                  },
+                  onCompleted: (String otp) async {
+                    if (otpController.text.length == 6) {
+                      if (otpState.otp.isEmpty) {
+                        ref.read(otpStateNotifierProvider.notifier).setOtp(otp);
+                      }
+                      await authState.signInWithOtp();
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  controller: otpController,
+                  onChanged: (_) {},
                 ),
               ),
               Counter(

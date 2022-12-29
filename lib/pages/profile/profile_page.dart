@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/bottom_sheets.dart';
+import 'package:mealguide/pages/auth/phone_number_page.dart';
 import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/pages/profile/profile_tile.dart';
+import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/diary_provider.dart';
+import 'package:mealguide/providers/user_state_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:sizer/sizer.dart';
@@ -15,6 +18,7 @@ class ProfilePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final userState = ref.watch(userStateNotifierProvider);
 
     return Scaffold(
       appBar: MgAppBar(
@@ -40,26 +44,46 @@ class ProfilePage extends HookConsumerWidget {
         padding: EdgeInsets.symmetric(horizontal: 4.w),
         children: [
           SizedBox(height: 5.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: MgPrimaryButton(
-              'Sign In Now',
-              onTap: () {},
-              isEnabled: true,
-              height: 6.h,
-            ),
-          ),
-          SizedBox(height: 3.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Text(
-              'Connecting to your account helps us further personalise the app, suggest better diet plans and back-up your saved recipes and ingredients.',
-              style: theme.textTheme.bodySmall!
-                  .copyWith(color: Colors.grey, fontSize: 10.sp),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(height: 4.h),
+          userState.isLoggedIn
+              ? Container()
+              : Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: MgPrimaryButton(
+                        'Sign In Now',
+                        onTap: () {
+                          ref
+                              .read(bottomBarStateNotifierProvider.notifier)
+                              .hideBar();
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PhoneNumberPage()))
+                              .then(
+                                (_) => ref
+                                    .read(
+                                        bottomBarStateNotifierProvider.notifier)
+                                    .showBar(),
+                              );
+                        },
+                        isEnabled: true,
+                        height: 6.h,
+                      ),
+                    ),
+                    SizedBox(height: 3.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4.w),
+                      child: Text(
+                        'Connecting to your account helps us further personalise the app, suggest better diet plans and back-up your saved recipes and ingredients.',
+                        style: theme.textTheme.bodySmall!
+                            .copyWith(color: Colors.grey, fontSize: 10.sp),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: 4.h),
+                  ],
+                ),
           Text('DIARY ACTIONS', style: theme.textTheme.bodySmall),
           SizedBox(height: 1.5.h),
           ProfileTile(
@@ -136,12 +160,14 @@ class ProfilePage extends HookConsumerWidget {
             onTap: () {},
           ),
           Divider(height: 2.5.h),
-          ProfileTile(
-            title: 'Sign Out',
-            icon: Icons.logout,
-            onTap: () {},
-            isLogout: true,
-          ),
+          userState.isLoggedIn
+              ? ProfileTile(
+                  title: 'Sign Out',
+                  icon: Icons.logout,
+                  onTap: () => ref.read(authProvider).signOut(),
+                  isLogout: true,
+                )
+              : Container(),
           SizedBox(height: 5.h),
         ],
       ),

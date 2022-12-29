@@ -40,10 +40,9 @@ class ProfileTile extends StatelessWidget {
                   title,
                   style: isLogout
                       ? theme.textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.normal,
-                          color: Colors.redAccent)
+                          fontWeight: FontWeight.w600, color: Colors.redAccent)
                       : theme.textTheme.bodyMedium!
-                          .copyWith(fontWeight: FontWeight.normal),
+                          .copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
             ),

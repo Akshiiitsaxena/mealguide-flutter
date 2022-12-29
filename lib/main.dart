@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/bottom_bar_view.dart';
 import 'package:mealguide/helper/brightness_notifier.dart';
-import 'package:mealguide/pages/auth/phone_number_page.dart';
-import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
@@ -41,8 +40,7 @@ class MyApp extends HookConsumerWidget {
               themeMode: mode,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
-              // home: const StartScreen(),
-              home: const PhoneNumberPage(),
+              home: const BottomBarView(),
               debugShowCheckedModeBanner: false,
             ),
           );
