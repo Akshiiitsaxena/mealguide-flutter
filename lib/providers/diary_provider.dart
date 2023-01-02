@@ -1,55 +1,22 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
+import 'package:mealguide/helper/mg_exception.dart';
+import 'package:mealguide/helper/urls.dart';
+import 'package:mealguide/models/diary_model.dart';
+import 'package:mealguide/providers/dio_provider.dart';
 
-@immutable
-class DiaryState {
-  final DateTime date;
-  final int dailyWater;
+final diaryProvider = FutureProvider<Diary>((ref) async {
+  try {
+    final response = await ref.watch(dioProvider(true)).get(MgUrls.getMealPlan);
 
-  const DiaryState({required this.date, required this.dailyWater});
-
-  DiaryState copyWith({
-    DateTime? date,
-    int? dailyWater,
-  }) {
-    return DiaryState(
-      date: date ?? this.date,
-      dailyWater: dailyWater ?? this.dailyWater,
-    );
+    Diary diary = Diary.fromDoc(response.data['data']);
+    return diary;
+  } on DioError catch (e) {
+    debugPrint(e.message);
+    throw MgException(message: e.message);
+  } catch (e) {
+    debugPrint(e.toString());
+    throw MgException();
   }
-
-  get getDateTitle {
-    String trailing = DateFormat(', dd MMM').format(date);
-    String day;
-
-    if (date.day == DateTime.now().day) {
-      day = 'Today';
-    } else if (date.day == DateTime.now().add(const Duration(days: 1)).day) {
-      day = 'Tomorrow';
-    } else {
-      day = DateFormat('EEEE').format(date);
-    }
-
-    return '$day$trailing';
-  }
-}
-
-class DiaryStateNotifier extends StateNotifier<DiaryState> {
-  DiaryStateNotifier() : super(DiaryState(date: DateTime.now(), dailyWater: 8));
-
-  void setDate(DateTime dateTime) {
-    state = state.copyWith(date: dateTime);
-  }
-
-  void setDailyWater(int value) {
-    if (value <= 18 && value >= 4) {
-      state = state.copyWith(dailyWater: value);
-    }
-  }
-}
-
-final diaryStateNotifierProvider =
-    StateNotifierProvider<DiaryStateNotifier, DiaryState>(
-  (_) => DiaryStateNotifier(),
-);
+});

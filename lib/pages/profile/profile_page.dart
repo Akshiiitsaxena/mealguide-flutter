@@ -6,7 +6,7 @@ import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/pages/profile/profile_tile.dart';
 import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/bottom_bar_provider.dart';
-import 'package:mealguide/providers/diary_provider.dart';
+import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';

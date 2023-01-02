@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/date_helper.dart';
-import 'package:mealguide/providers/diary_provider.dart';
+import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class CalendarRow extends HookConsumerWidget {
-  const CalendarRow({super.key});
+  final DateTime startDate;
+  const CalendarRow({super.key, required this.startDate});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +31,7 @@ class CalendarRow extends HookConsumerWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 14,
               itemBuilder: (context, index) {
-                final date = DateTime.now().add(Duration(days: index));
+                final date = startDate.add(Duration(days: index));
                 final day = DateHelper.getDayLetter(date);
                 final isSelected = date.day == diaryState.date.day &&
                     date.month == diaryState.date.month;

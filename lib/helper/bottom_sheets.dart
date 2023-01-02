@@ -4,7 +4,7 @@ import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
 import 'package:mealguide/pages/recipes/servings_tile.dart';
-import 'package:mealguide/providers/diary_provider.dart';
+import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/bottom_sheet_template.dart';

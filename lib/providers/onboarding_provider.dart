@@ -8,7 +8,8 @@ import 'package:mealguide/providers/dio_provider.dart';
 final onboardingProvider =
     FutureProvider<List<OnboardingQuestion>>((ref) async {
   try {
-    final response = await ref.watch(dioProvider).get(MgUrls.getQuestionnaire);
+    final response =
+        await ref.watch(dioProvider(false)).get(MgUrls.getQuestionnaire);
     List<OnboardingQuestion> questions = [];
 
     response.data['data'].forEach((doc) {
