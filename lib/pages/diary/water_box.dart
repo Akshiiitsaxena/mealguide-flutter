@@ -20,7 +20,6 @@ class WaterBox extends HookConsumerWidget {
     final waterConsumed = useState(plan.waterConsumed);
     final dailyWater = diaryState.dailyWater;
 
-    // const Color waterColor = Color.fromARGB(255, 17, 166, 216);
     const Color waterColor = Colors.lightBlue;
 
     return Stack(

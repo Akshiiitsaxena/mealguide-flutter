@@ -55,7 +55,7 @@ class Recipe {
 
     RecipeType docRecipeType;
 
-    switch (doc['category']) {
+    switch (doc['category'].toString().toLowerCase()) {
       case 'breakfast':
         docRecipeType = RecipeType.breakfast;
         break;
@@ -92,4 +92,12 @@ class Recipe {
   get getCalories => '${nutrition.calories.floor()} KCAL';
 }
 
-enum RecipeType { breakfast, lunch, snacks, dinner }
+enum RecipeType {
+  breakfast,
+  lunch,
+  snacks,
+  dinner;
+
+  @override
+  String toString() => name;
+}

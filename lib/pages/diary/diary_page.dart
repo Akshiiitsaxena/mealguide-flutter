@@ -5,6 +5,7 @@ import 'package:mealguide/helper/error_widget.dart';
 import 'package:mealguide/models/day_plan_model.dart';
 import 'package:mealguide/pages/diary/calendar_row.dart';
 import 'package:mealguide/pages/diary/calorie_box.dart';
+import 'package:mealguide/pages/diary/diary_recipes.dart';
 import 'package:mealguide/pages/diary/water_box.dart';
 import 'package:mealguide/providers/diary_provider.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
@@ -65,7 +66,9 @@ class DiaryPage extends HookConsumerWidget {
                           Theme.of(context)),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 1.h),
+                DiaryRecipes(dayPlan: plan)
               ],
             ),
           );

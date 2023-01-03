@@ -25,7 +25,7 @@ class MealPlan {
   factory MealPlan.fromDoc(Map<String, dynamic> doc) {
     RecipeType docRecipeType;
 
-    switch (doc['category']) {
+    switch (doc['category'].toString().toLowerCase()) {
       case 'breakfast':
         docRecipeType = RecipeType.breakfast;
         break;
