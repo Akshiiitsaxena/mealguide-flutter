@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/date_helper.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
@@ -15,6 +16,10 @@ class CalendarRow extends HookConsumerWidget {
 
     final theme = Theme.of(context);
 
+    double initialScroll = diaryState.date.difference(startDate).inDays * 12.w;
+    final calendarController =
+        useScrollController(initialScrollOffset: initialScroll);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,6 +34,7 @@ class CalendarRow extends HookConsumerWidget {
           width: 100.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              controller: calendarController,
               itemCount: 14,
               itemBuilder: (context, index) {
                 final date = startDate.add(Duration(days: index));

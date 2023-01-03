@@ -46,6 +46,7 @@ dependencies:
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.3
   pin_code_fields: ^7.4.0
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:
