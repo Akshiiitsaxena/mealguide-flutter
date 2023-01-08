@@ -48,3 +48,4 @@ app.*.map.json
 lib/providers/dummy_diet.dart
 lib/providers/dummy_ing.dart
 lib/providers/dummy_rec.dart
+lib/providers/dummy_plan.dart

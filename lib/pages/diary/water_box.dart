@@ -17,10 +17,12 @@ class WaterBox extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final diaryState = ref.watch(diaryStateNotifierProvider);
     final theme = Theme.of(context);
-    final waterConsumed = useState(plan.waterConsumed);
     final dailyWater = diaryState.dailyWater;
+    final waterConsumed = diaryState.waterConsumedForPlan[plan.id] ?? 0;
 
     const Color waterColor = Colors.lightBlue;
+
+    final diaryWatcher = ref.read(diaryStateNotifierProvider.notifier);
 
     return Stack(
       children: [
@@ -38,7 +40,7 @@ class WaterBox extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${waterConsumed.value.toString()}/$dailyWater',
+                      '${waterConsumed.toString()}/$dailyWater',
                       style: theme.textTheme.labelLarge!.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w800,
@@ -58,25 +60,41 @@ class WaterBox extends HookConsumerWidget {
                 SizedBox(height: 1.h),
                 Row(
                   children: [
-                    Container(
-                      height: 4.h,
-                      width: 24.w,
-                      decoration: BoxDecoration(
-                        color: waterColor.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(14),
+                    InkWell(
+                      onTap: () {
+                        if (dailyWater - waterConsumed >= 1) {
+                          diaryWatcher.setWaterConsumedForPlan(
+                              plan.id, waterConsumed + 1);
+                        }
+                      },
+                      child: Container(
+                        height: 4.h,
+                        width: 24.w,
+                        decoration: BoxDecoration(
+                          color: waterColor.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Icon(Icons.add, color: waterColor, size: 12.sp),
                       ),
-                      child: Icon(Icons.add, color: waterColor, size: 12.sp),
                     ),
                     SizedBox(width: 2.w),
                     Expanded(
-                      child: Container(
-                        height: 4.h,
-                        decoration: BoxDecoration(
-                          color: waterColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(14),
+                      child: InkWell(
+                        onTap: () {
+                          if (waterConsumed >= 1) {
+                            diaryWatcher.setWaterConsumedForPlan(
+                                plan.id, waterConsumed - 1);
+                          }
+                        },
+                        child: Container(
+                          height: 4.h,
+                          decoration: BoxDecoration(
+                            color: waterColor.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Icon(Icons.remove,
+                              color: waterColor, size: 12.sp),
                         ),
-                        child:
-                            Icon(Icons.remove, color: waterColor, size: 12.sp),
                       ),
                     ),
                   ],
@@ -91,7 +109,8 @@ class WaterBox extends HookConsumerWidget {
           child: CircularPercentIndicator(
             radius: 9.w,
             lineWidth: 2.w,
-            percent: 0.2,
+            percent:
+                waterConsumed <= dailyWater ? waterConsumed / dailyWater : 1,
             progressColor: waterColor,
             circularStrokeCap: CircularStrokeCap.round,
             backgroundColor: waterColor.withOpacity(0.2),

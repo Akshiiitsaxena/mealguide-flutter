@@ -89,7 +89,7 @@ class RecipePage extends HookConsumerWidget {
                   height: 8.h,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 4.w),
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
                     children: [
                       InfoBox(
                         heading: 'calories',

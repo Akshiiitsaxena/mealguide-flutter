@@ -11,7 +11,7 @@ class AppTheme {
     canvasColor: Colors.grey.shade200,
     focusColor: Colors.white,
     indicatorColor: Colors.black,
-    hoverColor: Colors.grey.shade700,
+    hoverColor: Colors.black26,
     textTheme: TextTheme(
       displayLarge: TextStyle(color: Colors.grey, fontSize: 12.sp),
       displayMedium: TextStyle(color: Colors.grey, fontSize: 12.sp),

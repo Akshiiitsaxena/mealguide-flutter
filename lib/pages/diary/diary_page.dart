@@ -11,7 +11,6 @@ import 'package:mealguide/providers/diary_provider.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/widgets/diary_container.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
 class DiaryPage extends HookConsumerWidget {
@@ -48,22 +47,14 @@ class DiaryPage extends HookConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      buildNutritionInfo(
-                          'PROTEIN',
-                          plan.getConsumedFractionText(NutritionType.protein),
-                          Theme.of(context)),
-                      buildNutritionInfo(
-                          'CARBS',
-                          plan.getConsumedFractionText(NutritionType.carbs),
-                          Theme.of(context)),
-                      buildNutritionInfo(
-                          'FATS',
-                          plan.getConsumedFractionText(NutritionType.fat),
-                          Theme.of(context)),
-                      buildNutritionInfo(
-                          'FIBER',
-                          plan.getConsumedFractionText(NutritionType.fiber),
-                          Theme.of(context)),
+                      NutritionInfoTile(
+                          nutritionType: NutritionType.protein, plan: plan),
+                      NutritionInfoTile(
+                          nutritionType: NutritionType.carbs, plan: plan),
+                      NutritionInfoTile(
+                          nutritionType: NutritionType.fat, plan: plan),
+                      NutritionInfoTile(
+                          nutritionType: NutritionType.fiber, plan: plan),
                     ],
                   ),
                 ),
@@ -83,11 +74,44 @@ class DiaryPage extends HookConsumerWidget {
       ),
     );
   }
+}
 
-  Widget buildNutritionInfo(String title, String fraction, ThemeData theme) {
+class NutritionInfoTile extends ConsumerWidget {
+  final NutritionType nutritionType;
+  final DayPlan plan;
+  const NutritionInfoTile(
+      {super.key, required this.nutritionType, required this.plan});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final diaryState = ref.watch(diaryStateNotifierProvider);
+    var fraction = '';
+
+    switch (nutritionType) {
+      case NutritionType.carbs:
+        fraction =
+            '${(diaryState.nutritionConsumedForPlan[plan.id]?.carbohydrates ?? 0).toStringAsFixed(0)}/${plan.getTotalNutrition(NutritionType.carbs).toStringAsFixed(0)}';
+        break;
+      case NutritionType.fat:
+        fraction =
+            '${(diaryState.nutritionConsumedForPlan[plan.id]?.fat ?? 0).toStringAsFixed(0)}/${plan.getTotalNutrition(NutritionType.fat).toStringAsFixed(0)}';
+        break;
+      case NutritionType.fiber:
+        fraction =
+            '${(diaryState.nutritionConsumedForPlan[plan.id]?.fiber ?? 0).toStringAsFixed(0)}/${plan.getTotalNutrition(NutritionType.fiber).toStringAsFixed(0)}';
+        break;
+      case NutritionType.protein:
+        fraction =
+            '${(diaryState.nutritionConsumedForPlan[plan.id]?.protein ?? 0).toStringAsFixed(0)}/${plan.getTotalNutrition(NutritionType.protein).toStringAsFixed(0)}';
+        break;
+      default:
+    }
+
     return Column(
       children: [
-        Text(title, style: theme.textTheme.bodySmall),
+        Text(nutritionType.toString().toUpperCase(),
+            style: theme.textTheme.bodySmall),
         SizedBox(height: 0.2.h),
         Row(
           children: [

@@ -341,4 +341,30 @@ class MgBottomSheet {
 
     showSheet(context, child: child, height: 70.h);
   }
+
+  static showLogRecipeSheet(
+    BuildContext context,
+    WidgetRef ref,
+    Function() onTap,
+  ) async {
+    final theme = Theme.of(context);
+
+    Widget child = InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 4.h),
+        alignment: Alignment.center,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(color: theme.primaryColor, width: 2),
+          borderRadius: BorderRadius.circular(56),
+          color: theme.primaryColor.withOpacity(0.1),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 2.h),
+        child: Text('Log Recipe to Diary', style: theme.textTheme.bodyMedium),
+      ),
+    );
+
+    return showSheet(context, child: child);
+  }
 }

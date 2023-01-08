@@ -66,4 +66,13 @@ class DayPlan {
       '${getConsumedNutrition(type).toStringAsFixed(0)}/${getTotalNutrition(type).toStringAsFixed(0)}';
 }
 
-enum NutritionType { calories, protein, carbs, fat, fiber }
+enum NutritionType {
+  calories,
+  protein,
+  carbs,
+  fat,
+  fiber;
+
+  @override
+  String toString() => name;
+}
