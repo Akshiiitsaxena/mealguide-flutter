@@ -1,5 +1,6 @@
 class MgException implements Exception {
   final String? message;
+  final int? code;
 
-  MgException({this.message});
+  MgException({this.message, this.code});
 }

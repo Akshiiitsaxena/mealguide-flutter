@@ -79,8 +79,12 @@ class DiaryPage extends HookConsumerWidget {
 class NutritionInfoTile extends ConsumerWidget {
   final NutritionType nutritionType;
   final DayPlan plan;
-  const NutritionInfoTile(
-      {super.key, required this.nutritionType, required this.plan});
+
+  const NutritionInfoTile({
+    super.key,
+    required this.nutritionType,
+    required this.plan,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

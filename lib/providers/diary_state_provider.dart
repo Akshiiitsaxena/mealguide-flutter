@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:mealguide/models/day_plan_model.dart';
 import 'package:mealguide/models/nutrition_model.dart';
 
 @immutable

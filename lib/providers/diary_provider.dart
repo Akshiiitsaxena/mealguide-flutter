@@ -16,7 +16,7 @@ final diaryProvider = FutureProvider<Diary>((ref) async {
     return diary;
   } on DioError catch (e) {
     debugPrint(e.message);
-    throw MgException(message: e.message);
+    throw MgException(message: e.message, code: e.response?.statusCode);
   } catch (e) {
     debugPrint(e.toString());
     throw MgException();
@@ -40,7 +40,8 @@ class PlanConsumer {
     };
 
     try {
-      await ref.watch(dioProvider(true)).post(MgUrls.consumeMeal, data: data);
+      final dio = await ref.watch(dioProvider(true).future);
+      await dio.post(MgUrls.consumeMeal, data: data);
       return true;
     } on DioError catch (e) {
       debugPrint(e.message);
@@ -63,7 +64,8 @@ class PlanConsumer {
     };
 
     try {
-      await ref.watch(dioProvider(true)).post(MgUrls.consumeMeal, data: data);
+      final dio = await ref.watch(dioProvider(true).future);
+      await dio.post(MgUrls.consumeMeal, data: data);
       return true;
     } on DioError catch (e) {
       debugPrint(e.message);
