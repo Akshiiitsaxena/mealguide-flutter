@@ -1,0 +1,1108 @@
+{
+  "status": true,
+  "data": {
+    "_id": "63a802d048f178b8b5f96ea8",
+    "published": true,
+    "plans": [
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1837.51,
+                "protein": 48.82,
+                "carbohydrates": 159.82,
+                "fat": 123.73,
+                "fiber": 32.2
+              },
+              "_id": "62dd800fe6db845740174681",
+              "name": "Almond Flour Puttu",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_flour_puttu.jpg?alt=media",
+              "identifier": "gluten_free_almond_flour_puttu_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eaa"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 328.66,
+                "protein": 4.37,
+                "carbohydrates": 53.56,
+                "fat": 11.74,
+                "fiber": 7.56
+              },
+              "_id": "62dd8019e6db845740174692",
+              "name": "Parsnip Sage and Chestnut Soup",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/parsnip_sage_and_chestnut_soup.jpg?alt=media",
+              "identifier": "gluten_free_parsnip_sage_and_chestnut_soup_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eab"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 378.54,
+                "protein": 8.17,
+                "carbohydrates": 60.7,
+                "fat": 12.5,
+                "fiber": 0.7
+              },
+              "_id": "62dd802ce6db8457401746b1",
+              "name": "Ragi Kheer",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/ragi_kheer.jpg?alt=media",
+              "identifier": "gluten_free_ragi_kheer_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eac"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 176.31,
+                "protein": 3.02,
+                "carbohydrates": 12.81,
+                "fat": 13.94,
+                "fiber": 4.86
+              },
+              "_id": "62dd7f47e6db84574017452d",
+              "name": "Garlic Green Beans",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/garlic_green_beans.png?alt=media",
+              "identifier": "gluten_free_garlic_green_beans_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ead"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ea9"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 109.96,
+                "protein": 2.12,
+                "carbohydrates": 7.74,
+                "fat": 8.44,
+                "fiber": 1.85
+              },
+              "_id": "62dd7f2de6db845740174501",
+              "name": "Creamy Celery Roots Rods with Lemon Zest",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/celeryRootsLemonZest.png?alt=media",
+              "identifier": "gluten_free_creamy_celery_roots_rods_with_lemon_zest_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eaf"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 365.3,
+                "protein": 9.04,
+                "carbohydrates": 48.41,
+                "fat": 17.07,
+                "fiber": 8.13
+              },
+              "_id": "62dd8019e6db845740174691",
+              "name": "Roast Vegetables and Parsley Pesto",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/roast_vegetables_and_parsley_pesto.jpg?alt=media",
+              "identifier": "gluten_free_roast_vegetables_and_parsley_pesto_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb0"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1719.56,
+                "protein": 11.65,
+                "carbohydrates": 31.95,
+                "fat": 173.18,
+                "fiber": 0.54
+              },
+              "_id": "62dd7f1ee6db8457401744e8",
+              "name": "Beer Battered Fish N' Chips",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/beerFishNChips.png?alt=media",
+              "identifier": "gluten_free_beer_battered_fish_n'_chips_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb1"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 337.64,
+                "protein": 40.99,
+                "carbohydrates": 20.79,
+                "fat": 10.02,
+                "fiber": 3.55
+              },
+              "_id": "62dd7f52e6db84574017453f",
+              "name": "Thai Red Curry Coconut Chicken",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfDinnerCoconutCurryChickenRed.png?alt=media",
+              "identifier": "gluten_free_thai_red_curry_coconut_chicken_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb2"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96eae"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 346.59,
+                "protein": 11.64,
+                "carbohydrates": 33.69,
+                "fat": 18.81,
+                "fiber": 1.7
+              },
+              "_id": "62dd7fbee6db8457401745f7",
+              "name": "Overnight Orange Blueberry Baked French Toast",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/orangeBluberryBakedFrenchToast.png?alt=media",
+              "identifier": "gluten_free_overnight_orange_blueberry_baked_french_toast_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb4"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 105.55,
+                "protein": 2.13,
+                "carbohydrates": 3.33,
+                "fat": 8.84,
+                "fiber": 1.29
+              },
+              "_id": "62dd8020e6db84574017469e",
+              "name": "Garlic Choy Sum",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/garlic_choy_sum.jpg?alt=media",
+              "identifier": "gluten_free_garlic_choy_sum_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb5"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1719.56,
+                "protein": 11.65,
+                "carbohydrates": 31.95,
+                "fat": 173.18,
+                "fiber": 0.54
+              },
+              "_id": "62dd7f1ee6db8457401744e8",
+              "name": "Beer Battered Fish N' Chips",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/beerFishNChips.png?alt=media",
+              "identifier": "gluten_free_beer_battered_fish_n'_chips_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb6"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 510.76,
+                "protein": 17.95,
+                "carbohydrates": 69.23,
+                "fat": 18.95,
+                "fiber": 16.39
+              },
+              "_id": "62dd7f27e6db8457401744f7",
+              "name": "Brown Rice with Lentils",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/brownRiceLentils.png?alt=media",
+              "identifier": "gluten_free_brown_rice_with_lentils_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb7"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96eb3"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1837.51,
+                "protein": 48.82,
+                "carbohydrates": 159.82,
+                "fat": 123.73,
+                "fiber": 32.2
+              },
+              "_id": "62dd800fe6db845740174681",
+              "name": "Almond Flour Puttu",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_flour_puttu.jpg?alt=media",
+              "identifier": "gluten_free_almond_flour_puttu_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eb9"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 156.88,
+                "protein": 6.64,
+                "carbohydrates": 21.92,
+                "fat": 6.2,
+                "fiber": 8.16
+              },
+              "_id": "62dd801fe6db84574017469b",
+              "name": "Okra, Pea & Tomato Curry",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/okra_pea_and_tomato_curry.jpg?alt=media",
+              "identifier": "gluten_free_okra,_pea_&_tomato_curry_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eba"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 152.41,
+                "protein": 6.71,
+                "carbohydrates": 24.67,
+                "fat": 3.6,
+                "fiber": 4.29
+              },
+              "_id": "62dd8027e6db8457401746a9",
+              "name": "Green Gram Sprouts Patties",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/greengram_sprouts_patties.jpg?alt=media",
+              "identifier": "gluten_free_green_gram_sprouts_patties_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ebb"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 459.45,
+                "protein": 9.82,
+                "carbohydrates": 41.12,
+                "fat": 30.1,
+                "fiber": 9.49
+              },
+              "_id": "62dd7f55e6db845740174545",
+              "name": "Quinoa Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfDinnerQuinoaSalad.png?alt=media",
+              "identifier": "gluten_free_quinoa_salad_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ebc"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96eb8"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 268.18,
+                "protein": 11.18,
+                "carbohydrates": 19.84,
+                "fat": 18.06,
+                "fiber": 5.56
+              },
+              "_id": "62dd8016e6db84574017468c",
+              "name": "Vegan Brownies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/vegan_brownies.jpg?alt=media",
+              "identifier": "gluten_free_vegan_brownies_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ebe"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 491.87,
+                "protein": 13.8,
+                "carbohydrates": 52.31,
+                "fat": 27.12,
+                "fiber": 6.68
+              },
+              "_id": "62dd7f2ce6db8457401744ff",
+              "name": "Cauliflower, Sausage & Herb Summer Stuffing",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/cauliSausageHerbSummerStuffing.png?alt=media",
+              "identifier": "gluten_free_cauliflower,_sausage_&_herb_summer_stuffing_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ebf"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1345.07,
+                "protein": 26.36,
+                "carbohydrates": 134.5,
+                "fat": 84.43,
+                "fiber": 18.24
+              },
+              "_id": "62dd8036e6db8457401746c2",
+              "name": "Almond Cookies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_cookies.jpg?alt=media",
+              "identifier": "gluten_free_almond_cookies_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec0"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 361.48,
+                "protein": 6.19,
+                "carbohydrates": 32.24,
+                "fat": 25.48,
+                "fiber": 3.44
+              },
+              "_id": "62dd8044e6db8457401746db",
+              "name": "Thai Red Curry",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/thai_red_curry.jpg?alt=media",
+              "identifier": "gluten_free_thai_red_curry_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec1"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ebd"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 422.46,
+                "protein": 4.6,
+                "carbohydrates": 4.27,
+                "fat": 43.92,
+                "fiber": 0.8
+              },
+              "_id": "62dd7f61e6db84574017455a",
+              "name": "Green Goddess Dip",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/greenGoddessDip.png?alt=media",
+              "identifier": "gluten_free_green_goddess_dip_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec3"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 328.66,
+                "protein": 4.37,
+                "carbohydrates": 53.56,
+                "fat": 11.74,
+                "fiber": 7.56
+              },
+              "_id": "62dd8019e6db845740174692",
+              "name": "Parsnip Sage and Chestnut Soup",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/parsnip_sage_and_chestnut_soup.jpg?alt=media",
+              "identifier": "gluten_free_parsnip_sage_and_chestnut_soup_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec4"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1345.07,
+                "protein": 26.36,
+                "carbohydrates": 134.5,
+                "fat": 84.43,
+                "fiber": 18.24
+              },
+              "_id": "62dd8036e6db8457401746c2",
+              "name": "Almond Cookies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_cookies.jpg?alt=media",
+              "identifier": "gluten_free_almond_cookies_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec5"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 399.26,
+                "protein": 42.05,
+                "carbohydrates": 41.02,
+                "fat": 7.37,
+                "fiber": 7.56
+              },
+              "_id": "62dd8005e6db845740174670",
+              "name": "Spiced Fish with Ginger Mash",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/spicedFishGingermash.png?alt=media",
+              "identifier": "gluten_free_spiced_fish_with_ginger_mash_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec6"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ec2"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 408.53,
+                "protein": 20.13,
+                "carbohydrates": 2.07,
+                "fat": 35.35,
+                "fiber": 0.34
+              },
+              "_id": "62dd7f43e6db845740174526",
+              "name": "Eggs Benedict Breakfast Cups",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/eggsBenedictBfastCups.png?alt=media",
+              "identifier": "gluten_free_eggs_benedict_breakfast_cups_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec8"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 365.3,
+                "protein": 9.04,
+                "carbohydrates": 48.41,
+                "fat": 17.07,
+                "fiber": 8.13
+              },
+              "_id": "62dd8019e6db845740174691",
+              "name": "Roast Vegetables and Parsley Pesto",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/roast_vegetables_and_parsley_pesto.jpg?alt=media",
+              "identifier": "gluten_free_roast_vegetables_and_parsley_pesto_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ec9"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 417.29,
+                "protein": 5.47,
+                "carbohydrates": 43.13,
+                "fat": 26.71,
+                "fiber": 4.95
+              },
+              "_id": "62dd7f34e6db84574017450d",
+              "name": "Chewy Coconut Oatmeal Cookies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/chewyOatmealCoconutCookies.png?alt=media",
+              "identifier": "gluten_free_chewy_coconut_oatmeal_cookies_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eca"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1382.99,
+                "protein": 98.57,
+                "carbohydrates": 91.83,
+                "fat": 71.22,
+                "fiber": 22.12
+              },
+              "_id": "62dd7f57e6db845740174548",
+              "name": "Freshly Topped Pizza",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfFreshToppedPizza.png?alt=media",
+              "identifier": "gluten_free_freshly_topped_pizza_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ecb"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ec7"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 179.69,
+                "protein": 10.23,
+                "carbohydrates": 5.96,
+                "fat": 12.89,
+                "fiber": 0.81
+              },
+              "_id": "62dd7fb8e6db8457401745ed",
+              "name": "Mediterranean Eggs",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/mediterraneanEggs.png?alt=media",
+              "identifier": "gluten_free_mediterranean_eggs_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ecd"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 354.12,
+                "protein": 19.51,
+                "carbohydrates": 5.23,
+                "fat": 28.25,
+                "fiber": 0.82
+              },
+              "_id": "62dd7fffe6db845740174665",
+              "name": "Sausage Egg Muffins",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/sausageEggMuffins.png?alt=media",
+              "identifier": "gluten_free_sausage_egg_muffins_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ece"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1835.34,
+                "protein": 30.17,
+                "carbohydrates": 322.5,
+                "fat": 49.93,
+                "fiber": 10.18
+              },
+              "_id": "62dd8026e6db8457401746a8",
+              "name": "Milli Choco Delight",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/milli_choco_delight.jpg?alt=media",
+              "identifier": "gluten_free_milli_choco_delight_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ecf"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 361.48,
+                "protein": 6.19,
+                "carbohydrates": 32.24,
+                "fat": 25.48,
+                "fiber": 3.44
+              },
+              "_id": "62dd8044e6db8457401746db",
+              "name": "Thai Red Curry",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/thai_red_curry.jpg?alt=media",
+              "identifier": "gluten_free_thai_red_curry_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed0"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ecc"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1837.51,
+                "protein": 48.82,
+                "carbohydrates": 159.82,
+                "fat": 123.73,
+                "fiber": 32.2
+              },
+              "_id": "62dd800fe6db845740174681",
+              "name": "Almond Flour Puttu",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_flour_puttu.jpg?alt=media",
+              "identifier": "gluten_free_almond_flour_puttu_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed2"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 133.69,
+                "protein": 7.04,
+                "carbohydrates": 20.11,
+                "fat": 4.26,
+                "fiber": 6.76
+              },
+              "_id": "62dd801ae6db845740174693",
+              "name": "Spring Vegetable Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/spring_vegetable_salad.jpeg?alt=media",
+              "identifier": "gluten_free_spring_vegetable_salad_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed3"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 144.09,
+                "protein": 1.29,
+                "carbohydrates": 18.94,
+                "fat": 7.16,
+                "fiber": 0.91
+              },
+              "_id": "62dd806fe6db845740174723",
+              "name": "Cherry Pinwheel Cookies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/cherry_pinwheel_cookies.png?alt=media",
+              "identifier": "gluten_free_cherry_pinwheel_cookies_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed4"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 511.98,
+                "protein": 41.74,
+                "carbohydrates": 52.92,
+                "fat": 17.33,
+                "fiber": 14.84
+              },
+              "_id": "62dd7fb5e6db8457401745e7",
+              "name": "Meatball & Butter Bean Stew",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/meatballButterBeanStew.png?alt=media",
+              "identifier": "gluten_free_meatball_&_butter_bean_stew_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed5"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ed1"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 268.18,
+                "protein": 11.18,
+                "carbohydrates": 19.84,
+                "fat": 18.06,
+                "fiber": 5.56
+              },
+              "_id": "62dd8016e6db84574017468c",
+              "name": "Vegan Brownies",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/vegan_brownies.jpg?alt=media",
+              "identifier": "gluten_free_vegan_brownies_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed7"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 495.88,
+                "protein": 14.16,
+                "carbohydrates": 85.95,
+                "fat": 9.38,
+                "fiber": 10.34
+              },
+              "_id": "62dd8023e6db8457401746a3",
+              "name": "Foxtail Millet Pulao",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/foxtail_millet_pulao.jpg?alt=media",
+              "identifier": "gluten_free_foxtail_millet_pulao_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed8"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1719.56,
+                "protein": 11.65,
+                "carbohydrates": 31.95,
+                "fat": 173.18,
+                "fiber": 0.54
+              },
+              "_id": "62dd7f1ee6db8457401744e8",
+              "name": "Beer Battered Fish N' Chips",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/beerFishNChips.png?alt=media",
+              "identifier": "gluten_free_beer_battered_fish_n'_chips_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ed9"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 163.24,
+                "protein": 3.72,
+                "carbohydrates": 9.82,
+                "fat": 12.91,
+                "fiber": 2.33
+              },
+              "_id": "62dd7f31e6db845740174507",
+              "name": "Cheese Salad with Walnuts",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/cheeseSaladWalnuts.png?alt=media",
+              "identifier": "gluten_free_cheese_salad_with_walnuts_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eda"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ed6"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 531.24,
+                "protein": 25.67,
+                "carbohydrates": 68.91,
+                "fat": 19.44,
+                "fiber": 9.95
+              },
+              "_id": "62dd8011e6db845740174683",
+              "name": "Breakfast Protein Bars",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/breakfast_protein_bars.jpg?alt=media",
+              "identifier": "gluten_free_breakfast_protein_bars_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96edc"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 478.12,
+                "protein": 24.46,
+                "carbohydrates": 46.42,
+                "fat": 26.27,
+                "fiber": 17.21
+              },
+              "_id": "62dd8024e6db8457401746a4",
+              "name": "Soyabean Roti with Vegetable Cream Spread",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/soyabean_roti_with_vegetable_cream_spread.jpg?alt=media",
+              "identifier": "gluten_free_soyabean_roti_with_vegetable_cream_spread_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96edd"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 167.77,
+                "protein": 3.54,
+                "carbohydrates": 17.71,
+                "fat": 9.78,
+                "fiber": 3.3
+              },
+              "_id": "62dd7f10e6db8457401744d0",
+              "name": "Almond Butter Energy Balls",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almondButterEnergyBalls.png?alt=media",
+              "identifier": "gluten_free_almond_butter_energy_balls_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ede"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1382.99,
+                "protein": 98.57,
+                "carbohydrates": 91.83,
+                "fat": 71.22,
+                "fiber": 22.12
+              },
+              "_id": "62dd7f57e6db845740174548",
+              "name": "Freshly Topped Pizza",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfFreshToppedPizza.png?alt=media",
+              "identifier": "gluten_free_freshly_topped_pizza_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96edf"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96edb"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1837.51,
+                "protein": 48.82,
+                "carbohydrates": 159.82,
+                "fat": 123.73,
+                "fiber": 32.2
+              },
+              "_id": "62dd800fe6db845740174681",
+              "name": "Almond Flour Puttu",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/almond_flour_puttu.jpg?alt=media",
+              "identifier": "gluten_free_almond_flour_puttu_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee1"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 305.07,
+                "protein": 5.86,
+                "carbohydrates": 45.47,
+                "fat": 11.15,
+                "fiber": 3.08
+              },
+              "_id": "62dd7f4de6db845740174537",
+              "name": "California Rolls",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfCaliRolls.png?alt=media",
+              "identifier": "gluten_free_california_rolls_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee2"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 284.32,
+                "protein": 10.87,
+                "carbohydrates": 54.68,
+                "fat": 5.35,
+                "fiber": 10.71
+              },
+              "_id": "62dd8031e6db8457401746ba",
+              "name": "Baked Aubergines with Tzatziki",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/baked_aubergines_with_tzatziki.jpg?alt=media",
+              "identifier": "gluten_free_baked_aubergines_with_tzatziki_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee3"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 239.8,
+                "protein": 3.15,
+                "carbohydrates": 28.36,
+                "fat": 15.02,
+                "fiber": 8.23
+              },
+              "_id": "62dd8047e6db8457401746df",
+              "name": "Chipotle Lime Avocado Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/chipotle_lime_avocado_salad.jpg?alt=media",
+              "identifier": "gluten_free_chipotle_lime_avocado_salad_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee4"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ee0"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 981.49,
+                "protein": 82.01,
+                "carbohydrates": 40.32,
+                "fat": 54.19,
+                "fiber": 6.41
+              },
+              "_id": "62dd7f63e6db84574017455c",
+              "name": "Grilled Chicken with Baked Potato",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/grilledChickenBakedPotato.png?alt=media",
+              "identifier": "gluten_free_grilled_chicken_with_baked_potato_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee6"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 809.97,
+                "protein": 32.21,
+                "carbohydrates": 67.38,
+                "fat": 49.98,
+                "fiber": 15.66
+              },
+              "_id": "62dd801be6db845740174694",
+              "name": "Rocket, Pear & Pecorino Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/pocket_pear_and_pecorino_salad.jpg?alt=media",
+              "identifier": "gluten_free_rocket,_pear_&_pecorino_salad_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee7"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 265,
+                "protein": 7.95,
+                "carbohydrates": 24.96,
+                "fat": 16.26,
+                "fiber": 4.12
+              },
+              "_id": "62dd8037e6db8457401746c5",
+              "name": "Coconut and Peanut Butter Bites",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/coconut_and_peanut_butter_bites.jpg?alt=media",
+              "identifier": "gluten_free_coconut_and_peanut_butter_bites_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee8"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 590.06,
+                "protein": 9.31,
+                "carbohydrates": 59.31,
+                "fat": 37.63,
+                "fiber": 8.96
+              },
+              "_id": "62dd8040e6db8457401746d3",
+              "name": "Thai Sweet Potato Noodles",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/thai_sweet_potato_noodles.jpg?alt=media",
+              "identifier": "gluten_free_thai_sweet_potato_noodles_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96ee9"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96ee5"
+      },
+      {
+        "meals": [
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 539.81,
+                "protein": 27.22,
+                "carbohydrates": 23.4,
+                "fat": 39,
+                "fiber": 7.58
+              },
+              "_id": "62dd7f68e6db845740174565",
+              "name": "Quinoa Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/hpBfastQuinoaSalad.png?alt=media",
+              "identifier": "gluten_free_quinoa_salad_breakfast"
+            },
+            "category": "Breakfast",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eeb"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 554.3,
+                "protein": 16.73,
+                "carbohydrates": 91.31,
+                "fat": 19.65,
+                "fiber": 10.83
+              },
+              "_id": "62dd801de6db845740174698",
+              "name": "Thai Veg Salad",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/thai_veg_salad.jpg?alt=media",
+              "identifier": "gluten_free_thai_veg_salad_lunch"
+            },
+            "category": "Lunch",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eec"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 286.44,
+                "protein": 5.82,
+                "carbohydrates": 32.62,
+                "fat": 14.8,
+                "fiber": 1.94
+              },
+              "_id": "62dd802ee6db8457401746b5",
+              "name": "Raspberry Brûlée",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/raspberryBrulee.png?alt=media",
+              "identifier": "gluten_free_raspberry_brûlée_snacks"
+            },
+            "category": "Snacks",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eed"
+          },
+          {
+            "recipe": {
+              "nutrition": {
+                "calories": 1372.06,
+                "protein": 98.47,
+                "carbohydrates": 88.93,
+                "fat": 71.24,
+                "fiber": 21.37
+              },
+              "_id": "62dd7f52e6db845740174540",
+              "name": "Fresh Topped Pizza",
+              "image": "https://firebasestorage.googleapis.com/v0/b/nutrify-meal-guide.appspot.com/o/gfDinnerFreshToppedPizza.png?alt=media",
+              "identifier": "gluten_free_fresh_topped_pizza_dinner"
+            },
+            "category": "Dinner",
+            "consumed": false,
+            "_id": "63a802d048f178b8b5f96eee"
+          }
+        ],
+        "water_consumed": 0,
+        "_id": "63a802d048f178b8b5f96eea"
+      }
+    ],
+    "user": "631f9d248a85b6fd87b01111",
+    "diet": "Gluten Free",
+    "createdAt": "2022-12-25T07:59:12.327Z",
+    "updatedAt": "2022-12-25T08:06:16.198Z",
+    "__v": 0,
+    "end_date": "2023-01-08T23:59:59.999Z",
+    "start_date": "2022-12-25T00:00:00.000Z"
+  }
+}

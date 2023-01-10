@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
 import 'package:mealguide/models/diary_model.dart';
 import 'package:mealguide/providers/dio_provider.dart';
-import 'package:mealguide/providers/dummy_plan.dart';
 
 final diaryProvider = FutureProvider<Diary>((ref) async {
   try {
     // final response = await ref.watch(dioProvider(true)).get(MgUrls.getMealPlan);
     // Diary diary = Diary.fromDoc(response.data['data']);
     Future.delayed(const Duration(seconds: 1));
-    Diary diary = Diary.fromDoc(json_plan['data'] as Map<String, dynamic>);
+    final String diaryJsonString =
+        await rootBundle.loadString('assets/data/diets.json');
+    final dietsJson = jsonDecode(diaryJsonString);
+    Diary diary = Diary.fromDoc(dietsJson['data'] as Map<String, dynamic>);
     return diary;
   } on DioError catch (e) {
     debugPrint(e.message);

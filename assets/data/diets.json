@@ -1,0 +1,213 @@
+{
+  "status": true,
+  "data": [
+    {
+      "name": "Vegetarian",
+      "id": "613a8d5422dc6e3990aef0d4",
+      "showcase_recipe_ids": [
+        "vegetarian_feta_and_griddled_peach_salad_breakfast",
+        "vegetarian_mushroom_fajitas_with_avocado_hummus_breakfast",
+        "vegetarian_vegetable_blini_snacks_breakfast",
+        "vegetarian_roasted_beetroot_and_tofu_salad_breakfast",
+        "vegetarian_lentil_and_sweet-potato_curry_breakfast",
+        "vegetarian_cream_of_leek_&_pea_soup_snacks",
+        "vegetarian_bottle_gourd_with_chili_&_coriander_yogurt_snacks",
+        "vegetarian_thai_red_tofu_&_vegetable_curry_snacks",
+        "vegetarian_baked_figs_with_goat’s_cheese_dinner",
+        "vegetarian_aubergine,_tomato_and_feta_rolls_dinner"
+      ]
+    },
+    {
+      "name": "Low Carb",
+      "id": "613a8d5622dc6e3990aef0e2",
+      "showcase_recipe_ids": [
+        "low_carb_pancetta_&_pepper_piperade_breakfast",
+        "low_carb_banana_peanut_butter_pancakes_breakfast",
+        "low_carb_lamb_veggie_roast_lunch",
+        "low_carb_pearl_millet_crepe_with_pumpkin_soup_snacks",
+        "low_carb_moong_dal_idli_breakfast",
+        "low_carb_cannellini_with_sage_&_tomato_dinner",
+        "low_carb_braised_black_cabbage_&_borlotti_dinner",
+        "low_carb_pea_pancakes_lunch",
+        "low_carb_pesto-avocado_bread_lunch",
+        "low_carb_fat-free_spinach_paneer_patty_with_whole_wheat_patty_toast_lunch"
+      ]
+    },
+    {
+      "name": "Mediterranean",
+      "id": "613a8d5622dc6e3990aef0e6",
+      "showcase_recipe_ids": [
+        "mediterranean_rice_pilaf_with_raisins_and_apples_dinner",
+        "mediterranean_pancetta_&_pepper_piperade_breakfast",
+        "mediterranean_baked_eggs_with_spinach_&_tomato_breakfast",
+        "mediterranean_quinoa_kale_quiche_breakfast",
+        "mediterranean_wheat_berry_antipasto_salad_breakfast",
+        "mediterranean_grilled_eggplant_with_herbs_snacks",
+        "mediterranean_healthy_egg_&_chips_snacks",
+        "mediterranean_sesame_sprouts_tofu_bowl_lunch",
+        "mediterranean_arugula_&_canadian_bacon_egg_white_omelet_lunch",
+        "mediterranean_parsnip_sage_and_chestnut_soup_lunch"
+      ]
+    },
+    {
+      "name": "Keto",
+      "id": "613a8d5322dc6e3990aef0d0",
+      "showcase_recipe_ids": [
+        "keto_creamy_pepper_and_bacon_bowl_breakfast",
+        "keto_raspberry_smoothie_breakfast",
+        "keto_spinach_&_egg_salad_breakfast",
+        "keto_shrimp_&_olive_pan_breakfast",
+        "keto_loaded_cauli_bake_lunch",
+        "keto_keto_cucumber_boats_snacks",
+        "keto_chili_lime_chips_snacks",
+        "keto_chicken_coconut_curry_dinner",
+        "keto_harissa_chicken_&_cauliflower_dinner",
+        "keto_delicious_parmesan_chicken_dinner"
+      ]
+    },
+    {
+      "name": "Diabetes Friendly",
+      "id": "613a8d5522dc6e3990aef0dc",
+      "showcase_recipe_ids": [
+        "diabetes_friendly_tulsi/holy_basil_smoothie_basil_breakfast",
+        "diabetes_friendly_rocket_and_goat’s_cheese_omelette_breakfast",
+        "diabetes_friendly_bhaji_frittata_breakfast",
+        "diabetes_friendly_roasted_tangy_peppers_breakfast",
+        "diabetes_friendly_soyabean_roti_with_vegetable_cream_spread_lunch",
+        "diabetes_friendly_barnyard_millet_rice_bowl_lunch",
+        "diabetes_friendly_ragi_idli_lunch",
+        "diabetes_friendly_banana_sushi_snacks",
+        "diabetes_friendly_zucchini_soup_snacks",
+        "diabetes_friendly_dinner_lamb_veggie_roast_dinner"
+      ]
+    },
+    {
+      "name": "DASH",
+      "id": "613a8d5622dc6e3990aef0e4",
+      "showcase_recipe_ids": [
+        "dash_five_beans_mix_salad_dinner",
+        "dash_california_rolls_dinner",
+        "dash_split_pea_pesto_stuffed_shells_lunch",
+        "dash_flaxseed_pancake_dinner",
+        "dash_moringa_frittata_dinner",
+        "dash_black_bean_soup_dinner",
+        "dash_garlic_and_caramelized_onion_bhajis_snacks",
+        "dash_foxtail_millet_pulao_lunch",
+        "dash_celery_and_bulgur_salad_lunch",
+        "dash_chana_pulao_dinner"
+      ]
+    },
+    {
+      "name": "Paleo",
+      "id": "613a8d5622dc6e3990aef0de",
+      "showcase_recipe_ids": [
+        "paleo_garlicky_beef_bowls_breakfast",
+        "paleo_mushroom_baked_eggs_with_squashed_tomatoes_breakfast",
+        "paleo_bacon_&_egg_cups_lunch",
+        "paleo_rosemary_chicken_with_tomato_sauce_lunch",
+        "paleo_roasted_mushroom_lunch",
+        "paleo_steamed_fish_lunch",
+        "paleo_beet_salad_with_lemon_dressing_dinner",
+        "paleo_spinach_and_pea_frittata_dinner",
+        "paleo_fried_chicken_dinner",
+        "paleo_shrimp_with_cauli_rice_dinner"
+      ]
+    },
+    {
+      "name": "Vegan",
+      "id": "613a8d5522dc6e3990aef0d6",
+      "showcase_recipe_ids": [
+        "vegan_strawberry_pudding_breakfast",
+        "vegan_quinoa_breakfast_bowl_breakfast",
+        "vegan_apple_pie_smoothie_breakfast",
+        "vegan_vegan_pancakes_breakfast",
+        "vegan_indian_spiced_pumpkin_wedges_lunch",
+        "vegan_chia_seeds_energy_balls_snacks",
+        "vegan_beet_poke_salad_dinner",
+        "vegan_vegan_broccoli_soup_dinner",
+        "vegan_mushroom_risotto_dinner",
+        "vegan_thai_red_curry_dinner"
+      ]
+    },
+    {
+      "name": "High Protein",
+      "id": "613c82f3b3e42e1dc4b27874",
+      "showcase_recipe_ids": [
+        "high_protein_gluten-free_mince_pies_breakfast",
+        "high_protein_raspberry_brûlée_breakfast",
+        "high_protein_vegan_burritos_breakfast",
+        "high_protein_summer_fruit_porridge_breakfast",
+        "high_protein_beetroot_avocado_salad_lunch",
+        "high_protein_energy_balls_lunch",
+        "high_protein_grilled_salmon_with_broccoli_lunch",
+        "high_protein_ground_turkey_with_rice_lunch",
+        "high_protein_hard-boiled_egg_with_brown_bread_lunch",
+        "high_protein_heavy_date_shake_snacks"
+      ]
+    },
+    {
+      "name": "Balanced Diet",
+      "id": "613a8d5622dc6e3990aef0e0",
+      "showcase_recipe_ids": [
+        "balanced_diet_cheesy_shrimp_omelet_breakfast",
+        "balanced_diet_red_lentil_patties_lunch",
+        "balanced_diet_baked_chicken_wings_&_creamy_broccoli_dinner",
+        "balanced_diet_cheese_and_chutney_melts_breakfast",
+        "balanced_diet_quinoa,_squash_and_broccoli_salad_breakfast",
+        "balanced_diet_sweet_&_sour_fish_lunch",
+        "balanced_diet_walnut_&_blue_cheese_salad_snacks",
+        "balanced_diet_malaysian_coconut_vegetables_dinner",
+        "balanced_diet_avocado_egg_wrapped_with_bacon_breakfast",
+        "balanced_diet_one-pot_spinach_pasta_lunch"
+      ]
+    },
+    {
+      "name": "PCOD",
+      "id": "613c83f6b3e42e1dc4b27875",
+      "showcase_recipe_ids": [
+        "pcod_apple_cinnamon_oatmeal_breakfast",
+        "pcod_egg_salad_sandwich_breakfast",
+        "pcod_pumpkin_pie_steel-cut_oats_breakfast",
+        "pcod_eggplant_roll-ups_lunch",
+        "pcod_shrimp_tacos_lunch",
+        "pcod_arugula_salad_lunch",
+        "pcod_acai_bowl_snacks",
+        "pcod_sweet_potato_fries_snacks",
+        "pcod_meatballs_dinner",
+        "pcod_kale_&_edamame_power_salad_dinner"
+      ]
+    },
+    {
+      "name": "Gluten Free",
+      "id": "613a8d5022dc6e3990aef0ce",
+      "showcase_recipe_ids": [
+        "gluten_free_baked_caramel_apple_french_toast_breakfast",
+        "gluten_free_berry_yogurt_parfait_breakfast",
+        "gluten_free_low-carb_baked_eggs_with_avocado_breakfast",
+        "gluten_free_sunshine_smoothie_breakfast",
+        "gluten_free_baked_spaghetti_squash_carbonara_lunch",
+        "gluten_free_baked_tomato_cups_lunch",
+        "gluten_free_malaysian_spicy_cauliflower_lunch",
+        "gluten_free_sweet_potato_and_coconut_soup_lunch",
+        "gluten_free_crispy_almond_butter_granola_bars_snacks",
+        "gluten_free_one-pot_spinach_pasta_dinner"
+      ]
+    },
+    {
+      "name": "Intermittent Fasting",
+      "id": "613a8d5722dc6e3990aef0e8",
+      "showcase_recipe_ids": [
+        "intermittent_fasting_creamy_courgettes_with_walnuts_breakfast",
+        "intermittent_fasting_goat’s_cheese_salad_breakfast",
+        "intermittent_fasting_meatball_&_butter_bean_stew_lunch",
+        "intermittent_fasting_rosti_with_egg_and_onions_breakfast",
+        "intermittent_fasting_spiced_fish_with_ginger_mash_lunch",
+        "intermittent_fasting_korean_tofu_pancake_lunch",
+        "intermittent_fasting_garlic_green_beans_lunch",
+        "intermittent_fasting_black_seed_bread_snacks",
+        "intermittent_fasting_middle_eastern_salad_tacos_dinner",
+        "intermittent_fasting_trout_with_almonds_&_red_peppers_lunch"
+      ]
+    }
+  ]
+}

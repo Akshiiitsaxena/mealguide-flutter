@@ -1,21 +1,35 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
-import 'package:mealguide/providers/dummy_diet.dart';
-import 'package:mealguide/providers/dummy_ing.dart';
-import 'package:mealguide/providers/dummy_rec.dart';
 
 final recipeProvider = FutureProvider<Map<Diet, List<Recipe>>>((ref) async {
   Map<Diet, List<Recipe>> map = {};
   List<Recipe> recipes = [];
 
-  for (var data in json_rec['data'] as List) {
-    recipes.add(Recipe.fromDoc(data, json_ing));
+  final String recipesJsonString =
+      await rootBundle.loadString('assets/data/recipes.json');
+  final recipeJson = jsonDecode(recipesJsonString);
+
+  final String dietsJsonString =
+      await rootBundle.loadString('assets/data/diets.json');
+  final dietsJson = jsonDecode(dietsJsonString);
+
+  final String ingredientsJsonString =
+      await rootBundle.loadString('assets/data/ingredients.json');
+  final ingredientsJson = jsonDecode(ingredientsJsonString);
+
+  // print(recipeJson['data']);
+
+  for (var data in recipeJson['data'] as List) {
+    recipes.add(Recipe.fromDoc(data, ingredientsJson));
   }
 
   List<Diet> diets = [];
 
-  for (var data in json_diet['data'] as List) {
+  for (var data in dietsJson['data'] as List) {
     diets.add(Diet.fromDoc(data));
   }
 

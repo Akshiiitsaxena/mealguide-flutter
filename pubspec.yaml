@@ -47,7 +47,7 @@ dependencies:
   firebase_auth: ^4.2.3
   pin_code_fields: ^7.4.0
   percent_indicator: ^4.2.2
-  flutter_native_timezone: ^2.0.0
+  # flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +75,10 @@ flutter:
   assets:
     - assets/plates/
     - assets/upgrade_features/
+    - assets/data/recipes.json
+    - assets/data/diets.json
+    - assets/data/ingredients.json
+    - assets/data/plan.json
 
   fonts:
     - family: Quicksand
