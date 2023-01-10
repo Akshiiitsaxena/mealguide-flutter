@@ -1,3 +1,5 @@
+import 'package:country_codes/country_codes.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,6 +21,11 @@ class PhoneNumberPage extends HookConsumerWidget {
 
     final isLoading = ref.watch(otpStateNotifierProvider).isLoading;
     final isNumberValid = useState(false);
+
+    CountryDetails details = CountryCodes.detailsForLocale();
+    String localCode = details.dialCode!;
+
+    final dialCode = useState(localCode);
 
     return Stack(
       children: [
@@ -48,9 +55,34 @@ class PhoneNumberPage extends HookConsumerWidget {
                 padding: EdgeInsets.symmetric(horizontal: 4.w),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.phone,
-                      color: theme.indicatorColor.withOpacity(0.5),
+                    InkWell(
+                      onTap: () {
+                        showCountryPicker(
+                          context: context,
+                          showPhoneCode: true,
+                          countryListTheme: CountryListThemeData(
+                            backgroundColor: theme.scaffoldBackgroundColor,
+                            inputDecoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: theme.focusColor,
+                              focusColor: theme.focusColor,
+                              hintText: ' Search...',
+                              hintStyle: theme.textTheme.bodySmall!,
+                              contentPadding: EdgeInsets.only(left: 4.w),
+                            ),
+                            bottomSheetHeight: 75.h,
+                            borderRadius: BorderRadius.circular(16),
+                            // searchTextStyle: theme.textTheme.bodyMedium,
+                          ),
+                          onSelect: (Country country) =>
+                              dialCode.value = '+${country.phoneCode}',
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(0.5.h),
+                        child: Text(dialCode.value,
+                            style: theme.textTheme.bodyMedium),
+                      ),
                     ),
                     SizedBox(width: 4.w),
                     Expanded(
@@ -59,13 +91,13 @@ class PhoneNumberPage extends HookConsumerWidget {
                         controller: numberController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: '+XX XXXX XXX XXX',
+                          hintText: 'XXXX XXX XXX',
                           hintStyle: theme.textTheme.bodySmall!,
                         ),
                         keyboardType: TextInputType.phone,
                         style: theme.textTheme.bodyMedium,
-                        onChanged: (value) => isNumberValid.value =
-                            value.startsWith('+') && value.length > 11,
+                        onChanged: (value) =>
+                            isNumberValid.value = value.length > 7,
                       ),
                     )
                   ],
@@ -81,7 +113,7 @@ class PhoneNumberPage extends HookConsumerWidget {
                     SizedBox(width: 4.w),
                     Expanded(
                       child: Text(
-                        'Enter the phone number with the country code\ni.e if the number is from India, type +91 before the number',
+                        'Please enter a valid phone number without the country code',
                         style: theme.textTheme.bodySmall,
                       ),
                     )
@@ -92,9 +124,9 @@ class PhoneNumberPage extends HookConsumerWidget {
               MgPrimaryButton(
                 'Get OTP',
                 onTap: () {
-                  ref
-                      .read(authProvider)
-                      .requestOtp(number: numberController.text);
+                  ref.read(authProvider).requestOtp(
+                        number: '${dialCode.value}${numberController.text}',
+                      );
 
                   Navigator.pushReplacement(
                     context,

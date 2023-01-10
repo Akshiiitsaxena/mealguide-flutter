@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+// import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
@@ -46,20 +46,20 @@ class SlotHandler {
     }
   }
 
-  Future<void> bookSlot(String eventId) async {
-    try {
-      final dio = await ref.watch(dioProvider(true).future);
-      final timezone = await FlutterNativeTimezone.getLocalTimezone();
+  // Future<void> bookSlot(String eventId) async {
+  //   try {
+  //     final dio = await ref.watch(dioProvider(true).future);
+  //     // final timezone = await FlutterNativeTimezone.getLocalTimezone();
 
-      await dio.post(
-        MgUrls.bookSlot,
-        data: {'event_id': eventId, 'user_time_zone': timezone},
-      );
-    } on DioError catch (e) {
-      debugPrint(e.message);
-      throw MgException(message: e.message);
-    } catch (_) {
-      throw MgException();
-    }
-  }
+  //     await dio.post(
+  //       MgUrls.bookSlot,
+  //       data: {'event_id': eventId, 'user_time_zone': timezone},
+  //     );
+  //   } on DioError catch (e) {
+  //     debugPrint(e.message);
+  //     throw MgException(message: e.message);
+  //   } catch (_) {
+  //     throw MgException();
+  //   }
+  // }
 }

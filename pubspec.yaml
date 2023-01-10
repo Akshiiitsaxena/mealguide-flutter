@@ -47,6 +47,8 @@ dependencies:
   firebase_auth: ^4.2.3
   pin_code_fields: ^7.4.0
   percent_indicator: ^4.2.2
+  country_picker: ^2.0.19
+  country_codes: ^2.2.0
   # flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
