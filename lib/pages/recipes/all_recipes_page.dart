@@ -154,7 +154,12 @@ class AllRecipesPage extends HookConsumerWidget {
         );
       },
       error: (_, __) => Container(),
-      loading: () => Container(),
+      loading: () => Center(
+        child: Text(
+          'Getting you some amazing recipes...',
+          style: theme.textTheme.bodySmall,
+        ),
+      ),
     );
   }
 }

@@ -6,6 +6,9 @@ import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
 import 'package:mealguide/models/call_slot_model.dart';
 import 'package:mealguide/providers/dio_provider.dart';
+import 'package:mealguide/providers/dummy_slots.dart';
+
+final slotProvider = Provider((ref) => SlotHandler(ref));
 
 class SlotHandler {
   final ProviderRef ref;
@@ -63,3 +66,33 @@ class SlotHandler {
   //   }
   // }
 }
+
+final availableSlotProvider = FutureProvider<List<CallSlotTime>>(
+  (ref) async {
+    try {
+      // final dio = await ref.watch(dioProvider(true).future);
+      // final response = await dio.get(MgUrls.getAvailableSlots);
+
+      List<CallSlotTime> slots = [];
+
+      Future.delayed(const Duration(seconds: 2));
+
+      var data = dummy_slots;
+
+      // response.data['data'].forEach((doc) {
+      //   slots.add(CallSlotTime.fromDoc(doc));
+      // });
+
+      (data['data'] as List).forEach((doc) {
+        slots.add(CallSlotTime.fromDoc(doc));
+      });
+
+      return slots;
+    } on DioError catch (e) {
+      debugPrint(e.message);
+      throw MgException(message: e.message);
+    } catch (_) {
+      throw MgException();
+    }
+  },
+);

@@ -44,6 +44,7 @@ class RecipePage extends HookConsumerWidget {
             flexibleSpace: FlexibleSpaceBar(
               title: Container(
                 alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.only(right: 4.w),
                 child: Text(
                   recipe.name,
                   style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/models/call_slot_model.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
@@ -8,6 +9,7 @@ import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/bottom_sheet_template.dart';
+import 'package:mealguide/widgets/nutritionist_sheet.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:mealguide/widgets/rotating_plate.dart';
 import 'package:sizer/sizer.dart';
@@ -366,5 +368,9 @@ class MgBottomSheet {
     );
 
     return showSheet(context, child: child);
+  }
+
+  static showNutritionistSheet(BuildContext context) {
+    return showSheet(context, child: const NutritionistSheet());
   }
 }

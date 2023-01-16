@@ -15,7 +15,7 @@ final diaryProvider = FutureProvider<Diary>((ref) async {
     // Diary diary = Diary.fromDoc(response.data['data']);
     Future.delayed(const Duration(seconds: 1));
     final String diaryJsonString =
-        await rootBundle.loadString('assets/data/diets.json');
+        await rootBundle.loadString('assets/data/plan.json');
     final dietsJson = jsonDecode(diaryJsonString);
     Diary diary = Diary.fromDoc(dietsJson['data'] as Map<String, dynamic>);
     return diary;

@@ -12,6 +12,7 @@ import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/hive_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:sizer/sizer.dart';
 
 class BottomBarView extends HookConsumerWidget {
   const BottomBarView({super.key});
@@ -50,6 +51,7 @@ class BottomBarView extends HookConsumerWidget {
       screens: screens,
       backgroundColor: theme.canvasColor,
       hideNavigationBar: !bottomBarState.showBar,
+      navBarHeight: kBottomNavigationBarHeight + 1.h,
       items: [
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.food_bank_outlined),
@@ -89,11 +91,9 @@ class BottomBarView extends HookConsumerWidget {
         ],
       ),
       screenTransitionAnimation: const ScreenTransitionAnimation(
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 300),
+        animateTabTransition: false,
       ),
-      navBarStyle: NavBarStyle.style6,
+      navBarStyle: NavBarStyle.simple,
     );
   }
 }

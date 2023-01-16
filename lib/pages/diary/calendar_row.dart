@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/bottom_sheets.dart';
 import 'package:mealguide/helper/date_helper.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:sizer/sizer.dart';
@@ -24,9 +25,22 @@ class CalendarRow extends HookConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: theme.textTheme.titleLarge,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.titleLarge,
+            ),
+            InkWell(
+              onTap: () => MgBottomSheet.showNutritionistSheet(context),
+              child: Icon(
+                Icons.people_alt,
+                color: Colors.white,
+                size: 22.sp,
+              ),
+            ),
+          ],
         ),
         SizedBox(height: 1.2.h),
         Expanded(
