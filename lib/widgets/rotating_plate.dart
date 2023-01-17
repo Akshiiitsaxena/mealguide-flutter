@@ -64,7 +64,7 @@ class _RotatingPlateState extends State<RotatingPlate>
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
-                  spreadRadius: 2,
+                  spreadRadius: 4,
                   blurRadius: 20,
                 ),
               ],

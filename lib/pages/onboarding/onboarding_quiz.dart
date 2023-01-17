@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/error_widget.dart';
 import 'package:mealguide/models/onboarding_model.dart';
+import 'package:mealguide/pages/onboarding/assigned_diet_page.dart';
 import 'package:mealguide/pages/onboarding/onboarding_steps.dart';
 import 'package:mealguide/pages/onboarding/question_screen.dart';
 import 'package:mealguide/providers/onboarding_provider.dart';
@@ -15,7 +16,7 @@ class OnboardingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final questionsWatcher = ref.watch(onboardingProvider);
+    final questionsWatcher = ref.watch(onboardingQuestionProvider);
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -63,15 +64,23 @@ class OnboardingQuiz extends HookConsumerWidget {
             'Continue',
             isEnabled: hasSelected,
             onTap: () {
-              pageController.animateToPage(
-                currentStep + 1,
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.easeIn,
-              );
-              onboardingQuizStateWatcher.setCurrentStep(currentStep + 1);
-              onboardingQuizStateWatcher.setHasSelected(false);
-              onboardingQuizStateWatcher.setCurrentSelection(-1);
-              FocusManager.instance.primaryFocus?.unfocus();
+              if (currentStep == 9) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const AssignedDietPage(),
+                  ),
+                );
+              } else {
+                pageController.animateToPage(
+                  currentStep + 1,
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeIn,
+                );
+                onboardingQuizStateWatcher.setCurrentStep(currentStep + 1);
+                onboardingQuizStateWatcher.setHasSelected(false);
+                onboardingQuizStateWatcher.setCurrentSelection(-1);
+                FocusManager.instance.primaryFocus?.unfocus();
+              }
             },
           ),
           SizedBox(height: 5.h),

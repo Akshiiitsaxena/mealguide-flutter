@@ -57,6 +57,7 @@ class QuestionScreen extends HookConsumerWidget {
                               child: OptionBox(
                                 index: optionIndex,
                                 option: question.options![optionIndex],
+                                questionKey: question.key,
                               ),
                             ),
                           ),
@@ -65,16 +66,19 @@ class QuestionScreen extends HookConsumerWidget {
                     );
 
                   case QuestionType.ageField:
-                    return const AgeQuestion();
+                    return AgeQuestion(questionKey: question.key);
 
                   case QuestionType.heightSelector:
-                    return const HeightQuestion();
+                    return HeightQuestion(questionKey: question.key);
 
                   case QuestionType.weightSelector:
-                    return const WeightQuestion();
+                    return WeightQuestion(questionKey: question.key);
 
                   case QuestionType.multipleChoice:
-                    return MultiSelectQuestion(options: question.options!);
+                    return MultiSelectQuestion(
+                      options: question.options!,
+                      questionKey: question.key,
+                    );
 
                   default:
                     return Container();

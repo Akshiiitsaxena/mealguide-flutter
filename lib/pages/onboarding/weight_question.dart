@@ -8,15 +8,17 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class WeightQuestion extends HookConsumerWidget {
-  const WeightQuestion({super.key});
+  final String questionKey;
+  const WeightQuestion({super.key, required this.questionKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final onboardingQuizStateWatcher =
+        ref.read(onboardingQuizStateNotifierProvider.notifier);
+
     useEffect(() {
       Future.microtask(() {
-        ref
-            .read(onboardingQuizStateNotifierProvider.notifier)
-            .setHasSelected(true);
+        onboardingQuizStateWatcher.setHasSelected(true);
       });
       return null;
     }, []);
@@ -179,6 +181,15 @@ class WeightQuestion extends HookConsumerWidget {
                 minorTicksPerInterval: 1,
                 onChanged: (value) {
                   weight.value = value;
+
+                  double val;
+                  if (measure.value == Measure.imperial) {
+                    val = value / 2.205;
+                  } else {
+                    val = value;
+                  }
+                  onboardingQuizStateWatcher.setAnswers(
+                      questionKey, val.floor());
                 },
               ),
             ),

@@ -6,7 +6,8 @@ import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class AgeQuestion extends HookConsumerWidget {
-  const AgeQuestion({super.key});
+  final String questionKey;
+  const AgeQuestion({super.key, required this.questionKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,6 +41,7 @@ class AgeQuestion extends HookConsumerWidget {
               onboardingQuizStateWatcher.setHasSelected(false);
             } else {
               onboardingQuizStateWatcher.setHasSelected(true);
+              onboardingQuizStateWatcher.setAnswers(questionKey, age);
             }
           },
         ),

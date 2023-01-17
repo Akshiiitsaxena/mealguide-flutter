@@ -7,18 +7,26 @@ import 'package:sizer/sizer.dart';
 
 class MultiSelectQuestion extends HookConsumerWidget {
   final List<OnboardingOption> options;
-  const MultiSelectQuestion({required this.options, super.key});
+  final String questionKey;
+
+  const MultiSelectQuestion({
+    required this.options,
+    super.key,
+    required this.questionKey,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final onboardingQuizStateWatcher =
+        ref.read(onboardingQuizStateNotifierProvider.notifier);
+
     useEffect(() {
       Future.microtask(() {
-        ref
-            .read(onboardingQuizStateNotifierProvider.notifier)
-            .setHasSelected(true);
+        onboardingQuizStateWatcher.setHasSelected(true);
       });
       return null;
     }, []);
+
     final allergicItems = useState(<String>[]);
 
     return Expanded(
@@ -39,6 +47,11 @@ class MultiSelectQuestion extends HookConsumerWidget {
                   tempList.add(options[index].title);
                   allergicItems.value = tempList;
                 }
+
+                onboardingQuizStateWatcher.setAnswers(
+                  questionKey,
+                  allergicItems.value,
+                );
               },
               child: AllergyChip(
                 isSelected: allergicItems.value.contains(options[index].title),

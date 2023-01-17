@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/pages/onboarding/onboarding_quiz.dart';
+import 'package:mealguide/providers/onboarding_provider.dart';
+import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:mealguide/widgets/rotating_plate.dart';
 import 'package:sizer/sizer.dart';
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends ConsumerWidget {
   const StartScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final onboardingStateWatcher =
+        ref.read(onboardingQuizStateNotifierProvider.notifier);
 
     return Scaffold(
       body: Container(
@@ -45,11 +50,17 @@ class StartScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 InkWell(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const OnboardingScreen(),
-                    ),
-                  ),
+                  onTap: () {
+                    onboardingStateWatcher.clearAnswers();
+                    onboardingStateWatcher.setCurrentStep(0);
+                    onboardingStateWatcher.setHasSelected(false);
+                    ref.refresh(onboardingAnswerProvider);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const OnboardingScreen(),
+                      ),
+                    );
+                  },
                   child: Container(
                     margin: EdgeInsets.only(left: 50.w),
                     padding:

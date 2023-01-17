@@ -9,7 +9,13 @@ import 'package:sizer/sizer.dart';
 class OptionBox extends HookConsumerWidget {
   final int index;
   final OnboardingOption option;
-  OptionBox({super.key, required this.index, required this.option});
+  final String questionKey;
+  OptionBox({
+    super.key,
+    required this.index,
+    required this.option,
+    required this.questionKey,
+  });
 
   double scale = 1;
 
@@ -37,6 +43,7 @@ class OptionBox extends HookConsumerWidget {
         onTap: () {
           onboardingQuizStateWatcher.setHasSelected(true);
           onboardingQuizStateWatcher.setCurrentSelection(index);
+          onboardingQuizStateWatcher.setAnswers(questionKey, option.title);
         },
         child: MgOptionContainer(
           height: option.subtext != null ? 10.h : 7.h,

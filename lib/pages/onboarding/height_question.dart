@@ -7,15 +7,17 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class HeightQuestion extends HookConsumerWidget {
-  const HeightQuestion({super.key});
+  final String questionKey;
+  const HeightQuestion({super.key, required this.questionKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final onboardingQuizStateWatcher =
+        ref.read(onboardingQuizStateNotifierProvider.notifier);
+
     useEffect(() {
       Future.microtask(() {
-        ref
-            .read(onboardingQuizStateNotifierProvider.notifier)
-            .setHasSelected(true);
+        onboardingQuizStateWatcher.setHasSelected(true);
       });
       return null;
     }, []);
@@ -175,6 +177,14 @@ class HeightQuestion extends HookConsumerWidget {
               minorTicksPerInterval: 1,
               onChanged: (value) {
                 height.value = value;
+
+                double val;
+                if (measure.value == Measure.imperial) {
+                  val = value * 2.54;
+                } else {
+                  val = value;
+                }
+                onboardingQuizStateWatcher.setAnswers(questionKey, val.floor());
               },
             ),
           ),
