@@ -7,6 +7,7 @@ class ProfileTile extends StatelessWidget {
   final String? trailing;
   final Function() onTap;
   final bool isLogout;
+  final bool forChat;
 
   const ProfileTile({
     Key? key,
@@ -15,6 +16,7 @@ class ProfileTile extends StatelessWidget {
     required this.onTap,
     this.isLogout = false,
     this.trailing,
+    this.forChat = false,
   }) : super(key: key);
 
   @override
@@ -30,11 +32,17 @@ class ProfileTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon,
-                    color: isLogout
-                        ? Colors.redAccent
-                        : theme.indicatorColor.withOpacity(0.5),
-                    size: 14.sp),
+                forChat
+                    ? Image.asset(
+                        'assets/graphics/whatsapp-grey.png',
+                        height: 14.sp,
+                        color: theme.indicatorColor.withOpacity(0.5),
+                      )
+                    : Icon(icon,
+                        color: isLogout
+                            ? Colors.redAccent
+                            : theme.indicatorColor.withOpacity(0.5),
+                        size: 14.sp),
                 SizedBox(width: 4.w),
                 Text(
                   title,

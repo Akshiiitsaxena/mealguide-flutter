@@ -55,6 +55,12 @@ class UpgradePage extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/graphics/whatsapp-color.png',
+              height: 22.sp,
+              width: 22.sp,
+            ),
+            SizedBox(width: 2.w),
             Text(
               'Chat with us',
               style: theme.textTheme.titleMedium!.copyWith(fontSize: 14.sp),

@@ -54,7 +54,7 @@ class MgBottomSheet {
                 ),
                 SizedBox(width: 2.w),
                 Text(
-                  isForPantry ? 'Move to shopping list' : 'Mark as completed',
+                  isForPantry ? 'Move to shopping list' : 'Mark as bought',
                   style: theme.textTheme.bodySmall!
                       .copyWith(fontWeight: FontWeight.bold),
                 ),

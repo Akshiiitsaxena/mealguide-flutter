@@ -150,6 +150,12 @@ class ProfilePage extends HookConsumerWidget {
           Text('APP SETTINGS', style: theme.textTheme.bodySmall),
           SizedBox(height: 1.5.h),
           ProfileTile(
+            title: 'Chat with us',
+            icon: Icons.feedback_outlined,
+            onTap: () {},
+            forChat: true,
+          ),
+          ProfileTile(
             title: 'Give Feedback',
             icon: Icons.feedback_outlined,
             onTap: () {},

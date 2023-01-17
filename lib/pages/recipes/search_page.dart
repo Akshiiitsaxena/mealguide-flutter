@@ -88,7 +88,7 @@ class SearchPage extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Search in 1300+\nMealGuide Recipes!',
+                        'Search in 1500+\nMealGuide Recipes!',
                         style: theme.textTheme.bodyMedium!.copyWith(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,

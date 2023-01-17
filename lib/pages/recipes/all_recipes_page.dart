@@ -37,7 +37,7 @@ class AllRecipesPage extends HookConsumerWidget {
                     ),
                     SizedBox(height: 0.25.h),
                     Text(
-                      'Explore 1300+ Healthy Recipes!',
+                      'Explore 1500+ Healthy Recipes!',
                       style: theme.textTheme.bodySmall!
                           .copyWith(color: Colors.grey.shade100),
                     ),
