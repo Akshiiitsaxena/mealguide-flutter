@@ -36,16 +36,12 @@ class Recipe {
   });
 
   factory Recipe.fromDoc(
-      Map<String, dynamic> doc, Map<String, dynamic> compositionDoc) {
+      Map<String, dynamic> doc, List<IngredientComposition> composition) {
     Serving docServing = Serving.fromDoc(doc['servings']);
-
-    List<IngredientComposition> compositions = [];
-    compositionDoc['data'].forEach((compositionMap) =>
-        compositions.add(IngredientComposition.fromDoc(compositionMap)));
 
     List<Ingredient> docIngredients = [];
     doc['ingredients'].forEach(
-        (val) => docIngredients.add(Ingredient.fromDoc(val, compositions)));
+        (val) => docIngredients.add(Ingredient.fromDoc(val, composition)));
 
     List<Instruction> docInstructions = [];
     doc['instructions']

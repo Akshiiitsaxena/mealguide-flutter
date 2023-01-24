@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/models/diet_model.dart';
+import 'package:mealguide/models/ingredient_composition_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 
 final recipeProvider = FutureProvider<Map<Diet, List<Recipe>>>((ref) async {
@@ -21,10 +22,15 @@ final recipeProvider = FutureProvider<Map<Diet, List<Recipe>>>((ref) async {
       await rootBundle.loadString('assets/data/ingredients.json');
   final ingredientsJson = jsonDecode(ingredientsJsonString);
 
-  // print(recipeJson['data']);
+  List<IngredientComposition> composition = [];
+
+  for (var data in ingredientsJson['data']) {
+    composition.add(IngredientComposition.fromDoc(data));
+  }
 
   for (var data in recipeJson['data'] as List) {
-    recipes.add(Recipe.fromDoc(data, ingredientsJson));
+    var recipe = Recipe.fromDoc(data, composition);
+    recipes.add(recipe);
   }
 
   List<Diet> diets = [];
