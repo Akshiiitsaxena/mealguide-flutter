@@ -10,6 +10,7 @@ class OtpState {
   final String otp;
   final String verificationId;
   final int resendToken;
+  final bool isSuccess;
 
   const OtpState({
     this.isCodeSent = false,
@@ -19,6 +20,7 @@ class OtpState {
     this.otp = '',
     this.verificationId = '',
     this.resendToken = -1,
+    this.isSuccess = false,
   });
 
   OtpState copyWith({
@@ -29,6 +31,7 @@ class OtpState {
     String? otp,
     String? verificationId,
     int? resendToken,
+    bool? isSuccess,
   }) {
     return OtpState(
       isCodeSent: isCodeSent ?? this.isCodeSent,
@@ -39,6 +42,7 @@ class OtpState {
       otp: otp ?? this.otp,
       verificationId: verificationId ?? this.verificationId,
       resendToken: resendToken ?? this.resendToken,
+      isSuccess: isSuccess ?? this.isSuccess,
     );
   }
 }
@@ -72,6 +76,10 @@ class OtpStateNotifier extends StateNotifier<OtpState> {
 
   void setVerificationId(String value) {
     state = state.copyWith(verificationId: value);
+  }
+
+  void setIsSuccess(bool value) {
+    state = state.copyWith(isSuccess: value);
   }
 }
 

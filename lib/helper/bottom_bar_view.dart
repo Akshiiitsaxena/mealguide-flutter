@@ -23,11 +23,7 @@ class BottomBarView extends HookConsumerWidget {
     final bottomBarState = ref.watch(bottomBarStateNotifierProvider);
 
     useEffect(() {
-      path_provider.getApplicationDocumentsDirectory().then((dir) {
-        Hive.init(dir.path);
-        Hive.registerAdapter(AddedItemAdapter());
-        ref.read(hiveProvider).getPantryFromStorage();
-      });
+      ref.read(hiveProvider).getPantryFromStorage();
       return null;
     }, []);
 

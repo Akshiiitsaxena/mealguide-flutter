@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
@@ -90,6 +91,7 @@ class Authentication {
       otpStateNotifier.setIsLoading(true);
       final user = await auth.signInWithCredential(credential);
       ref.read(userStateNotifierProvider.notifier).setLoginState(true);
+      otpStateNotifier.setIsSuccess(true);
     } on FirebaseAuthException catch (e) {
       print(e);
       verificationFailed(e);
@@ -98,9 +100,28 @@ class Authentication {
     }
   }
 
+  Future<void> signInWithGoogle() async {
+    GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+    try {
+      final googleAccount = await googleSignIn.signIn();
+
+      if (googleAccount != null) {
+        final email = FirebaseAuth.instance.currentUser!.email;
+        print(email);
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+    }
+  }
+
   Future<void> signOut() async {
     try {
       await auth.signOut();
+      final googleSignIn = GoogleSignIn();
+      final isSignedIn = await googleSignIn.isSignedIn();
+      if (isSignedIn) {
+        googleSignIn.signOut();
+      }
       ref.read(userStateNotifierProvider.notifier).setLoginState(false);
     } catch (e) {
       print('error signing out $e');

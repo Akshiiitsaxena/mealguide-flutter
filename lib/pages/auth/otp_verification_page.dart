@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_loading_blur.dart';
+import 'package:mealguide/pages/auth/email_verification_page.dart';
 import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
 import 'package:mealguide/widgets/error_dialog.dart';
@@ -41,7 +42,8 @@ class OtpVerificationPage extends HookConsumerWidget {
             subtitle: nextState.error,
             actions: [
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () =>
+                    Navigator.of(context, rootNavigator: true).pop(),
                 child: Text(
                   'Okay',
                   style: theme.textTheme.bodySmall!
@@ -49,6 +51,14 @@ class OtpVerificationPage extends HookConsumerWidget {
                 ),
               )
             ],
+          );
+        }
+
+        if (!previousState.isSuccess && nextState.isSuccess) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const EmailVerificationPage(),
+            ),
           );
         }
       },
@@ -123,8 +133,13 @@ class OtpVerificationPage extends HookConsumerWidget {
                         ref.read(otpStateNotifierProvider.notifier).setOtp(otp);
                       }
                       await authState.signInWithOtp();
+                      // Navigator.of(context).pushReplacement(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const EmailVerificationPage(),
+                      //   ),
+                      // );
                       // ignore: use_build_context_synchronously
-                      Navigator.of(context).pop();
+                      // Navigator.of(context).pop();
                     }
                   },
                   controller: otpController,

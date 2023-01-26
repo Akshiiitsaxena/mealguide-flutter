@@ -102,4 +102,14 @@ class HiveHandler {
 
     return allIngredientItems.toList();
   }
+
+  Future<String> getLocalMealPlan() async {
+    var mealBox = await Hive.openBox<String>('mealplan');
+    return mealBox.get(Keys.mealPlan) ?? '';
+  }
+
+  void setLocalMealPlan(String mealplan) async {
+    var mealBox = await Hive.openBox<String>('mealplan');
+    mealBox.put(Keys.mealPlan, mealplan);
+  }
 }

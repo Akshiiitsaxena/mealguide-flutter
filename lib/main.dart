@@ -2,19 +2,29 @@ import 'package:country_codes/country_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/bottom_bar_view.dart';
 import 'package:mealguide/helper/brightness_notifier.dart';
+import 'package:mealguide/models/added_items_hive_model.dart';
+import 'package:mealguide/pages/onboarding/start_screen.dart';
+import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await CountryCodes.init();
+
+  final dir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  Hive.registerAdapter(AddedItemAdapter());
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -42,7 +52,22 @@ class MyApp extends HookConsumerWidget {
               themeMode: mode,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
-              home: const BottomBarView(),
+              home: FutureBuilder<String>(
+                future: ref.read(hiveProvider).getLocalMealPlan(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return snapshot.data!.isEmpty
+                        ? const StartScreen()
+                        : const BottomBarView();
+                  } else {
+                    return Container(
+                      height: 100.h,
+                      width: 100.w,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    );
+                  }
+                },
+              ),
               debugShowCheckedModeBanner: false,
             ),
           );

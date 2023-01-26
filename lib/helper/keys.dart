@@ -3,4 +3,5 @@ class Keys {
   static const puchasedItems = 'purchasedItems';
   static const addedQuantity = 'addedQuantity';
   static const purchasedItemExpiry = 'purchasedItemExpiry';
+  static const mealPlan = 'mealplan';
 }
