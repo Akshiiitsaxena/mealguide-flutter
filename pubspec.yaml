@@ -50,6 +50,7 @@ dependencies:
   country_picker: ^2.0.19
   country_codes: ^2.2.0
   google_sign_in: ^5.4.3
+  flutter_svg: ^1.1.6
   # flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
@@ -83,6 +84,7 @@ flutter:
     - assets/data/diets.json
     - assets/data/ingredients.json
     - assets/data/plan.json
+    - assets/logo/
 
   fonts:
     - family: Quicksand

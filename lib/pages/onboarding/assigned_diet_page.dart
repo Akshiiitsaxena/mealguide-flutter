@@ -4,6 +4,7 @@ import 'package:mealguide/helper/bottom_sheets.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/providers/diet_provider.dart';
+import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/onboarding_provider.dart';
 import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:mealguide/widgets/primary_button.dart';
@@ -134,7 +135,9 @@ class AssignedDietPage extends ConsumerWidget {
                                         ),
                                         MgPrimaryButton(
                                           'Start Plan',
-                                          onTap: () {},
+                                          onTap: () => ref
+                                              .read(hiveProvider)
+                                              .setLocalMealPlan(diet.name),
                                           isEnabled: true,
                                           height: 5.h,
                                           width: 35.w,
