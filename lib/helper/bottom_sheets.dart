@@ -6,9 +6,11 @@ import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/diet_recipe_box.dart';
 import 'package:mealguide/pages/recipes/servings_tile.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
+import 'package:mealguide/providers/notification_provider.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/bottom_sheet_template.dart';
+import 'package:mealguide/widgets/notification_sheet.dart';
 import 'package:mealguide/widgets/nutritionist_sheet.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:mealguide/widgets/rotating_plate.dart';
@@ -372,5 +374,9 @@ class MgBottomSheet {
 
   static showNutritionistSheet(BuildContext context) {
     return showSheet(context, child: const NutritionistSheet());
+  }
+
+  static showNotificationSheet(BuildContext context, NotificationType type) {
+    return showSheet(context, child: NotificationSheet(type: type));
   }
 }

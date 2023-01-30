@@ -7,6 +7,8 @@ import 'package:mealguide/pages/profile/profile_tile.dart';
 import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
+import 'package:mealguide/providers/notification_provider.dart';
+import 'package:mealguide/providers/profile_state_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';
@@ -19,6 +21,7 @@ class ProfilePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final userState = ref.watch(userStateNotifierProvider);
+    final profileState = ref.watch(profileStateNotiferProvider);
 
     return Scaffold(
       appBar: MgAppBar(
@@ -123,27 +126,55 @@ class ProfilePage extends HookConsumerWidget {
           SizedBox(height: 1.5.h),
           ProfileTile(
             title: 'Breakfast Notifications',
-            icon: Icons.notifications_none,
-            onTap: () {},
-            trailing: 'Disabled',
+            icon: profileState.isBreakfastEnabled
+                ? Icons.notifications_none
+                : Icons.notifications_off_outlined,
+            onTap: () async {
+              MgBottomSheet.showNotificationSheet(
+                  context, NotificationType.breakfast);
+            },
+            trailing: profileState.isBreakfastEnabled
+                ? profileState.breakfastTime.format(context)
+                : 'Disabled',
           ),
           ProfileTile(
             title: 'Lunch Notifications',
-            icon: Icons.notifications_off_outlined,
-            onTap: () {},
-            trailing: 'Disabled',
+            icon: profileState.isLunchEnabled
+                ? Icons.notifications_none
+                : Icons.notifications_off_outlined,
+            onTap: () async {
+              MgBottomSheet.showNotificationSheet(
+                  context, NotificationType.lunch);
+            },
+            trailing: profileState.isLunchEnabled
+                ? profileState.lunchTime.format(context)
+                : 'Disabled',
           ),
           ProfileTile(
             title: 'Snacks Notifications',
-            icon: Icons.notifications_off_outlined,
-            onTap: () {},
-            trailing: 'Disabled',
+            icon: profileState.isSnacksEnabled
+                ? Icons.notifications_none
+                : Icons.notifications_off_outlined,
+            onTap: () async {
+              MgBottomSheet.showNotificationSheet(
+                  context, NotificationType.snacks);
+            },
+            trailing: profileState.isSnacksEnabled
+                ? profileState.snacksTime.format(context)
+                : 'Disabled',
           ),
           ProfileTile(
             title: 'Dinner Notifications',
-            icon: Icons.notifications_none,
-            onTap: () {},
-            trailing: 'Disabled',
+            icon: profileState.isDinnerEnabled
+                ? Icons.notifications_none
+                : Icons.notifications_off_outlined,
+            onTap: () async {
+              MgBottomSheet.showNotificationSheet(
+                  context, NotificationType.dinner);
+            },
+            trailing: profileState.isDinnerEnabled
+                ? profileState.dinnerTime.format(context)
+                : 'Disabled',
           ),
           Divider(height: 2.5.h),
           SizedBox(height: 1.5.h),
