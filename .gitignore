@@ -49,3 +49,7 @@ lib/providers/dummy_diet.dart
 lib/providers/dummy_ing.dart
 lib/providers/dummy_rec.dart
 lib/providers/dummy_plan.dart
+assets/data/plan.json
+ios/Podfile.lock
+macos/Flutter/GeneratedPluginRegistrant.swift
+lib/providers/dummy_slots.dart
