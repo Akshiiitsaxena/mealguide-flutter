@@ -81,6 +81,19 @@ class OtpStateNotifier extends StateNotifier<OtpState> {
   void setIsSuccess(bool value) {
     state = state.copyWith(isSuccess: value);
   }
+
+  void clearSettings() {
+    state = state.copyWith(
+      isCodeSent: false,
+      hasVerificationFailed: false,
+      isLoading: false,
+      error: '',
+      otp: '',
+      verificationId: '',
+      resendToken: -1,
+      isSuccess: false,
+    );
+  }
 }
 
 final otpStateNotifierProvider =

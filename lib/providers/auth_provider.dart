@@ -69,6 +69,7 @@ class Authentication {
   }
 
   Future<void> signInWithOtp() async {
+    // ref.read(otpStateNotifierProvider.notifier).clearSettings();
     final otpState = ref.read(otpStateNotifierProvider);
 
     final smsCode = otpState.otp;
@@ -106,11 +107,35 @@ class Authentication {
       final googleAccount = await googleSignIn.signIn();
 
       if (googleAccount != null) {
-        final email = FirebaseAuth.instance.currentUser!.email;
-        print(email);
+        String idToken = (await googleAccount.authentication).idToken!;
+        final credential = GoogleAuthProvider.credential(idToken: idToken);
+        await linkCredential(credential);
       }
     } on FirebaseAuthException catch (e) {
       print(e.code);
+    }
+  }
+
+  Future<void> linkCredential(OAuthCredential credential) async {
+    try {
+      await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      // TODO: Throw here and handle better
+      switch (e.code) {
+        case "provider-already-linked":
+          print("The provider has already been linked to the user.");
+          break;
+        case "invalid-credential":
+          print("The provider's credential is not valid.");
+          break;
+        case "credential-already-in-use":
+          print("The account corresponding to the credential already exists, "
+              "or is already linked to a Firebase User.");
+          break;
+        // See the API reference for the full list of error codes.
+        default:
+          print("Unknown error.");
+      }
     }
   }
 
