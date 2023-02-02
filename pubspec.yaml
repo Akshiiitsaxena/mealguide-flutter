@@ -87,6 +87,7 @@ flutter:
     - assets/data/ingredients.json
     - assets/data/plan.json
     - assets/logo/
+    - assets/tabs/
 
   fonts:
     - family: Quicksand

@@ -10,6 +10,7 @@ import 'package:mealguide/pages/recipes/all_recipes_page.dart';
 import 'package:mealguide/pages/upgrade/upgrade_page.dart';
 import 'package:mealguide/providers/bottom_bar_provider.dart';
 import 'package:mealguide/providers/hive_provider.dart';
+import 'package:mealguide/widgets/tab_bar_icon.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:sizer/sizer.dart';
@@ -48,38 +49,47 @@ class BottomBarView extends HookConsumerWidget {
       backgroundColor: theme.canvasColor,
       hideNavigationBar: !bottomBarState.showBar,
       navBarHeight: kBottomNavigationBarHeight + 1.h,
+      padding: NavBarPadding.symmetric(vertical: 0.5.h, horizontal: 2.w),
       items: [
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.food_bank_outlined),
-          title: 'Recipes',
-          activeColorPrimary: const Color(0xff7e79eb),
-          inactiveColorPrimary: Colors.grey,
+          icon: const MgTabIcon(
+            image: 'assets/tabs/recipes.png',
+            title: 'Recipes',
+            tab: 0,
+          ),
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.book),
-          title: 'My Diary',
-          activeColorPrimary: const Color(0xff7e79eb),
-          inactiveColorPrimary: Colors.grey,
+          icon: const MgTabIcon(
+            image: 'assets/tabs/dietplan.png',
+            title: 'Meal Plan',
+            tab: 1,
+          ),
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.menu),
-          title: 'Items',
-          activeColorPrimary: const Color(0xff7e79eb),
-          inactiveColorPrimary: Colors.grey,
+          icon: const MgTabIcon(
+            image: 'assets/tabs/shopping.png',
+            title: 'Items',
+            tab: 2,
+          ),
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.person),
-          title: 'Profile',
-          activeColorPrimary: const Color(0xff7e79eb),
-          inactiveColorPrimary: Colors.grey,
+          icon: const MgTabIcon(
+            image: 'assets/tabs/profile.png',
+            title: 'Profile',
+            tab: 3,
+          ),
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.upgrade_rounded),
-          title: 'Upgrade',
-          activeColorPrimary: const Color(0xff7e79eb),
-          inactiveColorPrimary: Colors.grey,
+          icon: const MgTabIcon(
+            image: 'assets/tabs/upgrade.png',
+            title: 'Upgrade',
+            tab: 4,
+          ),
         ),
       ],
+      onItemSelected: (value) => ref
+          .read(bottomBarStateNotifierProvider.notifier)
+          .setSelectedTab(value),
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
