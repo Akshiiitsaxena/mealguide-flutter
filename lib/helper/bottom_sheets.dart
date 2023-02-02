@@ -147,6 +147,19 @@ class MgBottomSheet {
             }
 
             List<Recipe> uniqueRecipes = ingredientRecipes.toSet().toList();
+            Set<String> uniqueRecipeNames = {};
+
+            for (var element in uniqueRecipes) {
+              uniqueRecipeNames.add(element.name);
+            }
+
+            List<Recipe> singleDietUniqueRecipes = [];
+
+            for (var name in uniqueRecipeNames) {
+              singleDietUniqueRecipes.add(
+                uniqueRecipes.firstWhere((element) => element.name == name),
+              );
+            }
 
             return SizedBox(
               height: 70.h,
@@ -167,10 +180,13 @@ class MgBottomSheet {
                       childAspectRatio: 4 / 5,
                       mainAxisSpacing: 2.h,
                       crossAxisSpacing: 2.h,
-                      children: List.generate(uniqueRecipes.length, (index) {
-                        Recipe recipe = uniqueRecipes[index];
-                        return DietRecipeBox(recipe: recipe);
-                      }),
+                      children: List.generate(
+                        singleDietUniqueRecipes.length,
+                        (index) {
+                          Recipe recipe = singleDietUniqueRecipes[index];
+                          return DietRecipeBox(recipe: recipe);
+                        },
+                      ),
                     ),
                   )
                 ],
