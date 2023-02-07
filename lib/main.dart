@@ -1,4 +1,5 @@
 import 'package:country_codes/country_codes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -7,7 +8,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/bottom_bar_view.dart';
 import 'package:mealguide/helper/brightness_notifier.dart';
 import 'package:mealguide/models/added_items_hive_model.dart';
+import 'package:mealguide/pages/auth/email_verification_page.dart';
+import 'package:mealguide/pages/auth/phone_number_page.dart';
 import 'package:mealguide/pages/onboarding/start_screen.dart';
+import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/notification_provider.dart';
 import 'package:mealguide/providers/theme_provider.dart';
@@ -54,22 +58,33 @@ class MyApp extends HookConsumerWidget {
               themeMode: mode,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
-              home: FutureBuilder<String>(
-                future: ref.read(hiveProvider).getLocalMealPlan(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return snapshot.data!.isEmpty
-                        ? const StartScreen()
-                        : const BottomBarView();
-                  } else {
-                    return Container(
-                      height: 100.h,
-                      width: 100.w,
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                    );
+              home: Builder(builder: (context) {
+                if (FirebaseAuth.instance.currentUser != null) {
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user!.email == null || user.email!.isEmpty) {
+                    return const EmailVerificationPage();
                   }
-                },
-              ),
+                  return const BottomBarView();
+                }
+
+                // if user is not signed in
+                return FutureBuilder<String>(
+                  future: ref.read(hiveProvider).getLocalMealPlan(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return snapshot.data!.isEmpty
+                          ? const StartScreen()
+                          : const PhoneNumberPage();
+                    } else {
+                      return Container(
+                        height: 100.h,
+                        width: 100.w,
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                      );
+                    }
+                  },
+                );
+              }),
               debugShowCheckedModeBanner: false,
             ),
           );

@@ -8,6 +8,7 @@ import 'package:mealguide/helper/bottom_bar_view.dart';
 import 'package:mealguide/helper/mg_loading_blur.dart';
 import 'package:mealguide/pages/auth/email_verification_page.dart';
 import 'package:mealguide/providers/auth_provider.dart';
+import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
 import 'package:mealguide/widgets/error_dialog.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
@@ -30,7 +31,7 @@ class OtpVerificationPage extends HookConsumerWidget {
 
     ref.listen<OtpState>(
       otpStateNotifierProvider,
-      (previousState, nextState) {
+      (previousState, nextState) async {
         if (previousState!.otp.isEmpty && nextState.otp.isNotEmpty) {
           otpController.text = nextState.otp;
         }
@@ -57,6 +58,21 @@ class OtpVerificationPage extends HookConsumerWidget {
         }
 
         if (!previousState.isSuccess && nextState.isSuccess) {
+          // sync user state
+          Map<dynamic, dynamic> data = {};
+          final dietPlan = await ref.read(hiveProvider).getLocalMealPlan();
+          final calorie = await ref.read(hiveProvider).getCalorieGoal();
+          final onboardingAnswers =
+              await ref.read(hiveProvider).getOnboardingAnswers();
+
+          data = {
+            'active_diet_plan': dietPlan,
+            'calories_goal': calorie,
+            ...onboardingAnswers,
+          };
+
+          await ref.read(authProvider).syncUserState(data);
+
           // Check if user has already linked email creds
           if (FirebaseAuth.instance.currentUser!.email == null) {
             Navigator.of(context).pushReplacement(

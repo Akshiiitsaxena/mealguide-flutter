@@ -94,11 +94,18 @@ class ProfilePage extends HookConsumerWidget {
             icon: Icons.question_answer_outlined,
             onTap: () {
               ref.read(bottomBarStateNotifierProvider.notifier).hideBar();
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const StartScreen(),
-                ),
-              );
+              Navigator.of(context)
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => const StartScreen(),
+                    ),
+                  )
+                  .then(
+                    (_) => ref
+                        .read(bottomBarStateNotifierProvider.notifier)
+                        .showBar(),
+                  );
+              ;
             },
           ),
           ProfileTile(

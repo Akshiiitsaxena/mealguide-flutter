@@ -5,6 +5,7 @@ import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
 import 'package:mealguide/models/onboarding_model.dart';
 import 'package:mealguide/providers/dio_provider.dart';
+import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/onboarding_state_provider.dart';
 
 final onboardingQuestionProvider = FutureProvider<List<OnboardingQuestion>>(
@@ -49,6 +50,8 @@ final onboardingAnswerProvider =
       // };
 
       final response = await dio.post(MgUrls.submitQuestionnair, data: answers);
+      ref.read(hiveProvider).setOnboardingAnswers(answers);
+      ref.read(hiveProvider).setCalorieGoal(response.data['data']['calories']);
       return response.data['data'];
     } on DioError catch (e) {
       if (e.response != null && e.response!.data is Map) {

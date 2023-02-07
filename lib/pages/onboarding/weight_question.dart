@@ -16,12 +16,12 @@ class WeightQuestion extends HookConsumerWidget {
     final onboardingQuizStateWatcher =
         ref.read(onboardingQuizStateNotifierProvider.notifier);
 
-    useEffect(() {
-      Future.microtask(() {
-        onboardingQuizStateWatcher.setHasSelected(true);
-      });
-      return null;
-    }, []);
+    // useEffect(() {
+    //   Future.microtask(() {
+    //     onboardingQuizStateWatcher.setHasSelected(true);
+    //   });
+    //   return null;
+    // }, []);
 
     final theme = Theme.of(context);
     final measure = useState(Measure.metric);
@@ -180,6 +180,7 @@ class WeightQuestion extends HookConsumerWidget {
                 inactiveColor: theme.primaryColor.withOpacity(0.2),
                 minorTicksPerInterval: 1,
                 onChanged: (value) {
+                  onboardingQuizStateWatcher.setHasSelected(true);
                   weight.value = value;
 
                   double val;

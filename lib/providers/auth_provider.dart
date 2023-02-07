@@ -1,6 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/mg_exception.dart';
+import 'package:mealguide/helper/urls.dart';
+import 'package:mealguide/providers/dio_provider.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
 
@@ -110,6 +115,10 @@ class Authentication {
         String idToken = (await googleAccount.authentication).idToken!;
         final credential = GoogleAuthProvider.credential(idToken: idToken);
         await linkCredential(credential);
+        // Sync user name/email
+        final name = googleAccount.displayName;
+        final email = googleAccount.email;
+        await syncUserState({'name': name, 'email': email});
       }
     } on FirebaseAuthException catch (e) {
       print(e.code);
@@ -120,21 +129,16 @@ class Authentication {
     try {
       await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
     } on FirebaseAuthException catch (e) {
-      // TODO: Throw here and handle better
       switch (e.code) {
         case "provider-already-linked":
-          print("The provider has already been linked to the user.");
-          break;
+          throw MgException(
+              message: "This email has already been linked to the user.");
         case "invalid-credential":
-          print("The provider's credential is not valid.");
-          break;
+          throw MgException(message: "These credential are not valid.");
         case "credential-already-in-use":
-          print("The account corresponding to the credential already exists, "
-              "or is already linked to a Firebase User.");
-          break;
-        // See the API reference for the full list of error codes.
+          throw MgException(message: "The account already exists.");
         default:
-          print("Unknown error.");
+          throw MgException(message: 'Something went wrong');
       }
     }
   }
@@ -152,4 +156,48 @@ class Authentication {
       print('error signing out $e');
     }
   }
+
+  Future<void> syncUserState(Map<dynamic, dynamic> data) async {
+    try {
+      final dio = await ref.watch(dioProvider(true).future);
+      final response = await dio.post(MgUrls.userSync, data: data);
+      print(response.data);
+    } on DioError catch (e) {
+      debugPrint(e.message);
+      throw MgException(message: e.message, code: e.response?.statusCode);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw MgException();
+    }
+    ref.refresh(dioProvider(true));
+  }
+
+  Future<void> refreshToken() async {
+    await FirebaseAuth.instance.currentUser!.getIdToken(true);
+  }
 }
+
+
+// email,
+//     name,
+
+//     notes,
+
+//     active_diet_plan,
+//     age,
+//     height,
+//     weight,
+//     gender,
+//     lifestyle,
+//     medical_condition,
+//     food_preference,
+//     increase_intake,
+//     allergic_items,
+//     goal,
+
+//     water_goal,
+
+//     calories_goal,
+
+//     premium,
+//     original_purchase_date

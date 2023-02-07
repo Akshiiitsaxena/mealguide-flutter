@@ -64,22 +64,24 @@ class OnboardingQuiz extends HookConsumerWidget {
             'Continue',
             isEnabled: hasSelected,
             onTap: () {
-              if (currentStep == 9) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const AssignedDietPage(),
-                  ),
-                );
-              } else {
-                pageController.animateToPage(
-                  currentStep + 1,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.easeIn,
-                );
-                onboardingQuizStateWatcher.setCurrentStep(currentStep + 1);
-                onboardingQuizStateWatcher.setHasSelected(false);
-                onboardingQuizStateWatcher.setCurrentSelection(-1);
-                FocusManager.instance.primaryFocus?.unfocus();
+              if (hasSelected) {
+                if (currentStep == 9) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const AssignedDietPage(),
+                    ),
+                  );
+                } else {
+                  pageController.animateToPage(
+                    currentStep + 1,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeIn,
+                  );
+                  onboardingQuizStateWatcher.setCurrentStep(currentStep + 1);
+                  onboardingQuizStateWatcher.setHasSelected(false);
+                  onboardingQuizStateWatcher.setCurrentSelection(-1);
+                  FocusManager.instance.primaryFocus?.unfocus();
+                }
               }
             },
           ),

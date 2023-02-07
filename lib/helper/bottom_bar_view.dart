@@ -25,6 +25,7 @@ class BottomBarView extends HookConsumerWidget {
 
     useEffect(() {
       ref.read(hiveProvider).getPantryFromStorage();
+      ref.read(hiveProvider).setLocalPlanFromStorage();
       return null;
     }, []);
 

@@ -6,9 +6,9 @@ import 'package:mealguide/pages/recipes/diet_recipes_page.dart';
 import 'package:mealguide/pages/recipes/recipe_box.dart';
 import 'package:mealguide/pages/recipes/search_page.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
-import 'package:mealguide/widgets/diet_box.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
+import 'package:mealguide/widgets/your_diet_box.dart';
 import 'package:sizer/sizer.dart';
 
 class AllRecipesPage extends HookConsumerWidget {
@@ -83,11 +83,7 @@ class AllRecipesPage extends HookConsumerWidget {
                 if (ind == 0) {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 1.h),
-                    child: DietBox(
-                      diet: data.keys.toList().first,
-                      recipes: 0,
-                      isForHome: true,
-                    ),
+                    child: YourDietBox(diets: data.keys.toList()),
                   );
                 }
 

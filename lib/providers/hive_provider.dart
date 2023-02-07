@@ -5,6 +5,7 @@ import 'package:mealguide/models/added_items_hive_model.dart';
 import 'package:mealguide/models/diet_model.dart';
 import 'package:mealguide/models/ingredient_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
+import 'package:mealguide/providers/local_plan_state_provider.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 
@@ -111,5 +112,32 @@ class HiveHandler {
   void setLocalMealPlan(String mealplan) async {
     var mealBox = await Hive.openBox<String>('mealplan');
     mealBox.put(Keys.mealPlan, mealplan);
+  }
+
+  Future<void> setLocalPlanFromStorage() async {
+    String mealPlan = await getLocalMealPlan();
+    if (mealPlan.isNotEmpty) {
+      ref.read(localPlanNotifierProvider.notifier).setPlan(mealPlan);
+    }
+  }
+
+  Future<Map> getOnboardingAnswers() async {
+    var onboardingBox = await Hive.openBox('onboarding');
+    return onboardingBox.get(Keys.answers);
+  }
+
+  void setOnboardingAnswers(Map<String, dynamic> answers) async {
+    var onboardingBox = await Hive.openBox('onboarding');
+    onboardingBox.put(Keys.answers, answers);
+  }
+
+  Future<double> getCalorieGoal() async {
+    var calorieBox = await Hive.openBox('calorie');
+    return calorieBox.get(Keys.calorie);
+  }
+
+  void setCalorieGoal(double calorie) async {
+    var calorieBox = await Hive.openBox('calorie');
+    calorieBox.put(Keys.calorie, calorie);
   }
 }
