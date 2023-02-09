@@ -6,7 +6,7 @@ class CallSlot {
   final DateTime endAt;
   final String timezone;
   final String link;
-  final String feedback;
+  // final String feedback;
 
   CallSlot({
     required this.id,
@@ -15,7 +15,7 @@ class CallSlot {
     required this.startAt,
     required this.timezone,
     required this.endAt,
-    required this.feedback,
+    // required this.feedback,
     required this.link,
   });
 
@@ -27,7 +27,7 @@ class CallSlot {
       startAt: DateTime.parse(doc['start_time']).toLocal(),
       timezone: doc['user_time_zone'],
       endAt: DateTime.parse(doc['end_time']).toLocal(),
-      feedback: doc['feedback'],
+      // feedback: doc['feedback'],
       link: doc['location'],
     );
   }

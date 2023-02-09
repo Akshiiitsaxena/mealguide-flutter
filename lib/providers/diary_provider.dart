@@ -11,17 +11,25 @@ import 'package:mealguide/providers/dio_provider.dart';
 
 final diaryProvider = FutureProvider<Diary>((ref) async {
   try {
-    // final response = await ref.watch(dioProvider(true)).get(MgUrls.getMealPlan);
-    // Diary diary = Diary.fromDoc(response.data['data']);
-    Future.delayed(const Duration(seconds: 1));
-    final String diaryJsonString =
-        await rootBundle.loadString('assets/data/plan.json');
-    final dietsJson = jsonDecode(diaryJsonString);
-    Diary diary = Diary.fromDoc(dietsJson['data'] as Map<String, dynamic>);
+    final dio = await ref.watch(dioProvider(true).future);
+    final response = await dio.get(MgUrls.getMealPlan);
+
+    if (response.data['data'] == null) {
+      throw MgException(code: -1);
+    }
+
+    Diary diary = Diary.fromDoc(response.data['data']);
+    // Future.delayed(const Duration(seconds: 1));
+    // final String diaryJsonString =
+    //     await rootBundle.loadString('assets/data/plan.json');
+    // final dietsJson = jsonDecode(diaryJsonString);
+    // Diary diary = Diary.fromDoc(dietsJson['data'] as Map<String, dynamic>);
     return diary;
   } on DioError catch (e) {
     debugPrint(e.message);
     throw MgException(message: e.message, code: e.response?.statusCode);
+  } on MgException {
+    rethrow;
   } catch (e) {
     debugPrint(e.toString());
     throw MgException();

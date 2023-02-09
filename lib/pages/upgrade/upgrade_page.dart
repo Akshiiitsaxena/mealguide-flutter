@@ -28,7 +28,7 @@ class UpgradePage extends HookConsumerWidget {
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 6.w),
         child: Text(
-          'Unlock a\nhealthier you.',
+          'Unlock a healthier you.',
           style: theme.textTheme.titleLarge!
               .copyWith(fontWeight: FontWeight.w900, color: theme.primaryColor),
         ),
@@ -36,7 +36,7 @@ class UpgradePage extends HookConsumerWidget {
       Padding(
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 6.w),
         child: Text(
-          'Unlock MealGuide to make a meal planning and prepping effortless!',
+          'Unlock MealGuide to make meal planning and prepping effortless!',
           style: theme.textTheme.bodySmall,
         ),
       ),
