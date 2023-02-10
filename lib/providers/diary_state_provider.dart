@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:mealguide/models/meal_plan_model.dart';
 import 'package:mealguide/models/nutrition_model.dart';
 
 @immutable
@@ -116,6 +117,21 @@ class DiaryStateNotifier extends StateNotifier<DiaryState> {
     );
 
     state = state.copyWith(nutritionConsumedForPlan: tempMap);
+  }
+
+  void setAllConsumedRecipesOnFetch(Map<String, List<MealPlan>> data) {
+    data.forEach((dayPlanId, meals) {
+      for (var meal in meals) {
+        setRecipeConsumedForPlan(dayPlanId, meal.id);
+        setNutritionConsumedForPlan(dayPlanId, meal.nutrition);
+      }
+    });
+  }
+
+  void setAllWaterConsumedOnFetch(Map<String, int> data) {
+    data.forEach((dayPlanId, water) {
+      setWaterConsumedForPlan(dayPlanId, water);
+    });
   }
 }
 

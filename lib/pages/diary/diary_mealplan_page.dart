@@ -54,7 +54,7 @@ class DiaryMealPlanPage extends HookConsumerWidget {
             ),
           ),
           SizedBox(height: 1.h),
-          DiaryRecipes(dayPlan: plan)
+          DiaryRecipes(dayPlan: plan, masterDayPlanId: diary.masterPlanId)
         ],
       ),
     );

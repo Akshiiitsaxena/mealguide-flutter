@@ -8,6 +8,7 @@ import 'package:mealguide/models/meal_plan_model.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/recipe_page.dart';
 import 'package:mealguide/providers/bottom_bar_provider.dart';
+import 'package:mealguide/providers/diary_provider.dart';
 import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/diary_container.dart';
@@ -15,8 +16,10 @@ import 'package:sizer/sizer.dart';
 
 class DiaryRecipes extends HookConsumerWidget {
   final DayPlan dayPlan;
+  final String masterDayPlanId;
 
-  const DiaryRecipes({super.key, required this.dayPlan});
+  const DiaryRecipes(
+      {super.key, required this.dayPlan, required this.masterDayPlanId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -108,6 +111,8 @@ class DiaryRecipes extends HookConsumerWidget {
                                       (await getRecipeForMealPlan(ref, plan))
                                           .nutrition;
 
+                                  ref.read(planConsumeProvider).consumeMeal(
+                                      planId: masterDayPlanId, mealId: plan.id);
                                   diaryWatcher.setRecipeConsumedForPlan(
                                     dayPlan.id,
                                     plan.id,

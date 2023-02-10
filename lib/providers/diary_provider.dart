@@ -1,12 +1,11 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
 import 'package:mealguide/models/diary_model.dart';
+import 'package:mealguide/models/meal_plan_model.dart';
+import 'package:mealguide/providers/diary_state_provider.dart';
 import 'package:mealguide/providers/dio_provider.dart';
 
 final diaryProvider = FutureProvider<Diary>((ref) async {
@@ -24,6 +23,22 @@ final diaryProvider = FutureProvider<Diary>((ref) async {
     //     await rootBundle.loadString('assets/data/plan.json');
     // final dietsJson = jsonDecode(diaryJsonString);
     // Diary diary = Diary.fromDoc(dietsJson['data'] as Map<String, dynamic>);
+
+    final diaryNotifier = ref.read(diaryStateNotifierProvider.notifier);
+
+    Map<String, List<MealPlan>> consumedMealsForDayPlan = {};
+    Map<String, int> consumedWaterForDayPlan = {};
+
+    for (var dayPlan in diary.plans) {
+      List<MealPlan> consumedMeals =
+          dayPlan.mealPlan.where((mealPlan) => mealPlan.consumed).toList();
+      consumedMealsForDayPlan[dayPlan.id] = consumedMeals;
+      consumedWaterForDayPlan[dayPlan.id] = dayPlan.waterConsumed;
+    }
+
+    diaryNotifier.setAllConsumedRecipesOnFetch(consumedMealsForDayPlan);
+    diaryNotifier.setAllWaterConsumedOnFetch(consumedWaterForDayPlan);
+
     return diary;
   } on DioError catch (e) {
     debugPrint(e.message);
