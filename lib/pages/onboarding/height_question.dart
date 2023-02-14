@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/wave_slider.dart';
 import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -25,23 +27,41 @@ class HeightQuestion extends HookConsumerWidget {
     final theme = Theme.of(context);
     final measure = useState(Measure.metric);
 
+    final isChanging = useState(false);
+
     final min, max;
+    final minText, maxText;
 
     switch (measure.value) {
       case Measure.metric:
         min = 92;
+        minText = '$min cm';
         max = 244;
+        maxText = '$max cm';
         break;
       case Measure.imperial:
         min = 36;
+        minText = '3\' 0"';
         max = 96;
+        maxText = '8\' 0"';
         break;
       default:
         min = 92;
+        minText = '$min cm';
         max = 244;
+        maxText = '$max cm';
     }
 
     final height = useState((min + max) / 2);
+
+    String heightText;
+
+    if (measure.value == Measure.imperial) {
+      heightText =
+          '${(height.value / 12).floor()}\' ${(height.value % 12).floor()}"';
+    } else {
+      heightText = '${height.value.floor()} cm';
+    }
 
     return Expanded(
         child: Container(
@@ -136,60 +156,127 @@ class HeightQuestion extends HookConsumerWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 20.h),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
+                  decoration: BoxDecoration(
+                    color: theme.canvasColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    heightText,
+                    style: theme.textTheme.titleLarge!
+                        .copyWith(color: theme.primaryColor),
+                  ),
+                )
               ],
             ),
           ),
           const Spacer(),
-          SfTheme(
-            data: SfThemeData(
-              sliderThemeData: SfSliderThemeData(
-                activeLabelStyle: theme.textTheme.bodyMedium,
-                inactiveLabelStyle: theme.textTheme.bodyMedium,
-                tooltipBackgroundColor: theme.canvasColor,
-                tooltipTextStyle: theme.textTheme.bodyMedium!
-                    .copyWith(color: theme.primaryColor, fontSize: 14.sp),
-              ),
-            ),
-            child: SfSlider.vertical(
-              min: min,
-              max: max,
-              value: height.value.floor(),
-              showLabels: true,
-              showDividers: true,
-              enableTooltip: true,
-              shouldAlwaysShowTooltip: true,
-              tooltipTextFormatterCallback: (actualValue, formattedText) {
-                if (measure.value == Measure.imperial) {
-                  return '${(actualValue / 12).floor()}\' ${(actualValue % 12).floor()}"';
-                } else {
-                  return '${actualValue.floor()} cm';
-                }
-              },
-              labelFormatterCallback: (actualValue, formattedText) {
-                if (measure.value == Measure.imperial) {
-                  return '${(actualValue / 12).floor()}\' ${(actualValue % 12).floor()}"';
-                } else {
-                  return '${actualValue.floor()} cm';
-                }
-              },
-              activeColor: theme.primaryColor,
-              inactiveColor: theme.primaryColor.withOpacity(0.2),
-              minorTicksPerInterval: 1,
-              onChanged: (value) {
-                onboardingQuizStateWatcher.setHasSelected(true);
-                height.value = value;
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  maxText,
+                  style: theme.textTheme.titleMedium!.copyWith(
+                    color:
+                        isChanging.value ? theme.indicatorColor : Colors.grey,
+                    fontSize: 14.sp,
+                  ),
+                ),
+                SizedBox(height: 1.h),
+                Expanded(
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: WaveSlider(
+                      color:
+                          isChanging.value ? theme.indicatorColor : Colors.grey,
+                      onChanged: (perc) {
+                        HapticFeedback.selectionClick();
+                        final value = min + ((max - min) * perc);
+                        onboardingQuizStateWatcher.setHasSelected(true);
+                        height.value = value;
 
-                double val;
-                if (measure.value == Measure.imperial) {
-                  val = value * 2.54;
-                } else {
-                  val = value;
-                }
-                onboardingQuizStateWatcher.setAnswers(questionKey, val.floor());
-              },
+                        double val;
+                        if (measure.value == Measure.imperial) {
+                          val = value * 2.54;
+                        } else {
+                          val = value;
+                        }
+                        onboardingQuizStateWatcher.setAnswers(
+                            questionKey, val.floor());
+                      },
+                      onChangeEnd: (_) => isChanging.value = false,
+                      onChangeStart: (_) => isChanging.value = true,
+                      sliderWidth: 60.w,
+                      displayTrackball: true,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 1.h),
+                Text(
+                  minText,
+                  style: theme.textTheme.titleMedium!.copyWith(
+                    color:
+                        isChanging.value ? theme.indicatorColor : Colors.grey,
+                    fontSize: 14.sp,
+                  ),
+                ),
+                SizedBox(height: 1.h),
+              ],
             ),
           ),
-          SizedBox(width: 4.w),
+          // SfTheme(
+          //   data: SfThemeData(
+          //     sliderThemeData: SfSliderThemeData(
+          //       activeLabelStyle: theme.textTheme.bodyMedium,
+          //       inactiveLabelStyle: theme.textTheme.bodyMedium,
+          //       tooltipBackgroundColor: theme.canvasColor,
+          //       tooltipTextStyle: theme.textTheme.bodyMedium!
+          //           .copyWith(color: theme.primaryColor, fontSize: 14.sp),
+          //     ),
+          //   ),
+          //   child: SfSlider.vertical(
+          //     min: min,
+          //     max: max,
+          //     value: height.value.floor(),
+          //     showLabels: true,
+          //     showDividers: true,
+          //     enableTooltip: true,
+          //     shouldAlwaysShowTooltip: true,
+          //     tooltipTextFormatterCallback: (actualValue, formattedText) {
+          //       if (measure.value == Measure.imperial) {
+          //         return '${(actualValue / 12).floor()}\' ${(actualValue % 12).floor()}"';
+          //       } else {
+          //         return '${actualValue.floor()} cm';
+          //       }
+          //     },
+          //     labelFormatterCallback: (actualValue, formattedText) {
+          //       if (measure.value == Measure.imperial) {
+          //         return '${(actualValue / 12).floor()}\' ${(actualValue % 12).floor()}"';
+          //       } else {
+          //         return '${actualValue.floor()} cm';
+          //       }
+          //     },
+          //     activeColor: theme.primaryColor,
+          //     inactiveColor: theme.primaryColor.withOpacity(0.2),
+          //     minorTicksPerInterval: 1,
+          //     onChanged: (value) {
+          // onboardingQuizStateWatcher.setHasSelected(true);
+          // height.value = value;
+
+          // double val;
+          // if (measure.value == Measure.imperial) {
+          //   val = value * 2.54;
+          // } else {
+          //   val = value;
+          // }
+          // onboardingQuizStateWatcher.setAnswers(questionKey, val.floor());
+          //     },
+          //   ),
+          // ),
+          SizedBox(width: 6.w),
         ],
       ),
     ));

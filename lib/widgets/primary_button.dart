@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 class MgPrimaryButton extends StatelessWidget {
@@ -24,7 +25,10 @@ class MgPrimaryButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 2.h),
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          HapticFeedback.mediumImpact();
+          onTap();
+        },
         child: Container(
           height: height ?? 7.h,
           width: width ?? 85.w,
