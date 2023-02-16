@@ -6,8 +6,6 @@ import 'package:mealguide/helper/wave_slider.dart';
 import 'package:mealguide/pages/onboarding/height_question.dart';
 import 'package:mealguide/providers/onboarding_state_provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class WeightQuestion extends HookConsumerWidget {
   final String questionKey;

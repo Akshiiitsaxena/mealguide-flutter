@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/keys.dart';
 import 'package:mealguide/widgets/mg_faqs.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:mealguide/widgets/subscription_box.dart';
@@ -8,6 +9,7 @@ import 'package:mealguide/widgets/upgrade_button.dart';
 import 'package:mealguide/widgets/upgrade_info_tile.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UpgradePage extends HookConsumerWidget {
   const UpgradePage({super.key});
@@ -67,7 +69,7 @@ class UpgradePage extends HookConsumerWidget {
             ),
           ],
         ),
-        onTap: () {},
+        onTap: () => launchUrl(Uri.parse(Keys.whatsappUri)),
       ),
       UpgradeButton(
         child: Text(

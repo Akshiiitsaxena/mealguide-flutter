@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/bottom_sheets.dart';
+import 'package:mealguide/helper/keys.dart';
 import 'package:mealguide/pages/auth/phone_number_page.dart';
 import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/pages/profile/profile_tile.dart';
@@ -13,6 +14,7 @@ import 'package:mealguide/providers/user_state_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/primary_button.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends HookConsumerWidget {
   const ProfilePage({super.key});
@@ -111,7 +113,7 @@ class ProfilePage extends HookConsumerWidget {
           ProfileTile(
             title: 'Recurate the Weekly Plan',
             icon: Icons.view_week_outlined,
-            onTap: () {},
+            onTap: () => MgBottomSheet.showNutritionistSheet(context),
           ),
           Consumer(
             builder: (_, __, ___) {
@@ -190,7 +192,7 @@ class ProfilePage extends HookConsumerWidget {
           ProfileTile(
             title: 'Chat with us',
             icon: Icons.feedback_outlined,
-            onTap: () {},
+            onTap: () => launchUrl(Uri.parse(Keys.whatsappUri)),
             forChat: true,
           ),
           ProfileTile(
