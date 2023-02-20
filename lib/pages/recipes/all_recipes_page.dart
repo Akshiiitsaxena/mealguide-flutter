@@ -5,6 +5,7 @@ import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/diet_recipes_page.dart';
 import 'package:mealguide/pages/recipes/recipe_box.dart';
 import 'package:mealguide/pages/recipes/search_page.dart';
+import 'package:mealguide/providers/local_plan_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
 import 'package:mealguide/widgets/mg_bar.dart';
 import 'package:mealguide/widgets/secondary_button.dart';
@@ -18,6 +19,7 @@ class AllRecipesPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final recipeWatcher = ref.watch(recipeProvider);
     final theme = Theme.of(context);
+    final dietName = ref.watch(localPlanNotifierProvider).plan;
 
     return recipeWatcher.when(
       data: (data) {
@@ -89,9 +91,22 @@ class AllRecipesPage extends HookConsumerWidget {
 
                 int index = ind - 1;
 
-                Diet diet = data.keys.toList()[index];
+                List<MapEntry<Diet, List<Recipe>>> sortedEntries =
+                    data.entries.toList()
+                      ..sort(
+                        (a, b) => a.key.name == dietName
+                            ? -1
+                            : b.key.name == dietName
+                                ? 1
+                                : 0,
+                      );
+
+                Map<Diet, List<Recipe>> sortedData =
+                    Map.fromEntries(sortedEntries);
+
+                Diet diet = sortedData.keys.toList()[index];
                 List<Recipe> showcaseRecipes = diet.showcaseRecipes
-                    .map((e) => data.values
+                    .map((e) => sortedData.values
                         .toList()[index]
                         .firstWhere((recipe) => recipe.id == e))
                     .toList();
@@ -117,14 +132,10 @@ class AllRecipesPage extends HookConsumerWidget {
                                 MaterialPageRoute(
                                   builder: (context) => DietRecipesPage(
                                     diet: diet,
-                                    recipes: data.values.toList()[index],
+                                    recipes: sortedData.values.toList()[index],
                                   ),
                                 ),
                               ),
-
-                              // ==========================================================
-
-                              // ==========================================================
                             ),
                           ],
                         ),
