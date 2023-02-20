@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -97,6 +98,9 @@ class Authentication {
     try {
       otpStateNotifier.setIsLoading(true);
       final user = await auth.signInWithCredential(credential);
+      await ref.read(revenueCatProvider).logIn(user.user!.phoneNumber!);
+      await ref.read(revenueCatProvider).setNumber(user.user!.phoneNumber!);
+      await setUserToken();
       ref.read(userStateNotifierProvider.notifier).setLoginState(true);
       otpStateNotifier.setIsSuccess(true);
     } on FirebaseAuthException catch (e) {
@@ -119,8 +123,9 @@ class Authentication {
         // Sync user name/email
         final name = googleAccount.displayName;
         final email = googleAccount.email;
+        ref.read(revenueCatProvider).setName(name!);
+        ref.read(revenueCatProvider).setEmail(email);
         await syncUserState({'name': name, 'email': email});
-        ref.read(revenueCatProvider).logIn(email);
       }
     } on FirebaseAuthException catch (e) {
       print(e.code);
@@ -142,6 +147,13 @@ class Authentication {
         default:
           throw MgException(message: 'Something went wrong');
       }
+    }
+  }
+
+  Future<void> setUserToken() async {
+    final userToken = await FirebaseMessaging.instance.getToken();
+    if (userToken != null) {
+      ref.read(revenueCatProvider).setFCM(userToken);
     }
   }
 

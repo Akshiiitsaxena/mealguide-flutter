@@ -49,6 +49,22 @@ class RevenueCatProvider {
     }
   }
 
+  Future<void> setName(String name) async {
+    await Purchases.setDisplayName(name);
+  }
+
+  Future<void> setEmail(String email) async {
+    await Purchases.setEmail(email);
+  }
+
+  Future<void> setNumber(String number) async {
+    await Purchases.setPhoneNumber(number);
+  }
+
+  Future<void> setFCM(String token) async {
+    await Purchases.setPushToken(token);
+  }
+
   Future<void> logIn(String id) async {
     final info = await Purchases.logIn(id);
     print(info.customerInfo.toJson());

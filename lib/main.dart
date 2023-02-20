@@ -63,6 +63,7 @@ class MyApp extends HookConsumerWidget {
               home: Builder(builder: (context) {
                 if (FirebaseAuth.instance.currentUser != null) {
                   final user = FirebaseAuth.instance.currentUser;
+                  ref.read(authProvider).setUserToken();
                   if (user!.email == null || user.email!.isEmpty) {
                     return const EmailVerificationPage();
                   }
