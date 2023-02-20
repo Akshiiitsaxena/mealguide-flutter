@@ -113,7 +113,7 @@ class UpgradePage extends HookConsumerWidget {
           'Chat with us',
           style: theme.textTheme.titleMedium!.copyWith(fontSize: 14.sp),
         ),
-        onTap: () {},
+        onTap: () => launchUrl(Uri.parse(Keys.whatsappUri)),
       ),
       SizedBox(height: 10.h),
     ];
