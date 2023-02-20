@@ -7,6 +7,7 @@ import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/helper/urls.dart';
 import 'package:mealguide/providers/dio_provider.dart';
 import 'package:mealguide/providers/otp_state_provider.dart';
+import 'package:mealguide/providers/revenuecat_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
 
 final authProvider = Provider(
@@ -119,6 +120,7 @@ class Authentication {
         final name = googleAccount.displayName;
         final email = googleAccount.email;
         await syncUserState({'name': name, 'email': email});
+        ref.read(revenueCatProvider).logIn(email);
       }
     } on FirebaseAuthException catch (e) {
       print(e.code);
@@ -152,6 +154,7 @@ class Authentication {
         googleSignIn.signOut();
       }
       ref.read(userStateNotifierProvider.notifier).setLoginState(false);
+      ref.read(revenueCatProvider).logOut();
     } catch (e) {
       print('error signing out $e');
     }

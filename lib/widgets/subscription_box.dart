@@ -10,7 +10,7 @@ class SubcriptionBox extends StatelessWidget {
 
   const SubcriptionBox({
     super.key,
-    required this.oldPrice,
+    this.oldPrice = '',
     required this.newPrice,
     required this.duration,
     required this.isSelected,
@@ -46,23 +46,26 @@ class SubcriptionBox extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                oldPrice,
-                style: theme.textTheme.bodySmall!
-                    .copyWith(fontSize: 8.sp)
-                    .copyWith(decoration: TextDecoration.lineThrough),
-              ),
+              oldPrice.isNotEmpty
+                  ? Text(
+                      oldPrice,
+                      style: theme.textTheme.bodySmall!
+                          .copyWith(fontSize: 8.sp)
+                          .copyWith(decoration: TextDecoration.lineThrough),
+                    )
+                  : Container(),
               Text(
                 newPrice,
                 style: theme.textTheme.labelLarge!
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 11.sp),
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 12.sp),
               ),
+              SizedBox(height: 0.2.h),
               Text(
                 duration.toUpperCase(),
                 style: theme.textTheme.bodySmall!.copyWith(
-                    color: theme.primaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 8.sp),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 8.sp,
+                ),
               )
             ],
           ),

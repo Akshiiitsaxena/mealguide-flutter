@@ -14,6 +14,7 @@ import 'package:mealguide/pages/onboarding/start_screen.dart';
 import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/hive_provider.dart';
 import 'package:mealguide/providers/notification_provider.dart';
+import 'package:mealguide/providers/revenuecat_provider.dart';
 import 'package:mealguide/providers/theme_provider.dart';
 import 'package:mealguide/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
@@ -43,6 +44,7 @@ class MyApp extends HookConsumerWidget {
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       );
       ref.read(notificationProvider).initHandler();
+      ref.read(revenueCatProvider).initPlatformState();
       return null;
     }, []);
 

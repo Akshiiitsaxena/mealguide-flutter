@@ -8,4 +8,5 @@ class Keys {
   static const calorie = 'calorie';
   static const businessPhone = '+919625155247';
   static const whatsappUri = 'whatsapp://send?phone=$businessPhone';
+  static const revenueCatAppKey = 'goog_yloHKqxrSwgZhVDtscrEQtNXZmV';
 }

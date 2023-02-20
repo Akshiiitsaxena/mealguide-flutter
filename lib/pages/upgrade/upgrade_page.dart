@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/keys.dart';
+import 'package:mealguide/pages/upgrade/offers_section.dart';
 import 'package:mealguide/widgets/mg_faqs.dart';
-import 'package:mealguide/widgets/primary_button.dart';
-import 'package:mealguide/widgets/subscription_box.dart';
 import 'package:mealguide/widgets/upgrade_button.dart';
 import 'package:mealguide/widgets/upgrade_info_tile.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -18,7 +16,6 @@ class UpgradePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ItemScrollController();
     final theme = Theme.of(context);
-    final chosenPlan = useState(0);
 
     List<Widget> widgets = [
       SafeArea(
@@ -100,47 +97,7 @@ class UpgradePage extends HookConsumerWidget {
         title: 'Curated by Nutritionists',
         image: 'assets/upgrade_features/feature_3.png',
       ),
-      SizedBox(height: 3.h),
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SubcriptionBox(
-              oldPrice: '₹ 2,698.50',
-              newPrice: '₹ 1,799.00',
-              duration: 'monthly',
-              isSelected: chosenPlan.value == 0,
-              onTap: () => chosenPlan.value = 0,
-            ),
-            SubcriptionBox(
-              oldPrice: '₹ 6,748.50',
-              newPrice: '₹ 4,499.00',
-              duration: '3 months',
-              isSelected: chosenPlan.value == 1,
-              onTap: () => chosenPlan.value = 1,
-            ),
-            SubcriptionBox(
-              oldPrice: '₹ 11,250.50',
-              newPrice: '₹ 7,500.00',
-              duration: '6 months',
-              isSelected: chosenPlan.value == 2,
-              onTap: () => chosenPlan.value = 2,
-            ),
-          ],
-        ),
-      ),
-      SizedBox(height: 2.h),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: MgPrimaryButton(
-          'GET STARTED',
-          onTap: () {},
-          isEnabled: true,
-          height: 6.h,
-        ),
-      ),
-      SizedBox(height: 2.h),
+      const OfferSection(),
       const MgFaqs(),
       SizedBox(height: 2.h),
       Padding(
