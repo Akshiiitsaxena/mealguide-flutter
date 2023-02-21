@@ -68,10 +68,9 @@ class RevenueCatProvider {
   }
 
   Future<void> setPremiumStateIfActive() async {
-    if (await hasAnySubscription()) {
-      ref.read(userStateNotifierProvider.notifier).setHasPremium(true);
-      ref.read(authProvider).syncUserState({'premium': true});
-    }
+    final hasPremium = await hasAnySubscription();
+    ref.read(userStateNotifierProvider.notifier).setHasPremium(hasPremium);
+    ref.read(authProvider).syncUserState({'premium': hasPremium});
   }
 
   Future<bool> hasAnySubscription() async {

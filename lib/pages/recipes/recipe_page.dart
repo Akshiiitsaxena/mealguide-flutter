@@ -2,12 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mealguide/helper/keys.dart';
 import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/pages/recipes/ingredient_tile.dart';
 import 'package:mealguide/pages/recipes/instruction_tile.dart';
 import 'package:mealguide/pages/recipes/servings_tile.dart';
 import 'package:mealguide/providers/recipe_state_provider.dart';
+import 'package:mealguide/providers/tab_provider.dart';
 import 'package:mealguide/providers/theme_provider.dart';
+import 'package:mealguide/providers/user_state_provider.dart';
+import 'package:mealguide/providers/viewed_recipes_provider.dart';
 import 'package:mealguide/widgets/info_box.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,14 +23,13 @@ class RecipePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final quantityNotifier = ref.read(recipeStateNotifierProvider.notifier);
 
     useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => ref.read(recipeStateNotifierProvider.notifier).setQuantity(
-              recipe.id,
-              recipe.serving.quantity,
-            ),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        quantityNotifier.setQuantity(recipe.id, recipe.serving.quantity);
+        handleViewedRecipes(ref, context);
+      });
       return null;
     }, []);
 
@@ -242,6 +245,22 @@ class RecipePage extends HookConsumerWidget {
         ],
       ),
     );
+  }
+
+  void handleViewedRecipes(WidgetRef ref, BuildContext context) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    final hasPremium = ref.read(userStateNotifierProvider).hasPremium;
+
+    if (!hasPremium) {
+      final viewedRecipes = ref.read(viewedRecipeNotifierProvider).viewed;
+      if (viewedRecipes <= Keys.maxViewedRecipes) {
+        ref.read(viewedRecipeNotifierProvider.notifier).addViewedRecipes();
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pop();
+        ref.read(tabControllerProvider).goToTab(tab: 4);
+      }
+    }
   }
 
   String getTimeString(Map<String, dynamic> recipeTime) =>

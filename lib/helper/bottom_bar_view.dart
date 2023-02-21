@@ -24,8 +24,10 @@ class BottomBarView extends HookConsumerWidget {
     final hasPremium = ref.watch(userStateNotifierProvider).hasPremium;
 
     useEffect(() {
-      ref.read(hiveProvider).getPantryFromStorage();
-      ref.read(hiveProvider).setLocalPlanFromStorage();
+      final hiveManager = ref.read(hiveProvider);
+      hiveManager.getPantryFromStorage();
+      hiveManager.setLocalPlanFromStorage();
+      hiveManager.setUserViewedRecipesFromStorage();
       ref.read(tabControllerProvider).setTabController(tab: 0);
       return null;
     }, []);

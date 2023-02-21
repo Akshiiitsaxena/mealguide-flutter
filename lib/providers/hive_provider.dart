@@ -8,6 +8,7 @@ import 'package:mealguide/models/recipe_model.dart';
 import 'package:mealguide/providers/local_plan_state_provider.dart';
 import 'package:mealguide/providers/pantry_state_provider.dart';
 import 'package:mealguide/providers/recipe_provider.dart';
+import 'package:mealguide/providers/viewed_recipes_provider.dart';
 
 final hiveProvider = Provider((ref) => HiveHandler(ref));
 
@@ -139,5 +140,20 @@ class HiveHandler {
   void setCalorieGoal(double calorie) async {
     var calorieBox = await Hive.openBox('calorie');
     calorieBox.put(Keys.calorie, calorie);
+  }
+
+  Future<int> getUserViewedRecipes() async {
+    var viewedRecipeBox = await Hive.openBox<int>('viewedRecipes');
+    return viewedRecipeBox.get(Keys.viewedRecipes) ?? 0;
+  }
+
+  void setUserViewedRecipes(int number) async {
+    var viewedRecipeBox = await Hive.openBox<int>('viewedRecipes');
+    viewedRecipeBox.put(Keys.viewedRecipes, number);
+  }
+
+  void setUserViewedRecipesFromStorage() async {
+    int viewed = await getUserViewedRecipes();
+    ref.read(viewedRecipeNotifierProvider.notifier).setViewedRecipes(viewed);
   }
 }
