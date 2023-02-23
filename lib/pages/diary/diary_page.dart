@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/models/user_diary_states.dart';
@@ -18,6 +19,11 @@ class DiaryPage extends HookConsumerWidget {
     final userDiaryWatcher = ref.watch(userDiaryProvider);
     final theme = Theme.of(context);
 
+    useEffect(() {
+      ref.refresh(userDiaryProvider);
+      return null;
+    }, []);
+
     return userDiaryWatcher.when(
       data: (data) {
         switch (userDiaryState) {
@@ -29,6 +35,9 @@ class DiaryPage extends HookConsumerWidget {
             return DiaryBookedSlotpage(slot: slot);
           case UserDiaryState.noUpcomingSlot:
             return const DiaryNoSlotPage();
+          case UserDiaryState.mockPlan:
+            final mockDiary = data['mock'];
+            return DiaryMealPlanPage(diary: mockDiary, isMock: true);
           default:
             return Container();
         }

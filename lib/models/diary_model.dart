@@ -1,10 +1,10 @@
 import 'package:mealguide/models/day_plan_model.dart';
 
 class Diary {
-  final DateTime startTime;
-  final DateTime endTime;
-  final String masterPlanId;
-  final List<DayPlan> plans;
+  DateTime startTime;
+  DateTime endTime;
+  String masterPlanId;
+  List<DayPlan> plans;
 
   Diary({
     required this.endTime,
@@ -25,5 +25,9 @@ class Diary {
       startTime: DateTime.parse(doc['start_date']).toLocal(),
       masterPlanId: doc['_id'],
     );
+  }
+
+  set setCustomStartTime(DateTime dateTime) {
+    startTime = dateTime;
   }
 }

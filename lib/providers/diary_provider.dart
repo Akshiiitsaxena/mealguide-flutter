@@ -18,6 +18,15 @@ final diaryProvider = FutureProvider<Diary>((ref) async {
     }
 
     Diary diary = Diary.fromDoc(response.data['data']);
+
+    /// if diary is over but response data still not null
+    final dayPlans = diary.plans.length;
+    final days = DateTime.now().difference(diary.startTime).inDays;
+
+    if (days > dayPlans - 1) {
+      throw MgException(code: -1);
+    }
+
     // Future.delayed(const Duration(seconds: 1));
     // final String diaryJsonString =
     //     await rootBundle.loadString('assets/data/plan.json');
@@ -44,7 +53,7 @@ final diaryProvider = FutureProvider<Diary>((ref) async {
     debugPrint(e.message);
     throw MgException(message: e.message, code: e.response?.statusCode);
   } on MgException {
-    rethrow;
+    throw MgException(code: -1);
   } catch (e) {
     debugPrint(e.toString());
     throw MgException();

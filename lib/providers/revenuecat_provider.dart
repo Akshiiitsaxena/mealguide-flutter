@@ -7,6 +7,7 @@ import 'package:mealguide/helper/keys.dart';
 import 'package:mealguide/helper/mg_exception.dart';
 import 'package:mealguide/providers/auth_provider.dart';
 import 'package:mealguide/providers/tab_provider.dart';
+import 'package:mealguide/providers/user_diary_provider.dart';
 import 'package:mealguide/providers/user_state_provider.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -18,7 +19,7 @@ class RevenueCatProvider {
   RevenueCatProvider(this.ref);
 
   Future<void> initPlatformState() async {
-    await Purchases.setLogLevel(LogLevel.debug);
+    await Purchases.setLogLevel(LogLevel.error);
 
     PurchasesConfiguration configuration;
 
@@ -51,7 +52,7 @@ class RevenueCatProvider {
       CustomerInfo info = await Purchases.purchasePackage(package);
       if (info.activeSubscriptions.isNotEmpty) {
         ref.read(userStateNotifierProvider.notifier).setHasPremium(true);
-        ref.read(tabControllerProvider).goToTab(tab: 0);
+        ref.read(tabControllerProvider).goToTab(tab: 1);
 
         Map<dynamic, dynamic> data = {};
         data['premium'] = true;
