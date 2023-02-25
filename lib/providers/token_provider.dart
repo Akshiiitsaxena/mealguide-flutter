@@ -15,6 +15,6 @@ class TokenManager {
       return null;
     }
 
-    return await FirebaseAuth.instance.currentUser!.getIdToken();
+    return await FirebaseAuth.instance.currentUser!.getIdToken(true);
   }
 }

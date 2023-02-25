@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealguide/helper/mg_exception.dart';
@@ -106,6 +107,8 @@ class Authentication {
     } on FirebaseAuthException catch (e) {
       print(e);
       verificationFailed(e);
+    } on PlatformException catch (pe) {
+      print(pe);
     } finally {
       otpStateNotifier.setIsLoading(false);
     }
@@ -174,7 +177,7 @@ class Authentication {
 
   Future<void> syncUserState(Map<dynamic, dynamic> data) async {
     try {
-      final dio = await ref.watch(dioProvider(true).future);
+      final dio = await ref.refresh(dioProvider(true).future);
       final response = await dio.post(MgUrls.userSync, data: data);
       print(response.data);
     } on DioError catch (e) {
