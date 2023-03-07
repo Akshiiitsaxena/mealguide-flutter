@@ -42,20 +42,22 @@ class DiaryRecipes extends HookConsumerWidget {
               padding: EdgeInsets.symmetric(vertical: 1.h),
               child: InkWell(
                 onTap: () async {
-                  final recipe = await getRecipeForMealPlan(ref, plan);
-                  ref.read(bottomBarStateNotifierProvider.notifier).hideBar();
-                  // ignore: use_build_context_synchronously
-                  Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (context) => RecipePage(recipe: recipe),
-                        ),
-                      )
-                      .then(
-                        (_) => ref
-                            .read(bottomBarStateNotifierProvider.notifier)
-                            .showBar(),
-                      );
+                  if (plan.type == MealPlanType.recipe) {
+                    final recipe = await getRecipeForMealPlan(ref, plan);
+                    ref.read(bottomBarStateNotifierProvider.notifier).hideBar();
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => RecipePage(recipe: recipe),
+                          ),
+                        )
+                        .then(
+                          (_) => ref
+                              .read(bottomBarStateNotifierProvider.notifier)
+                              .showBar(),
+                        );
+                  }
                 },
                 child: DiaryContainer(
                   enabled: !isConsumed,
@@ -76,10 +78,17 @@ class DiaryRecipes extends HookConsumerWidget {
                             width: 9.h,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
-                              child: CachedNetworkImage(
-                                imageUrl: plan.recipeImage,
-                                fit: BoxFit.cover,
-                              ),
+                              child: plan.recipeImage != null
+                                  ? CachedNetworkImage(
+                                      imageUrl: plan.recipeImage!,
+                                      fit: BoxFit.cover,
+                                      errorWidget: (_, __, ___) => Container(
+                                        color: theme.scaffoldBackgroundColor,
+                                      ),
+                                    )
+                                  : Container(
+                                      color: theme.canvasColor,
+                                    ),
                             ),
                           ),
                           SizedBox(width: 3.w),
@@ -87,9 +96,35 @@ class DiaryRecipes extends HookConsumerWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${plan.nutrition.calories.floor().toStringAsFixed(0)} kcal • 20 mins',
-                                  style: theme.textTheme.bodySmall,
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${plan.nutrition.calories.floor().toStringAsFixed(0)} kcal',
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                    FutureBuilder<Recipe>(
+                                      future: getRecipeForMealPlan(ref, plan),
+                                      builder: (_, snapshot) {
+                                        if (snapshot.hasError) {
+                                          return Container();
+                                        }
+
+                                        if (snapshot.hasData) {
+                                          return Text(
+                                            ' • ${getTimeString(
+                                              snapshot.data!.time['total'],
+                                            )} mins',
+                                            style: theme.textTheme.bodySmall,
+                                          );
+                                        }
+
+                                        return Text(
+                                          '•••',
+                                          style: theme.textTheme.bodySmall,
+                                        );
+                                      },
+                                    )
+                                  ],
                                 ),
                                 Text(
                                   plan.recipeName,
@@ -107,9 +142,7 @@ class DiaryRecipes extends HookConsumerWidget {
                                 context,
                                 ref,
                                 () async {
-                                  final recipeNutrition =
-                                      (await getRecipeForMealPlan(ref, plan))
-                                          .nutrition;
+                                  final recipeNutrition = plan.nutrition;
 
                                   ref.read(planConsumeProvider).consumeMeal(
                                       planId: masterDayPlanId, mealId: plan.id);

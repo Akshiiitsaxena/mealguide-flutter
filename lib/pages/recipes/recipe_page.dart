@@ -262,9 +262,9 @@ class RecipePage extends HookConsumerWidget {
       }
     }
   }
-
-  String getTimeString(Map<String, dynamic> recipeTime) =>
-      recipeTime['lower'] == recipeTime['upper']
-          ? recipeTime['lower'].toString()
-          : '${recipeTime['lower']} - ${recipeTime['upper']}';
 }
+
+String getTimeString(Map<String, dynamic> recipeTime) =>
+    recipeTime['lower'] == recipeTime['upper']
+        ? recipeTime['lower'].toString()
+        : '${recipeTime['lower']} - ${recipeTime['upper']}';
